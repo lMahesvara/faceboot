@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package guis;
 
 import entidades.Sexo;
@@ -327,6 +324,7 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         agregar();
+        this.dispose();
     }//GEN-LAST:event_btnCrearActionPerformed
 
     /**
