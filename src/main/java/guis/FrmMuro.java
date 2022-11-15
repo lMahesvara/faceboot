@@ -20,7 +20,6 @@ public class FrmMuro extends javax.swing.JFrame {
     public FrmMuro() {
         initComponents();
         fachadaConexion = new FachadaConexion();
-        fachadaConexion.suscribir();
     }
 
     /**

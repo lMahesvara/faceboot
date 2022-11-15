@@ -20,7 +20,6 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
     public FrmRegistrarUsuario() {
         initComponents();
         facConexion = new FachadaConexion();
-        facConexion.suscribir();
     }
     
     private void agregar(){

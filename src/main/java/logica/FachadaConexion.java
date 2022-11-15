@@ -24,9 +24,4 @@ public class FachadaConexion implements IFachadaConexion{
         conector.enviarPeticion(json);
     }
     
-    @Override
-    public void suscribir(){
-        conector.suscribir();
-    }
-    
 }

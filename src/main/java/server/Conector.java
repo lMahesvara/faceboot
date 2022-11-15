@@ -16,7 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Conector {
-
     private Socket cliente;
     private int puerto = 9000;
     private String ip = "127.0.0.1";
@@ -72,10 +71,6 @@ public class Conector {
                 }
             }
         }).start();
-    }
-    
-    public void suscribir(){
-        
     }
 
     private void closeAll() {
