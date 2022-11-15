@@ -10,11 +10,23 @@ import server.Conector;
 
 public class FachadaConexion implements IFachadaConexion{
 
+    private Conector conector;
+
+    public FachadaConexion() {
+        conector = Conector.getInstance();
+    }
+    
+    
+    
     @Override
     public void regitrarUsuario(Usuario usuario) {
-        Conector conector = new Conector();
         String json = ConvertirPeticion.JSONConverter(new PeticionUsuario(REGISTRAR_USUARIO, usuario));
-        conector.iniciar(json);
+        conector.enviarPeticion(json);
+    }
+    
+    @Override
+    public void suscribir(){
+        conector.suscribir();
     }
     
 }

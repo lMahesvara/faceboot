@@ -7,6 +7,7 @@ import entidades.Sexo;
 import entidades.Usuario;
 import helpers.Peticiones;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
@@ -16,22 +17,74 @@ import java.util.logging.Logger;
 
 public class Conector {
 
-    Socket cliente;
-    int puerto = 9000;
-    String ip = "127.0.0.1";
-    PrintStream salida;
+    private Socket cliente;
+    private int puerto = 9000;
+    private String ip = "127.0.0.1";
+    private PrintStream salida;
+    private BufferedReader entrada;
+    private static Conector instance;
 
-    public void iniciar(String json ) {
+    private Conector() {
         try {
-            //String json = mappear();
-            
             cliente = new Socket(ip, puerto);
             salida = new PrintStream(cliente.getOutputStream());
-            salida.println(json);
+            entrada = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
+            recibirPeticiones();
+        } catch (IOException ex) {
+            Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-            salida.close();
-            cliente.close();
+    }
+
+    public static Conector getInstance() {
+        if (instance == null) {
+            instance = new Conector();
+        }
+        return instance;
+    }
+
+    public void enviarPeticion(String json) {
+        try {
+            //String json = mappear();
+            if (!json.equals(" ")) {
+                salida.println(json);
+            }
+//            String respuesta = entrada.readLine();
+//            System.out.println("JSON: " + respuesta);
+
         } catch (Exception e) {
+            closeAll();
+        }
+    }
+    
+    public void recibirPeticiones(){
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                String peticion;
+                while(cliente.isConnected()){
+                    try {
+                        peticion = entrada.readLine();
+                        System.out.println("2"+ peticion);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        }).start();
+    }
+    
+    public void suscribir(){
+        
+    }
+
+    private void closeAll() {
+        try {
+            salida.close();
+            entrada.close();
+            cliente.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
