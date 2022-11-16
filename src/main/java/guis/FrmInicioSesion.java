@@ -4,17 +4,43 @@
  */
 package guis;
 
-/**
- *
- * @author erick
- */
-public class FrmInicioSesion extends javax.swing.JFrame {
+import entidades.Usuario;
+import eventos.ManejadorEventos;
+import interfaces.IFachadaConexion;
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.JOptionPane;
+import logica.FachadaConexion;
+import peticiones.PeticionUsuario;
 
+public class FrmInicioSesion extends javax.swing.JFrame implements Observer {
+    IFachadaConexion facConexion;
     /**
      * Creates new form FrmInicioSesion
      */
     public FrmInicioSesion() {
         initComponents();
+        facConexion = new FachadaConexion();
+        ManejadorEventos.getInstance().suscribirIniciarSesion(this);
+    }
+    
+    private void iniciarSesion(){
+        String usuario = txtUsuario.getText().trim();
+        String pass = txtPassword.getText().trim();
+        Usuario user = new Usuario(usuario, pass);
+        facConexion.iniciarSesion(user);
+    }
+    
+    private void verificarUsuario(PeticionUsuario peticion){
+        System.out.println("Entro al verificar");
+        if(peticion.getUsuario() == null){
+            JOptionPane.showMessageDialog(this, "Credenciales incorrectas", "Iniciar Sesión", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        FrmMuro frmMuro = new FrmMuro(peticion.getUsuario());
+        frmMuro.setVisible(true);
+        this.dispose();
+        
     }
 
     /**
@@ -29,7 +55,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         txtUsuario = new javax.swing.JTextField();
-        txtpassword = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
         btnIniciarSesion = new javax.swing.JButton();
         btnCrearCuenta = new javax.swing.JButton();
 
@@ -46,12 +72,12 @@ public class FrmInicioSesion extends javax.swing.JFrame {
             }
         });
 
-        txtpassword.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        txtpassword.setText("Contraseña");
-        txtpassword.setMargin(new java.awt.Insets(2, 15, 2, 6));
-        txtpassword.addActionListener(new java.awt.event.ActionListener() {
+        txtPassword.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        txtPassword.setText("Contraseña");
+        txtPassword.setMargin(new java.awt.Insets(2, 15, 2, 6));
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpasswordActionPerformed(evt);
+                txtPasswordActionPerformed(evt);
             }
         });
 
@@ -85,7 +111,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
                         .addGap(14, 14, 14)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtpassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
                             .addComponent(btnIniciarSesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(68, 68, 68)
@@ -98,7 +124,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
@@ -135,18 +161,19 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
-    private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtpasswordActionPerformed
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        
+        iniciarSesion();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed
@@ -193,7 +220,13 @@ public class FrmInicioSesion extends javax.swing.JFrame {
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUsuario;
-    private javax.swing.JTextField txtpassword;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object pet) {
+        PeticionUsuario peticion = (PeticionUsuario)pet;
+        verificarUsuario(peticion);
+    }
 }

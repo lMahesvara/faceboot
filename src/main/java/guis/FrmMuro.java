@@ -5,21 +5,38 @@
 package guis;
 
 import entidades.Publicacion;
+import entidades.Usuario;
+import eventos.ManejadorEventos;
 import interfaces.IFachadaConexion;
+import java.util.Calendar;
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.JOptionPane;
 import logica.FachadaConexion;
+import peticiones.PeticionPublicacion;
 
 /**
  *
  * @author erick
  */
-public class FrmMuro extends javax.swing.JFrame {
+public class FrmMuro extends javax.swing.JFrame implements Observer{
+
     private IFachadaConexion fachadaConexion;
+    private Usuario usuario;
+
     /**
      * Creates new form FrmMuro
      */
-    public FrmMuro() {
+    public FrmMuro(Usuario usuario) {
         initComponents();
-        fachadaConexion = new FachadaConexion();
+        this.fachadaConexion = new FachadaConexion();
+        this.usuario = usuario;
+        ManejadorEventos.getInstance().suscribirRegistrarPublicacion(this);
+        System.out.println(usuario.getUsuario());
+    }
+    
+    private void mostrarPublicacion(PeticionPublicacion peticion){
+        JOptionPane.showMessageDialog(this, peticion.getPublicacion().getTexto().trim(),"Publicacion Nueva", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -70,10 +87,12 @@ public class FrmMuro extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearPublicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPublicacionActionPerformed
-        //Publicacion publicacion = new Publicacion(usuario, fecha, texto);
+        Publicacion publicacion = new Publicacion(usuario.getId(), Calendar.getInstance(), txtTexto.getText().trim());
+        fachadaConexion.registrarPublicacion(publicacion);
     }//GEN-LAST:event_btnCrearPublicacionActionPerformed
 
     /**
@@ -106,7 +125,7 @@ public class FrmMuro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmMuro().setVisible(true);
+                new FrmMuro(null).setVisible(true);
             }
         });
     }
@@ -116,4 +135,10 @@ public class FrmMuro extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtTexto;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object pet) {
+        PeticionPublicacion peticion = (PeticionPublicacion)pet;
+        mostrarPublicacion(peticion);
+    }
 }

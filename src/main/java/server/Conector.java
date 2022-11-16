@@ -1,19 +1,15 @@
 package server;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import entidades.BlackBoardObject;
-import entidades.Sexo;
-import entidades.Usuario;
-import helpers.Peticiones;
+import eventos.ManejadorEventos;
+import helpers.ConvertirPeticion;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
-import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import peticiones.AbstractPeticion;
 
 public class Conector {
     private Socket cliente;
@@ -60,11 +56,16 @@ public class Conector {
         new Thread(new Runnable(){
             @Override
             public void run() {
-                String peticion;
+                String json;
                 while(cliente.isConnected()){
                     try {
-                        peticion = entrada.readLine();
-                        System.out.println("2"+ peticion);
+                        json = entrada.readLine();
+                        System.out.println("2"+ json);
+                        AbstractPeticion peticion = ConvertirPeticion.PetitionConverter(json);
+                        System.out.println("ea "+peticion);
+                        ManejadorEventos.getInstance().manejarEvento(peticion);
+                        //Mandar Peticion -> EventHandler
+                        //EventHandler -> Se va a encargar de determinar a que evento corresponde la peticion y va ejecutar el notificarTodos()
                     } catch (IOException ex) {
                         Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
                     }
