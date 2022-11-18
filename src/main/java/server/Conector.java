@@ -1,6 +1,6 @@
 package server;
 
-import eventos.ManejadorEventos;
+import events.EventHandler;
 import helpers.ConvertirPeticion;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -63,7 +63,7 @@ public class Conector {
                         System.out.println("2"+ json);
                         AbstractPeticion peticion = ConvertirPeticion.PetitionConverter(json);
                         System.out.println("ea "+peticion);
-                        ManejadorEventos.getInstance().manejarEvento(peticion);
+                        EventHandler.getInstance().manejarEvento(peticion);
                         //Mandar Peticion -> EventHandler
                         //EventHandler -> Se va a encargar de determinar a que evento corresponde la peticion y va ejecutar el notificarTodos()
                     } catch (IOException ex) {

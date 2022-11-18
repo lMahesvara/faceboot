@@ -5,42 +5,46 @@
 package guis;
 
 import entidades.Usuario;
-import eventos.ManejadorEventos;
+import events.EventHandler;
+import events.EventoIniciarSesion;
 import interfaces.IFachadaConexion;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JOptionPane;
 import logica.FachadaConexion;
+import observers.ObserverIniciarSesion;
 import peticiones.PeticionUsuario;
 
-public class FrmInicioSesion extends javax.swing.JFrame implements Observer {
+public class FrmInicioSesion extends javax.swing.JFrame implements ObserverIniciarSesion {
+
     IFachadaConexion facConexion;
+
     /**
      * Creates new form FrmInicioSesion
      */
     public FrmInicioSesion() {
         initComponents();
         facConexion = new FachadaConexion();
-        ManejadorEventos.getInstance().suscribirIniciarSesion(this);
+        EventoIniciarSesion.getInstance().addObserver(this);
     }
-    
-    private void iniciarSesion(){
+
+    private void iniciarSesion() {
         String usuario = txtUsuario.getText().trim();
         String pass = txtPassword.getText().trim();
         Usuario user = new Usuario(usuario, pass);
         facConexion.iniciarSesion(user);
     }
-    
-    private void verificarUsuario(PeticionUsuario peticion){
+
+    private void verificarUsuario(PeticionUsuario peticion) {
         System.out.println("Entro al verificar");
-        if(peticion.getUsuario() == null){
+        if (peticion.getUsuario() == null) {
             JOptionPane.showMessageDialog(this, "Credenciales incorrectas", "Iniciar Sesión", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         FrmMuro frmMuro = new FrmMuro(peticion.getUsuario());
         frmMuro.setVisible(true);
         this.dispose();
-        
+
     }
 
     /**
@@ -225,8 +229,8 @@ public class FrmInicioSesion extends javax.swing.JFrame implements Observer {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void update(Observable o, Object pet) {
-        PeticionUsuario peticion = (PeticionUsuario)pet;
+    public void update(PeticionUsuario peticion) {
         verificarUsuario(peticion);
+
     }
 }

@@ -6,20 +6,23 @@ package guis;
 
 import entidades.Publicacion;
 import entidades.Usuario;
-import eventos.ManejadorEventos;
+import events.EventoConsultarPublicaciones;
+import events.EventoRegistrarPublicacion;
 import interfaces.IFachadaConexion;
 import java.util.Calendar;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.List;
 import javax.swing.JOptionPane;
 import logica.FachadaConexion;
+import observers.ObserverConsultarPublicaciones;
+import observers.ObserverRegistrarPublicacion;
 import peticiones.PeticionPublicacion;
+import peticiones.PeticionPublicaciones;
 
 /**
  *
  * @author erick
  */
-public class FrmMuro extends javax.swing.JFrame implements Observer{
+public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPublicacion, ObserverConsultarPublicaciones {
 
     private IFachadaConexion fachadaConexion;
     private Usuario usuario;
@@ -31,12 +34,24 @@ public class FrmMuro extends javax.swing.JFrame implements Observer{
         initComponents();
         this.fachadaConexion = new FachadaConexion();
         this.usuario = usuario;
-        ManejadorEventos.getInstance().suscribirRegistrarPublicacion(this);
+        EventoRegistrarPublicacion.getInstance().addObserver(this);
+        EventoConsultarPublicaciones.getInstance().addObserver(this);
+        consultarPublicaciones();
         System.out.println(usuario.getUsuario());
     }
+
+    private void mostrarPublicacion(PeticionPublicacion peticion) {
+        JOptionPane.showMessageDialog(this, peticion.getPublicacion().getTexto().trim(), "Publicacion Nueva", JOptionPane.INFORMATION_MESSAGE);
+    }
     
-    private void mostrarPublicacion(PeticionPublicacion peticion){
-        JOptionPane.showMessageDialog(this, peticion.getPublicacion().getTexto().trim(),"Publicacion Nueva", JOptionPane.INFORMATION_MESSAGE);
+    private void consultarPublicaciones(){
+        fachadaConexion.consultarPublicaciones();
+    }
+    
+    private void pintarMuro(List<Publicacion> publicaciones){
+        publicaciones.forEach(publicacion -> {
+            txtPublicaciones.append(publicacion.getTexto() + "\n");
+        });
     }
 
     /**
@@ -51,6 +66,8 @@ public class FrmMuro extends javax.swing.JFrame implements Observer{
         jScrollPane1 = new javax.swing.JScrollPane();
         txtTexto = new javax.swing.JTextArea();
         btnCrearPublicacion = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtPublicaciones = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +82,10 @@ public class FrmMuro extends javax.swing.JFrame implements Observer{
             }
         });
 
+        txtPublicaciones.setColumns(20);
+        txtPublicaciones.setRows(5);
+        jScrollPane2.setViewportView(txtPublicaciones);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,6 +96,10 @@ public class FrmMuro extends javax.swing.JFrame implements Observer{
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCrearPublicacion))
                 .addContainerGap(237, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,7 +108,9 @@ public class FrmMuro extends javax.swing.JFrame implements Observer{
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCrearPublicacion)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,12 +160,19 @@ public class FrmMuro extends javax.swing.JFrame implements Observer{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearPublicacion;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea txtPublicaciones;
     private javax.swing.JTextArea txtTexto;
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void update(Observable o, Object pet) {
-        PeticionPublicacion peticion = (PeticionPublicacion)pet;
+    public void update(PeticionPublicacion peticion) {
         mostrarPublicacion(peticion);
+
+    }
+
+    @Override
+    public void update(PeticionPublicaciones peticion) {
+        pintarMuro(peticion.getPublicaciones());
     }
 }

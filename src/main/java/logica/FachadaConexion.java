@@ -7,6 +7,7 @@ import helpers.Peticiones;
 import static helpers.Peticiones.*;
 import interfaces.IFachadaConexion;
 import peticiones.PeticionPublicacion;
+import peticiones.PeticionPublicaciones;
 import peticiones.PeticionUsuario;
 import server.Conector;
 
@@ -31,7 +32,12 @@ public class FachadaConexion implements IFachadaConexion {
     }
     
     public void registrarPublicacion(Publicacion publicacion){
-        String json = ConvertirPeticion.JSONConverter(new PeticionPublicacion(Peticiones.REGISTRAR_PUBLICACION, publicacion));
+        String json = ConvertirPeticion.JSONConverter(new PeticionPublicacion(REGISTRAR_PUBLICACION, publicacion));
+        conector.enviarPeticion(json);
+    }
+    
+    public void consultarPublicaciones(){
+        String json = ConvertirPeticion.JSONConverter(new PeticionPublicaciones(CONSULTAR_PUBLICACIONES));
         conector.enviarPeticion(json);
     }
 
