@@ -1,29 +1,41 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package guis;
 
+import components.Linea;
 import components.MuroBody;
+import components.MuroPublicacion;
+import components.MuroPublicar;
 import components.MuroTitle;
 import entidades.Publicacion;
+import entidades.Usuario;
 import java.util.List;
 import net.miginfocom.swing.MigLayout;
 
 public class PMuro extends javax.swing.JPanel {
-    
-    public PMuro() {
+
+    private Usuario usuario;
+    private MuroBody muroBody;
+
+    public PMuro(Usuario usuario) {
         initComponents();
-        
+        this.usuario = usuario;
     }
-    
-    public void init(List<Publicacion> publicaciones){
-        setLayout(new MigLayout("fillx", "0[fill]0", "0[shrink 0]0[87%]0"));
-        MuroTitle muroTitulo= new MuroTitle();
-        MuroBody muroBody = new MuroBody(publicaciones);
-        
-        add(muroTitulo,"wrap");
-        add(muroBody,"wrap");
+
+    public void init(List<Publicacion> publicaciones) {
+        setLayout(new MigLayout("fillx", "0[]0[]0[]0[]0", "0[shrink 0]0[]10[shrink 0]0[77%, top]0"));
+        MuroTitle muroTitulo = new MuroTitle(usuario);
+        this.muroBody = new MuroBody(publicaciones, usuario);
+        MuroPublicar muroPublicar = new MuroPublicar(usuario);
+        Linea linea = new Linea();
+        add(muroTitulo, "wrap, al center");
+        add(linea, "wrap, width 100%");
+        add(muroPublicar, "wrap, al center");
+        add(muroBody, "width 100%");
+        repaint();
+        revalidate();
+    }
+
+    public void agregarPublicacion(Publicacion publicacion) {
+        muroBody.agregarPublicacion(publicacion);
         repaint();
         revalidate();
     }

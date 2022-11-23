@@ -1,21 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package components;
 
-/**
- *
- * @author erick
- */
+import entidades.Usuario;
+
 public class MuroTitle extends javax.swing.JPanel {
 
     /**
      * Creates new form MuroTitulo
      */
-    public MuroTitle() {
+    public MuroTitle(Usuario usuario) {
         initComponents();
-        txtSearch.setHintText("Jashta a buscar");
+        txtSearch.setHintText("¿Qué jashta estás buscando, "+ usuario.getUsuario()+"?");
+        lblUsuario.setText(usuario.getUsuario());
     }
 
     /**
@@ -27,16 +22,21 @@ public class MuroTitle extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblLogo = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtSearch = new swingComponents.JIMSendTextPane();
 
         setBackground(null);
 
-        jLabel1.setText("FACEBOOT");
+        lblLogo.setBackground(new java.awt.Color(24, 119, 242));
+        lblLogo.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        lblLogo.setForeground(new java.awt.Color(24, 119, 242));
+        lblLogo.setText("FACEBOOT");
 
-        jLabel2.setText("JORGE");
+        lblUsuario.setFont(new java.awt.Font("Serif", 0, 16)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(24, 119, 242));
+        lblUsuario.setText("Jorge");
 
         jScrollPane1.setViewportView(txtSearch);
 
@@ -46,12 +46,12 @@ public class MuroTitle extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jLabel1)
-                .addGap(101, 101, 101)
+                .addComponent(lblLogo)
+                .addGap(69, 69, 69)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
-                .addComponent(jLabel2)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addComponent(lblUsuario)
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -59,18 +59,17 @@ public class MuroTitle extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addComponent(lblLogo)
+                    .addComponent(lblUsuario))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblUsuario;
     private swingComponents.JIMSendTextPane txtSearch;
     // End of variables declaration//GEN-END:variables
 }

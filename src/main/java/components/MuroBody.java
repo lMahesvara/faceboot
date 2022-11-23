@@ -1,43 +1,53 @@
 package components;
 
 import entidades.Publicacion;
+import entidades.Usuario;
+import java.awt.Adjustable;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.util.List;
+import javax.swing.JScrollBar;
 import net.miginfocom.swing.MigLayout;
 import swingComponents.ScrollBar;
 
 public class MuroBody extends javax.swing.JPanel {
 
     private List<Publicacion> publicaciones;
+    private Usuario usuario;
+
     /**
      * Creates new form MuroBody
      */
-    public MuroBody(List<Publicacion> publicaciones) {
+    public MuroBody(List<Publicacion> publicaciones, Usuario usuario) {
         initComponents();
         this.publicaciones = publicaciones;
+        this.usuario = usuario;
         init();
     }
-    
-    private void init(){
-        panBody.setLayout(new MigLayout("fillx, btt", "", "0[]5"));
+
+    private void init() {
+        panBody.setLayout(new MigLayout("fillx, btt", "10[]0", "0[]10"));
         panMuroBody.setVerticalScrollBar(new ScrollBar());
-        MuroPublicar muroPub = new MuroPublicar();
         cargarItems();
-        panBody.add(muroPub, "wrap, al center");
     }
-    
-    private void cargarItems(){
+
+    private void cargarItems() {
         publicaciones.forEach(publi -> {
             MuroPublicacion muroPub = new MuroPublicacion(publi);
             panBody.add(muroPub, "wrap, al center");
-            System.out.println("Publicacion: " + publi.getTexto());
         });
         panBody.repaint();
         panBody.revalidate();
     }
-    
-    public void agregarPublicacion(Publicacion publicacion){
-        
+
+    public void agregarPublicacion(Publicacion publicacion) {
+        MuroPublicacion muroPub = new MuroPublicacion(publicacion);
+        panBody.add(muroPub, "wrap, al center");
+        panBody.repaint();
+        panBody.revalidate();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

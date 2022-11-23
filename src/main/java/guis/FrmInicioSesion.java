@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package guis;
 
 import entidades.Usuario;
@@ -23,7 +19,7 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         initComponents();
         facConexion = new FachadaConexion();
         EventoIniciarSesion.getInstance().addObserver(this);
-        pruebaInicio();
+        //pruebaInicio();
     }
     
     private void pruebaInicio(){

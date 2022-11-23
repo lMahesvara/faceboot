@@ -36,8 +36,8 @@ public class PublicacionTitle extends javax.swing.JPanel {
     
     private void setImgUser(){
         imgUser.setIcon(null);
-        ImageIcon image = new ImageIcon("src/main/java/images/profileSettings.png");
-        imgUser.setIcon(new ImageIcon(image.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+        ImageIcon image = new ImageIcon("src/main/java/images/perfil.png");
+        imgUser.setIcon(new ImageIcon(image.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
     }
     
     private void setTime(){

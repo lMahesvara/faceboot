@@ -31,9 +31,9 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
      * Creates new form FrmMuro
      */
     public FrmMuro(Usuario usuario) {
+        this.usuario = usuario;
         initComponents();
         this.fachadaConexion = new FachadaConexion();
-        this.usuario = usuario;
         EventoRegistrarPublicacion.getInstance().addObserver(this);
         EventoConsultarPublicaciones.getInstance().addObserver(this);
         consultarPublicaciones();
@@ -41,7 +41,8 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
     }
 
     private void mostrarPublicacion(PeticionPublicacion peticion) {
-        JOptionPane.showMessageDialog(this, peticion.getPublicacion().getTexto().trim(), "Publicacion Nueva", JOptionPane.INFORMATION_MESSAGE);
+        //JOptionPane.showMessageDialog(this, peticion.getPublicacion().getTexto().trim(), "Publicacion Nueva", JOptionPane.INFORMATION_MESSAGE);
+        panMuro.agregarPublicacion(peticion.getPublicacion());
     }
     
     private void consultarPublicaciones(){
@@ -61,7 +62,7 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panMuro = new guis.PMuro();
+        panMuro = new guis.PMuro(this.usuario);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);

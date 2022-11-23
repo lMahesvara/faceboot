@@ -38,6 +38,9 @@
   </Layout>
   <SubComponents>
     <Container class="guis.PMuro" name="panMuro">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new guis.PMuro(this.usuario)"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
