@@ -49,9 +49,7 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
     }
     
     private void pintarMuro(List<Publicacion> publicaciones){
-        publicaciones.forEach(publicacion -> {
-            txtPublicaciones.append(publicacion.getTexto() + "\n");
-        });
+        panMuro.init(publicaciones);
     }
 
     /**
@@ -63,64 +61,38 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtTexto = new javax.swing.JTextArea();
-        btnCrearPublicacion = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtPublicaciones = new javax.swing.JTextArea();
+        panMuro = new guis.PMuro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        txtTexto.setColumns(20);
-        txtTexto.setRows(5);
-        jScrollPane1.setViewportView(txtTexto);
-
-        btnCrearPublicacion.setText("Crear publicación");
-        btnCrearPublicacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearPublicacionActionPerformed(evt);
-            }
-        });
-
-        txtPublicaciones.setColumns(20);
-        txtPublicaciones.setRows(5);
-        jScrollPane2.setViewportView(txtPublicaciones);
+        javax.swing.GroupLayout panMuroLayout = new javax.swing.GroupLayout(panMuro);
+        panMuro.setLayout(panMuroLayout);
+        panMuroLayout.setHorizontalGroup(
+            panMuroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 778, Short.MAX_VALUE)
+        );
+        panMuroLayout.setVerticalGroup(
+            panMuroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 602, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(169, 169, 169)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCrearPublicacion))
-                .addContainerGap(237, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66))
+            .addComponent(panMuro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCrearPublicacion)
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addComponent(panMuro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCrearPublicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPublicacionActionPerformed
-        Publicacion publicacion = new Publicacion(usuario.getId(), Calendar.getInstance(), txtTexto.getText().trim());
-        fachadaConexion.registrarPublicacion(publicacion);
-    }//GEN-LAST:event_btnCrearPublicacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,11 +130,7 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCrearPublicacion;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea txtPublicaciones;
-    private javax.swing.JTextArea txtTexto;
+    private guis.PMuro panMuro;
     // End of variables declaration//GEN-END:variables
 
     @Override

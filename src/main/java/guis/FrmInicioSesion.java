@@ -5,11 +5,8 @@
 package guis;
 
 import entidades.Usuario;
-import events.EventHandler;
 import events.EventoIniciarSesion;
 import interfaces.IFachadaConexion;
-import java.util.Observable;
-import java.util.Observer;
 import javax.swing.JOptionPane;
 import logica.FachadaConexion;
 import observers.ObserverIniciarSesion;
@@ -26,6 +23,13 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         initComponents();
         facConexion = new FachadaConexion();
         EventoIniciarSesion.getInstance().addObserver(this);
+        pruebaInicio();
+    }
+    
+    private void pruebaInicio(){
+        txtUsuario.setText("asd");
+        txtPassword.setText("asd");
+        iniciarSesion();
     }
 
     private void iniciarSesion() {
