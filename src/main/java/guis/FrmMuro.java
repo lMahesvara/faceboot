@@ -7,14 +7,15 @@ package guis;
 import entidades.Publicacion;
 import entidades.Usuario;
 import events.EventoConsultarPublicaciones;
+import events.EventoRegistrarComentario;
 import events.EventoRegistrarPublicacion;
 import interfaces.IFachadaConexion;
-import java.util.Calendar;
 import java.util.List;
-import javax.swing.JOptionPane;
 import logica.FachadaConexion;
 import observers.ObserverConsultarPublicaciones;
+import observers.ObserverRegistrarComentario;
 import observers.ObserverRegistrarPublicacion;
+import peticiones.PeticionComentario;
 import peticiones.PeticionPublicacion;
 import peticiones.PeticionPublicaciones;
 
@@ -22,7 +23,7 @@ import peticiones.PeticionPublicaciones;
  *
  * @author erick
  */
-public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPublicacion, ObserverConsultarPublicaciones {
+public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPublicacion, ObserverConsultarPublicaciones, ObserverRegistrarComentario {
 
     private IFachadaConexion fachadaConexion;
     private Usuario usuario;
@@ -36,6 +37,7 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
         this.fachadaConexion = new FachadaConexion();
         EventoRegistrarPublicacion.getInstance().addObserver(this);
         EventoConsultarPublicaciones.getInstance().addObserver(this);
+        EventoRegistrarComentario.getInstance().addObserver(this);
         consultarPublicaciones();
         System.out.println(usuario.getUsuario());
     }
@@ -143,5 +145,10 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
     @Override
     public void update(PeticionPublicaciones peticion) {
         pintarMuro(peticion.getPublicaciones());
+    }
+
+    @Override
+    public void update(PeticionComentario peticion) {
+        consultarPublicaciones();
     }
 }

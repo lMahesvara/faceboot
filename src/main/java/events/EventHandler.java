@@ -1,13 +1,13 @@
 package events;
 
 import static helpers.Peticiones.*;
-import java.util.Observer;
 import peticiones.AbstractPeticion;
 
 public class EventHandler {
     private EventoIniciarSesion evIniciarSesion;
     private EventoRegistrarPublicacion evRegistrarPublicacion;
     private EventoConsultarPublicaciones evConsultarPublicaciones;
+    private EventoRegistrarComentario evRegistrarComentario;
     private static EventHandler instance;
 
     private EventHandler() {
@@ -15,6 +15,7 @@ public class EventHandler {
         evIniciarSesion = EventoIniciarSesion.getInstance();
         evRegistrarPublicacion = EventoRegistrarPublicacion.getInstance();
         evConsultarPublicaciones = EventoConsultarPublicaciones.getInstance();
+        evRegistrarComentario = EventoRegistrarComentario.getInstance();
     }
     
     public static EventHandler getInstance(){
@@ -31,6 +32,8 @@ public class EventHandler {
             evRegistrarPublicacion.setPeticion(peticion);
         }else if(peticion.getPeticionRespuesta().equals(CONSULTAR_PUBLICACIONES)){
             evConsultarPublicaciones.setPeticion(peticion);
+        }else if(peticion.getPeticionRespuesta().equals(AGREGAR_COMENTARIO)){
+            evRegistrarComentario.setPeticion(peticion);
         }
     }    
 }

@@ -1,6 +1,7 @@
 package components;
 
 import entidades.Publicacion;
+import entidades.Usuario;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -9,27 +10,33 @@ import net.miginfocom.swing.MigLayout;
 public class MuroPublicacion extends javax.swing.JPanel {
 
     private Publicacion publicacion;
+    private Usuario usuario;
+
     /**
      * Creates new form MuroPublicacion
      */
-    public MuroPublicacion(Publicacion publicacion) {
+    public MuroPublicacion(Publicacion publicacion, Usuario usuario) {
         initComponents();
         this.publicacion = publicacion;
+        this.usuario = usuario;
         init();
     }
-    
-    private void init(){
-        setLayout(new MigLayout("fillx", "0[fill]0", "0[shrink 0]0[shrink 0]0[shrink]0[shrink 0]0[shrink]0[fill]0"));
+
+    private void init() {
+        setLayout(new MigLayout("fillx", "0[fill]0", "0[shrink 0]0[shrink 0]0[shrink]0[shrink 0]0[shrink]0[shrink]0"));
         PublicacionTitle pubTitle = new PublicacionTitle(publicacion);
         PublicacionBody pubBody = new PublicacionBody(publicacion);
         Linea line = new Linea();
-        PublicacionComentar pubComentar = new PublicacionComentar();
-        PublicacionComentarios pubComentarios = new PublicacionComentarios();
+        Linea line2 = new Linea();
+        PublicacionComentar pubComentar = new PublicacionComentar(publicacion, usuario);
         add(pubTitle, "wrap");
         add(pubBody, "wrap");
-        add(line, "wrap");
-        add(pubComentarios, "wrap");
-        add(line, "wrap");
+        if(publicacion.getComentarios() != null){
+            PublicacionComentarios pubComentarios = new PublicacionComentarios(publicacion.getComentarios());
+            add(line, "wrap");
+            add(pubComentarios, "wrap");            
+        }
+        add(line2, "wrap");
         add(pubComentar, "wrap");
         repaint();
         revalidate();

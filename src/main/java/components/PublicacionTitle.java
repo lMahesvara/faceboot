@@ -15,7 +15,6 @@ public class PublicacionTitle extends javax.swing.JPanel {
     
     public PublicacionTitle(Publicacion publicacion) {
         initComponents();
-        //lblNombre.setText(user.getUsuario());
         this.publicacion = publicacion;
         init();
         

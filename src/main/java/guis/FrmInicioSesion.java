@@ -19,7 +19,7 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         initComponents();
         facConexion = new FachadaConexion();
         EventoIniciarSesion.getInstance().addObserver(this);
-        //pruebaInicio();
+        pruebaInicio();
     }
     
     private void pruebaInicio(){

@@ -1,11 +1,12 @@
 package logica;
 
+import entidades.Comentario;
 import entidades.Publicacion;
 import entidades.Usuario;
 import helpers.ConvertirPeticion;
-import helpers.Peticiones;
 import static helpers.Peticiones.*;
 import interfaces.IFachadaConexion;
+import peticiones.PeticionComentario;
 import peticiones.PeticionPublicacion;
 import peticiones.PeticionPublicaciones;
 import peticiones.PeticionUsuario;
@@ -38,6 +39,12 @@ public class FachadaConexion implements IFachadaConexion {
     
     public void consultarPublicaciones(){
         String json = ConvertirPeticion.JSONConverter(new PeticionPublicaciones(CONSULTAR_PUBLICACIONES));
+        conector.enviarPeticion(json);
+    }
+    
+    @Override
+    public void registrarComentario(Comentario comentario){
+        String json = ConvertirPeticion.JSONConverter(new PeticionComentario(AGREGAR_COMENTARIO, comentario));
         conector.enviarPeticion(json);
     }
 

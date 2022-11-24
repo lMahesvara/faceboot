@@ -11,9 +11,9 @@ public class PublicacionComentarios extends javax.swing.JPanel {
     /**
      * Creates new form PublicacionComentarios
      */
-    public PublicacionComentarios() {
+    public PublicacionComentarios(List<Comentario> comentarios) {
         initComponents();
-
+        this.comentarios = comentarios;
         init();
     }
 
@@ -27,14 +27,22 @@ public class PublicacionComentarios extends javax.swing.JPanel {
     }
 
     private void cargarItems() {
-        ComentarioItem comentario = new ComentarioItem();
-        comentario.setUsuario("lMahesvara");
-        comentario.setComentario("saqueen pedaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        add(comentario, "wrap");
-        ComentarioItem comentario2 = new ComentarioItem();
-        comentario2.setUsuario("Nogy");
-        comentario2.setComentario("Saquen amigas");
-        add(comentario2, "wrap");
+        comentarios.forEach(comentario -> {
+            ComentarioItem comentarioItem = new ComentarioItem();
+            comentarioItem.setUsuario(comentario.getUsuario().getUsuario());
+            comentarioItem.setComentario(comentario.getTexto());
+            add(comentarioItem, "wrap, width 100%");
+
+        });
+
+//        ComentarioItem comentario = new ComentarioItem();
+//        comentario.setUsuario("lMahesvara");
+//        comentario.setComentario("saqueen pedaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//        add(comentario, "wrap, width 100%");
+//        ComentarioItem comentario2 = new ComentarioItem();
+//        comentario2.setUsuario("Nogy");
+//        comentario2.setComentario("Saquen amigas");
+//        add(comentario2, "wrap, width 100%");
         repaint();
         revalidate();
     }

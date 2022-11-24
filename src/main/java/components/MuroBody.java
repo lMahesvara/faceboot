@@ -33,7 +33,7 @@ public class MuroBody extends javax.swing.JPanel {
 
     private void cargarItems() {
         publicaciones.forEach(publi -> {
-            MuroPublicacion muroPub = new MuroPublicacion(publi);
+            MuroPublicacion muroPub = new MuroPublicacion(publi, usuario);
             panBody.add(muroPub, "wrap, al center");
         });
         panBody.repaint();
@@ -41,13 +41,11 @@ public class MuroBody extends javax.swing.JPanel {
     }
 
     public void agregarPublicacion(Publicacion publicacion) {
-        MuroPublicacion muroPub = new MuroPublicacion(publicacion);
+        MuroPublicacion muroPub = new MuroPublicacion(publicacion, usuario);
         panBody.add(muroPub, "wrap, al center");
         panBody.repaint();
         panBody.revalidate();
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
