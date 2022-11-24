@@ -77,7 +77,6 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                                   <Component id="btnPublicar" min="-2" pref="216" max="-2" attributes="0"/>
-                                  <EmptySpace min="65" pref="65" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
@@ -122,6 +121,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="12" style="1"/>
+            </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
@@ -151,9 +153,6 @@
           <SubComponents>
             <Component class="swingComponents.JIMSendTextPane" name="txtTexto">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color type="null"/>
-                </Property>
                 <Property name="hintText" type="java.lang.String" value="&#xbf;Qu&#xe9; est&#xe1;s pensando, Jorge?"/>
               </Properties>
             </Component>
@@ -190,7 +189,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="1"/>
+              <Font name="Leelawadee UI" size="18" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Crear Publicaci&#xf3;n"/>
           </Properties>
