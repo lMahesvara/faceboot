@@ -70,6 +70,7 @@ public class FrmCrearPublicacion extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(204, 204, 204));
 
         btnPublicar.setBackground(new java.awt.Color(0, 0, 0));
+        btnPublicar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnPublicar.setForeground(new java.awt.Color(255, 255, 255));
         btnPublicar.setText("Publicar");
         btnPublicar.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +87,6 @@ public class FrmCrearPublicacion extends javax.swing.JFrame {
             }
         });
 
-        txtTexto.setBackground(null);
         txtTexto.setHintText("¿Qué estás pensando, Jorge?");
         jScrollPane1.setViewportView(txtTexto);
 
@@ -99,7 +99,7 @@ public class FrmCrearPublicacion extends javax.swing.JFrame {
         line1.setForeground(new java.awt.Color(204, 204, 204));
 
         lblTitulo.setBackground(new java.awt.Color(0, 0, 0));
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitulo.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
         lblTitulo.setText("Crear Publicación");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -123,8 +123,7 @@ public class FrmCrearPublicacion extends javax.swing.JFrame {
                                 .addComponent(lblUsuario))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(65, 65, 65)
-                                .addComponent(btnPublicar, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65)))
+                                .addComponent(btnPublicar, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(23, 23, 23))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(120, 120, 120)

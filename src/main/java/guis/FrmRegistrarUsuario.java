@@ -73,7 +73,7 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Leelawadee UI", 1, 36)); // NOI18N
         jLabel1.setText("Registrar Usuario");
 
         txtUsuario.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
@@ -238,7 +238,7 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        btnCrear.setBackground(new java.awt.Color(39, 39, 39));
+        btnCrear.setBackground(new java.awt.Color(0, 0, 0));
         btnCrear.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnCrear.setForeground(new java.awt.Color(255, 255, 255));
         btnCrear.setText("Crear cuenta nueva");
@@ -288,7 +288,7 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
