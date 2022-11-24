@@ -1,19 +1,27 @@
 package components;
 
 import entidades.Comentario;
+import entidades.Publicacion;
+import events.EventoRegistrarComentario;
 import java.util.List;
 import net.miginfocom.swing.MigLayout;
+import observers.ObserverRegistrarComentario;
+import peticiones.PeticionComentario;
 
-public class PublicacionComentarios extends javax.swing.JPanel {
+public class PublicacionComentarios extends javax.swing.JPanel implements ObserverRegistrarComentario {
 
     private List<Comentario> comentarios;
+    private Publicacion publicacion;
 
     /**
      * Creates new form PublicacionComentarios
      */
-    public PublicacionComentarios(List<Comentario> comentarios) {
+    public PublicacionComentarios( Publicacion publicacion) {
         initComponents();
-        this.comentarios = comentarios;
+        this.comentarios = publicacion.getComentarios();
+        this.publicacion = publicacion;
+        EventoRegistrarComentario.getInstance().addObserver(this);
+
         init();
     }
 
@@ -27,6 +35,7 @@ public class PublicacionComentarios extends javax.swing.JPanel {
     }
 
     private void cargarItems() {
+        if(comentarios == null) return;
         comentarios.forEach(comentario -> {
             ComentarioItem comentarioItem = new ComentarioItem();
             comentarioItem.setUsuario(comentario.getUsuario().getUsuario());
@@ -43,6 +52,20 @@ public class PublicacionComentarios extends javax.swing.JPanel {
 //        comentario2.setUsuario("Nogy");
 //        comentario2.setComentario("Saquen amigas");
 //        add(comentario2, "wrap, width 100%");
+        refresh();
+    }
+
+    private void agregarComentario(Comentario comentario) {
+        if (publicacion.equals(comentario.getPublicacion())) {
+            ComentarioItem comentarioItem = new ComentarioItem();
+            comentarioItem.setUsuario(comentario.getUsuario().getUsuario());
+            comentarioItem.setComentario(comentario.getTexto());
+            add(comentarioItem, "wrap, width 100%");
+            refresh();
+        }
+    }
+    
+    public void refresh(){
         repaint();
         revalidate();
     }
@@ -69,6 +92,11 @@ public class PublicacionComentarios extends javax.swing.JPanel {
             .addGap(0, 292, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    @Override
+    public void update(PeticionComentario peticion) {
+        agregarComentario(peticion.getComentario());
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

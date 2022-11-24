@@ -1,18 +1,17 @@
 package components;
 
+import entidades.Comentario;
 import entidades.Publicacion;
 import entidades.Usuario;
-import java.awt.Adjustable;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
+import java.util.LinkedList;
 import java.util.List;
-import javax.swing.JScrollBar;
 import net.miginfocom.swing.MigLayout;
 import swingComponents.ScrollBar;
 
 public class MuroBody extends javax.swing.JPanel {
 
     private List<Publicacion> publicaciones;
+    private List<MuroPublicacion> muroPublicaciones;
     private Usuario usuario;
 
     /**
@@ -22,6 +21,7 @@ public class MuroBody extends javax.swing.JPanel {
         initComponents();
         this.publicaciones = publicaciones;
         this.usuario = usuario;
+        this.muroPublicaciones = new LinkedList<>();
         init();
     }
 
@@ -34,15 +34,30 @@ public class MuroBody extends javax.swing.JPanel {
     private void cargarItems() {
         publicaciones.forEach(publi -> {
             MuroPublicacion muroPub = new MuroPublicacion(publi, usuario);
+            muroPublicaciones.add(muroPub);
             panBody.add(muroPub, "wrap, al center");
         });
-        panBody.repaint();
-        panBody.revalidate();
+        refresh();
     }
 
     public void agregarPublicacion(Publicacion publicacion) {
         MuroPublicacion muroPub = new MuroPublicacion(publicacion, usuario);
+        muroPublicaciones.add(muroPub);
         panBody.add(muroPub, "wrap, al center");
+        refresh();
+    }
+
+    public void agregarComentario(Comentario comentario) {
+//        muroPublicaciones.forEach(publicacion -> {
+//            if (publicacion.getPublicacion().equals(comentario.getPublicacion())) {
+//                publicacion.add
+//                System.out.println("Entro");
+//            }
+//        });
+
+    }
+
+    private void refresh() {
         panBody.repaint();
         panBody.revalidate();
     }

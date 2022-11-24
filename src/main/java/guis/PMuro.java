@@ -2,9 +2,9 @@ package guis;
 
 import components.Linea;
 import components.MuroBody;
-import components.MuroPublicacion;
 import components.MuroPublicar;
 import components.MuroTitle;
+import entidades.Comentario;
 import entidades.Publicacion;
 import entidades.Usuario;
 import java.util.List;
@@ -21,6 +21,7 @@ public class PMuro extends javax.swing.JPanel {
     }
 
     public void init(List<Publicacion> publicaciones) {
+        System.out.println(publicaciones);
         removeAll();
         setLayout(new MigLayout("fillx", "0[]0[]0[]0[]0", "0[shrink 0]0[]10[shrink 0]0[77%, top]0"));
         MuroTitle muroTitulo = new MuroTitle(usuario);
@@ -37,6 +38,15 @@ public class PMuro extends javax.swing.JPanel {
 
     public void agregarPublicacion(Publicacion publicacion) {
         muroBody.agregarPublicacion(publicacion);
+        refresh();
+    }
+    
+    public void agregarComentario(Comentario comentario){
+        muroBody.agregarComentario(comentario);
+        refresh();
+    }
+    
+    private void refresh(){
         repaint();
         revalidate();
     }

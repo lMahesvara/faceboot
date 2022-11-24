@@ -11,6 +11,7 @@ public class MuroPublicacion extends javax.swing.JPanel {
 
     private Publicacion publicacion;
     private Usuario usuario;
+    private PublicacionComentarios pubComentarios;
 
     /**
      * Creates new form MuroPublicacion
@@ -31,15 +32,22 @@ public class MuroPublicacion extends javax.swing.JPanel {
         PublicacionComentar pubComentar = new PublicacionComentar(publicacion, usuario);
         add(pubTitle, "wrap");
         add(pubBody, "wrap");
-        if(publicacion.getComentarios() != null){
-            PublicacionComentarios pubComentarios = new PublicacionComentarios(publicacion.getComentarios());
-            add(line, "wrap");
-            add(pubComentarios, "wrap");            
-        }
+//        if(publicacion.getComentarios() != null){
+//            pubComentarios = new PublicacionComentarios(publicacion);
+//            add(line, "wrap");
+//            add(pubComentarios, "wrap");            
+//        }
+        pubComentarios = new PublicacionComentarios(publicacion);
+        add(line, "wrap");
+        add(pubComentarios, "wrap");
         add(line2, "wrap");
         add(pubComentar, "wrap");
         repaint();
         revalidate();
+    }
+
+    public Publicacion getPublicacion() {
+        return publicacion;
     }
 
     /**
