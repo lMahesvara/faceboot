@@ -19,13 +19,16 @@ public class MuroPublicacion extends javax.swing.JPanel {
     }
     
     private void init(){
-        setLayout(new MigLayout("fillx", "0[fill]0", "0[shrink 0]0[shrink 0]0[shrink]0[fill]0"));
+        setLayout(new MigLayout("fillx", "0[fill]0", "0[shrink 0]0[shrink 0]0[shrink]0[shrink 0]0[shrink]0[fill]0"));
         PublicacionTitle pubTitle = new PublicacionTitle(publicacion);
         PublicacionBody pubBody = new PublicacionBody(publicacion);
         Linea line = new Linea();
         PublicacionComentar pubComentar = new PublicacionComentar();
+        PublicacionComentarios pubComentarios = new PublicacionComentarios();
         add(pubTitle, "wrap");
         add(pubBody, "wrap");
+        add(line, "wrap");
+        add(pubComentarios, "wrap");
         add(line, "wrap");
         add(pubComentar, "wrap");
         repaint();

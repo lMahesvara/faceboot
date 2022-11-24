@@ -1,12 +1,42 @@
 package components;
 
+import entidades.Comentario;
+import java.util.List;
+import net.miginfocom.swing.MigLayout;
+
 public class PublicacionComentarios extends javax.swing.JPanel {
+
+    private List<Comentario> comentarios;
 
     /**
      * Creates new form PublicacionComentarios
      */
     public PublicacionComentarios() {
         initComponents();
+
+        init();
+    }
+
+    private void init() {
+        setLayout(new MigLayout("fillx", "", "5[]5"));
+        cargarItems();
+    }
+
+    private void crearComentarios() {
+
+    }
+
+    private void cargarItems() {
+        ComentarioItem comentario = new ComentarioItem();
+        comentario.setUsuario("lMahesvara");
+        comentario.setComentario("saqueen pedaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        add(comentario, "wrap");
+        ComentarioItem comentario2 = new ComentarioItem();
+        comentario2.setUsuario("Nogy");
+        comentario2.setComentario("Saquen amigas");
+        add(comentario2, "wrap");
+        repaint();
+        revalidate();
     }
 
     /**
@@ -17,6 +47,8 @@ public class PublicacionComentarios extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
