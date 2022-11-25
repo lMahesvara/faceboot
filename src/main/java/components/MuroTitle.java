@@ -27,9 +27,9 @@ public class MuroTitle extends javax.swing.JPanel {
     private void initComponents() {
 
         lblLogo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtSearch = new org.netbeans.modules.form.InvalidComponent();
         btnUser = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtSearch = new swingComponents.JIMSendTextPane();
 
         setBackground(null);
 
@@ -37,8 +37,6 @@ public class MuroTitle extends javax.swing.JPanel {
         lblLogo.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         lblLogo.setForeground(new java.awt.Color(24, 119, 242));
         lblLogo.setText("FACEBOOT");
-
-        jScrollPane1.setViewportView(txtSearch);
 
         btnUser.setBackground(new java.awt.Color(0, 102, 204));
         btnUser.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -57,6 +55,8 @@ public class MuroTitle extends javax.swing.JPanel {
             }
         });
 
+        jScrollPane1.setViewportView(txtSearch);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -64,9 +64,9 @@ public class MuroTitle extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(lblLogo)
-                .addGap(69, 69, 69)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(56, 56, 56)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
                 .addComponent(btnUser, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
         );
@@ -77,7 +77,7 @@ public class MuroTitle extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnUser, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jScrollPane1))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -91,6 +91,6 @@ public class MuroTitle extends javax.swing.JPanel {
     private javax.swing.JButton btnUser;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLogo;
-    private org.netbeans.modules.form.InvalidComponent txtSearch;
+    private swingComponents.JIMSendTextPane txtSearch;
     // End of variables declaration//GEN-END:variables
 }

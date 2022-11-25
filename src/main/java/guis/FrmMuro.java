@@ -33,6 +33,7 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
         EventoRegistrarPublicacion.getInstance().addObserver(this);
         EventoConsultarPublicaciones.getInstance().addObserver(this);
         EventoActualizarUsuario.getInstance().addObserver(this);
+        revalidate();
         consultarPublicaciones();
     }
 
@@ -147,7 +148,7 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
 
     @Override
     public void update(PeticionUsuario peticion) {
-        consultarPublicaciones();
         Context.getInstance().setUsuario(peticion.getUsuario());
+        consultarPublicaciones();
     }
 }

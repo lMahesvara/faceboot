@@ -50,8 +50,8 @@ public class PublicacionOpciones extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(187, 187, 187), 1, true));
 
-        btnEditar.setBackground(null);
         btnEditar.setText("Editar publicación");
         btnEditar.setBorderPainted(false);
         btnEditar.setContentAreaFilled(false);
@@ -63,7 +63,6 @@ public class PublicacionOpciones extends javax.swing.JFrame {
             }
         });
 
-        btnEliminar.setBackground(null);
         btnEliminar.setText("Eliminar publicación");
         btnEliminar.setBorderPainted(false);
         btnEliminar.setContentAreaFilled(false);

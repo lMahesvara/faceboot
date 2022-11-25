@@ -29,6 +29,7 @@ public class PMuro extends javax.swing.JPanel {
         add(linea, "wrap, width 100%");
         add(muroPublicar, "wrap, al center");
         add(muroBody, "width 100%");
+        refresh();
     }
 
     private void refresh() {
