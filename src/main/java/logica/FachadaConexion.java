@@ -26,6 +26,11 @@ public class FachadaConexion implements IFachadaConexion {
         conector.enviarPeticion(json);
     }
     
+    public void actualizarUsuario(Usuario usuario){
+        String json = ConvertirPeticion.JSONConverter(new PeticionUsuario(ACTUALIZAR_USUARIO, usuario));
+        conector.enviarPeticion(json);
+    }
+    
     @Override
     public void iniciarSesion(Usuario usuario){
         String json = ConvertirPeticion.JSONConverter(new PeticionUsuario(INICIAR_SESION, usuario));
@@ -48,4 +53,6 @@ public class FachadaConexion implements IFachadaConexion {
         conector.enviarPeticion(json);
     }
 
+    
+    
 }

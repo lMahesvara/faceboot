@@ -1,16 +1,19 @@
 package components;
 
 import entidades.Usuario;
+import guis.FrmEditarUsuario;
 
 public class MuroTitle extends javax.swing.JPanel {
-
+    private Usuario usuario;
     /**
      * Creates new form MuroTitulo
      */
     public MuroTitle(Usuario usuario) {
         initComponents();
+        this.usuario = usuario;
         txtSearch.setHintText("¿Qué jashta estás buscando, "+ usuario.getUsuario()+"?");
-        lblUsuario.setText(usuario.getUsuario());
+        //lblUsuario.setText(usuario.getUsuario());
+        btnUser.setText(usuario.getUsuario());
     }
 
     /**
@@ -23,9 +26,9 @@ public class MuroTitle extends javax.swing.JPanel {
     private void initComponents() {
 
         lblLogo = new javax.swing.JLabel();
-        lblUsuario = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtSearch = new swingComponents.JIMSendTextPane();
+        btnUser = new javax.swing.JButton();
 
         setBackground(null);
 
@@ -34,11 +37,24 @@ public class MuroTitle extends javax.swing.JPanel {
         lblLogo.setForeground(new java.awt.Color(24, 119, 242));
         lblLogo.setText("FACEBOOT");
 
-        lblUsuario.setFont(new java.awt.Font("Serif", 0, 16)); // NOI18N
-        lblUsuario.setForeground(new java.awt.Color(24, 119, 242));
-        lblUsuario.setText("Jorge");
-
         jScrollPane1.setViewportView(txtSearch);
+
+        btnUser.setBackground(new java.awt.Color(0, 102, 204));
+        btnUser.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        btnUser.setForeground(new java.awt.Color(255, 255, 255));
+        btnUser.setText("ea");
+        btnUser.setAlignmentY(1.0F);
+        btnUser.setAutoscrolls(true);
+        btnUser.setBorder(new javax.swing.border.MatteBorder(null));
+        btnUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUser.setIconTextGap(2);
+        btnUser.setPreferredSize(new java.awt.Dimension(16, 20));
+        btnUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUserActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -49,27 +65,32 @@ public class MuroTitle extends javax.swing.JPanel {
                 .addComponent(lblLogo)
                 .addGap(69, 69, 69)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(lblUsuario)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(btnUser, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblLogo)
-                    .addComponent(lblUsuario))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnUser, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserActionPerformed
+        new FrmEditarUsuario(usuario).setVisible(true);
+    }//GEN-LAST:event_btnUserActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnUser;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLogo;
-    private javax.swing.JLabel lblUsuario;
     private swingComponents.JIMSendTextPane txtSearch;
     // End of variables declaration//GEN-END:variables
 }

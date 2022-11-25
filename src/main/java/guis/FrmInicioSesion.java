@@ -252,7 +252,8 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed
-        // TODO add your handling code here:
+        FrmRegistrarUsuario f = new FrmRegistrarUsuario();
+        f.setVisible(true);
     }//GEN-LAST:event_btnCrearCuentaActionPerformed
 
     private void btnIniciarFacebookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarFacebookActionPerformed
