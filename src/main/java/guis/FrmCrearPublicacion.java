@@ -1,7 +1,6 @@
 package guis;
 
 import entidades.Hashtag;
-import entidades.HashtagPublicacion;
 import entidades.Publicacion;
 import entidades.Usuario;
 import helpers.ConvertirImagen;
@@ -190,20 +189,15 @@ public class FrmCrearPublicacion extends javax.swing.JFrame {
 
     private void btnPublicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicarActionPerformed
         Publicacion publicacion = null;
-        List<HashtagPublicacion> hp = new ArrayList();
         if (icon != null) {
             Image image = ConvertirImagen.iconoAImagen(this.lblIcon.getIcon());
             byte[] bytes = ConvertirImagen.imagenABytes(image);
             publicacion = new Publicacion(usuario, Calendar.getInstance(), txtTexto.getText().trim(), bytes);
-            
-//            List<Hashtag> ht = separarHashtags(txtTexto.getText());
-//            for(int i = 0; i < ht.size();i++){
-//                hp.add(new HashtagPublicacion(ht.get(i),publicacion));
-//            }
-            
+            publicacion.setHashtag(separarHashtags(txtTexto.getText()));
             
         }else {
             publicacion = new Publicacion(usuario, Calendar.getInstance(), txtTexto.getText().trim());
+            publicacion.setHashtag(separarHashtags(txtTexto.getText()));
         }
         fachadaConexion.registrarPublicacion(publicacion);
         System.out.println("Se envio");
@@ -227,7 +221,6 @@ public class FrmCrearPublicacion extends javax.swing.JFrame {
                             end = c;
                         }
                         i = c;
-                        System.out.println("hashtag encontrado");
                         ht.add(new Hashtag(text.substring(start,end)));
                         c = textChar.length;
                    }

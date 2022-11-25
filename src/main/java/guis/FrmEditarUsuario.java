@@ -40,6 +40,7 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        mongomeri = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -111,6 +112,7 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(221, 223, 226), 1, true));
 
         radMujer.setBackground(new java.awt.Color(255, 255, 255));
+        mongomeri.add(radMujer);
         radMujer.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         radMujer.setText("Mujer");
         radMujer.setBorder(null);
@@ -132,6 +134,7 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
         jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(221, 223, 226), 1, true));
 
         radHombre.setBackground(new java.awt.Color(255, 255, 255));
+        mongomeri.add(radHombre);
         radHombre.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         radHombre.setText("Hombre");
         radHombre.setBorder(null);
@@ -301,7 +304,7 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
             radHombre.setSelected(true);
         }
         else if(user.getSexo().equals(MUJER)){
-            radHombre.setSelected(false);
+            radMujer.setSelected(true);
         }
     }
    
@@ -391,6 +394,7 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.ButtonGroup mongomeri;
     private javax.swing.JRadioButton radHombre;
     private javax.swing.JRadioButton radMujer;
     private javax.swing.JTextField txtAnio;
