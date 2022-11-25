@@ -5,21 +5,20 @@ import entidades.Usuario;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import logica.Context;
 import net.miginfocom.swing.MigLayout;
 
 public class MuroPublicacion extends javax.swing.JPanel {
 
     private Publicacion publicacion;
-    private Usuario usuario;
     private PublicacionComentarios pubComentarios;
 
     /**
      * Creates new form MuroPublicacion
      */
-    public MuroPublicacion(Publicacion publicacion, Usuario usuario) {
+    public MuroPublicacion(Publicacion publicacion) {
         initComponents();
         this.publicacion = publicacion;
-        this.usuario = usuario;
         init();
     }
 
@@ -29,7 +28,7 @@ public class MuroPublicacion extends javax.swing.JPanel {
         PublicacionBody pubBody = new PublicacionBody(publicacion);
         Linea line = new Linea();
         Linea line2 = new Linea();
-        PublicacionComentar pubComentar = new PublicacionComentar(publicacion, usuario);
+        PublicacionComentar pubComentar = new PublicacionComentar(publicacion);
         add(pubTitle, "wrap");
         add(pubBody, "wrap");
 //        if(publicacion.getComentarios() != null){

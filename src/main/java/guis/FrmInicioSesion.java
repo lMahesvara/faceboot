@@ -4,6 +4,7 @@ import entidades.Usuario;
 import events.EventoIniciarSesion;
 import interfaces.IFachadaConexion;
 import javax.swing.JOptionPane;
+import logica.Context;
 import logica.FachadaConexion;
 import observers.ObserverIniciarSesion;
 import peticiones.PeticionUsuario;
@@ -19,7 +20,7 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         initComponents();
         facConexion = new FachadaConexion();
         EventoIniciarSesion.getInstance().addObserver(this);
-        pruebaInicio();
+        //pruebaInicio();
     }
     
     private void pruebaInicio(){
@@ -37,11 +38,13 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
 
     private void verificarUsuario(PeticionUsuario peticion) {
         System.out.println("Entro al verificar");
-        if (peticion.getUsuario() == null) {
+        Usuario usuario = peticion.getUsuario();
+        if (usuario == null) {
             JOptionPane.showMessageDialog(this, "Credenciales incorrectas", "Iniciar Sesión", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        FrmMuro frmMuro = new FrmMuro(peticion.getUsuario());
+        Context.getInstance().setUsuario(usuario);
+        FrmMuro frmMuro = new FrmMuro();
         frmMuro.setVisible(true);
         this.dispose();
 

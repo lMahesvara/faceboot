@@ -11,6 +11,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import logica.Context;
 import logica.FachadaConexion;
 
 public class FrmCrearPublicacion extends javax.swing.JFrame {
@@ -22,15 +23,18 @@ public class FrmCrearPublicacion extends javax.swing.JFrame {
     private Usuario usuario;
     private JLabel lblIcon;
 
-    public FrmCrearPublicacion(Usuario usuario) {
+    public FrmCrearPublicacion() {
         initComponents();
-        this.usuario = usuario;
+        this.usuario = Context.getInstance().getUsuario();
         this.fachadaConexion = new FachadaConexion();
         init();
     }
 
     private void init() {
         setImgUser();
+        
+        txtTexto.setHintText("¿Qué estás pensando, "+usuario.getUsuario()+"?");
+        
         lblUsuario.setText(usuario.getUsuario());
         lblIcon = new JLabel();
         lblIcon.setSize(334, 184);
@@ -81,6 +85,7 @@ public class FrmCrearPublicacion extends javax.swing.JFrame {
 
         btnAgregarImagen.setBackground(new java.awt.Color(255, 255, 255));
         btnAgregarImagen.setText("Agregar imagen");
+        btnAgregarImagen.setPreferredSize(new java.awt.Dimension(115, 25));
         btnAgregarImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarImagenActionPerformed(evt);
@@ -91,7 +96,7 @@ public class FrmCrearPublicacion extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtTexto);
 
         lblUsuario.setBackground(new java.awt.Color(0, 0, 0));
-        lblUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblUsuario.setText("Furcio");
 
         imgUser.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -145,7 +150,7 @@ public class FrmCrearPublicacion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAgregarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAgregarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPublicar)
                 .addGap(25, 25, 25))

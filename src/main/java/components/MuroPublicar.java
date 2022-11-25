@@ -4,6 +4,7 @@ import entidades.Usuario;
 import guis.FrmCrearPublicacion;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import logica.Context;
 
 public class MuroPublicar extends javax.swing.JPanel {
 
@@ -12,9 +13,9 @@ public class MuroPublicar extends javax.swing.JPanel {
     /**
      * Creates new form MuroPublicar
      */
-    public MuroPublicar(Usuario usuario) {
+    public MuroPublicar() {
         initComponents();
-        this.usuario = usuario;
+        this.usuario = Context.getInstance().getUsuario();
         btnPublicar.setText("¿Qué estás pensando, " + usuario.getUsuario() + "?");
         setImgUser();
     }
@@ -23,6 +24,7 @@ public class MuroPublicar extends javax.swing.JPanel {
         ImageIcon image = new ImageIcon("src/main/java/images/perfil.png");
         imgUser.setIcon(new ImageIcon(image.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,7 +38,7 @@ public class MuroPublicar extends javax.swing.JPanel {
         btnPublicar = new javax.swing.JButton();
         imgUser = new javax.swing.JLabel();
 
-        setBackground(null);
+        setBackground(java.awt.Color.white);
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(190, 193, 199), 1, true));
         setForeground(null);
 
@@ -72,7 +74,7 @@ public class MuroPublicar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPublicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicarActionPerformed
-        new FrmCrearPublicacion(usuario).setVisible(true);
+        new FrmCrearPublicacion().setVisible(true);
     }//GEN-LAST:event_btnPublicarActionPerformed
 
 

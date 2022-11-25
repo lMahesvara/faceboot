@@ -6,32 +6,32 @@ import components.MuroPublicar;
 import components.MuroTitle;
 import entidades.Comentario;
 import entidades.Publicacion;
-import entidades.Usuario;
+import java.awt.Color;
 import java.util.List;
 import net.miginfocom.swing.MigLayout;
 
 public class PMuro extends javax.swing.JPanel {
 
-    private Usuario usuario;
     private MuroBody muroBody;
 
-    public PMuro(Usuario usuario) {
+    public PMuro() {
         initComponents();
-        this.usuario = usuario;
     }
 
     public void init(List<Publicacion> publicaciones) {
-        System.out.println(publicaciones);
         removeAll();
-        setLayout(new MigLayout("fillx", "0[]0[]0[]0[]0", "0[shrink 0]0[]10[shrink 0]0[77%, top]0"));
-        MuroTitle muroTitulo = new MuroTitle(usuario);
-        this.muroBody = new MuroBody(publicaciones, usuario);
-        MuroPublicar muroPublicar = new MuroPublicar(usuario);
-        Linea linea = new Linea();
+        setLayout(new MigLayout("fillx", "0[]0[]0[]0[]0", "0[shrink 0]0[]5[]-10[77%, top]0"));
+        MuroTitle muroTitulo = new MuroTitle();
+        this.muroBody = new MuroBody(publicaciones);
+        MuroPublicar muroPublicar = new MuroPublicar();
+        Linea linea = new Linea(new Color(233, 233, 233));
         add(muroTitulo, "wrap, al center");
         add(linea, "wrap, width 100%");
         add(muroPublicar, "wrap, al center");
         add(muroBody, "width 100%");
+    }
+
+    private void refresh() {
         repaint();
         revalidate();
     }
@@ -40,16 +40,8 @@ public class PMuro extends javax.swing.JPanel {
         muroBody.agregarPublicacion(publicacion);
         refresh();
     }
+
     
-    public void agregarComentario(Comentario comentario){
-        muroBody.agregarComentario(comentario);
-        refresh();
-    }
-    
-    private void refresh(){
-        repaint();
-        revalidate();
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,7 +52,7 @@ public class PMuro extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(233, 233, 233));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

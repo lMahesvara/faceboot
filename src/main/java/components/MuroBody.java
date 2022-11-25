@@ -5,6 +5,7 @@ import entidades.Publicacion;
 import entidades.Usuario;
 import java.util.LinkedList;
 import java.util.List;
+import logica.Context;
 import net.miginfocom.swing.MigLayout;
 import swingComponents.ScrollBar;
 
@@ -12,15 +13,13 @@ public class MuroBody extends javax.swing.JPanel {
 
     private List<Publicacion> publicaciones;
     private List<MuroPublicacion> muroPublicaciones;
-    private Usuario usuario;
 
     /**
      * Creates new form MuroBody
      */
-    public MuroBody(List<Publicacion> publicaciones, Usuario usuario) {
+    public MuroBody(List<Publicacion> publicaciones) {
         initComponents();
         this.publicaciones = publicaciones;
-        this.usuario = usuario;
         this.muroPublicaciones = new LinkedList<>();
         init();
     }
@@ -33,7 +32,7 @@ public class MuroBody extends javax.swing.JPanel {
 
     private void cargarItems() {
         publicaciones.forEach(publi -> {
-            MuroPublicacion muroPub = new MuroPublicacion(publi, usuario);
+            MuroPublicacion muroPub = new MuroPublicacion(publi);
             muroPublicaciones.add(muroPub);
             panBody.add(muroPub, "wrap, al center");
         });
@@ -41,20 +40,10 @@ public class MuroBody extends javax.swing.JPanel {
     }
 
     public void agregarPublicacion(Publicacion publicacion) {
-        MuroPublicacion muroPub = new MuroPublicacion(publicacion, usuario);
+        MuroPublicacion muroPub = new MuroPublicacion(publicacion);
         muroPublicaciones.add(muroPub);
         panBody.add(muroPub, "wrap, al center");
         refresh();
-    }
-
-    public void agregarComentario(Comentario comentario) {
-//        muroPublicaciones.forEach(publicacion -> {
-//            if (publicacion.getPublicacion().equals(comentario.getPublicacion())) {
-//                publicacion.add
-//                System.out.println("Entro");
-//            }
-//        });
-
     }
 
     private void refresh() {
@@ -80,7 +69,7 @@ public class MuroBody extends javax.swing.JPanel {
         panMuroBody.setBorder(null);
         panMuroBody.setMaximumSize(new java.awt.Dimension(32767, 15000));
 
-        panBody.setBackground(java.awt.Color.white);
+        panBody.setBackground(new java.awt.Color(233, 233, 233));
 
         javax.swing.GroupLayout panBodyLayout = new javax.swing.GroupLayout(panBody);
         panBody.setLayout(panBodyLayout);

@@ -9,6 +9,7 @@ import java.awt.RenderingHints;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
+import logica.Context;
 
 public class PublicacionTitle extends javax.swing.JPanel {
     private Publicacion publicacion;
@@ -17,8 +18,6 @@ public class PublicacionTitle extends javax.swing.JPanel {
         initComponents();
         this.publicacion = publicacion;
         init();
-        
-        
         repaint();
         revalidate();
     }
@@ -30,7 +29,14 @@ public class PublicacionTitle extends javax.swing.JPanel {
         
         setImgUser();
         setTime();
-        
+        compararUsuario();
+    }
+    
+    private void compararUsuario(){
+        if(!Context.getInstance().getUsuario().equals(publicacion.getUsuario())){
+            lblOpciones.setFocusable(false);
+            lblOpciones.setVisible(false);
+        }
     }
     
     private void setImgUser(){
@@ -57,6 +63,13 @@ public class PublicacionTitle extends javax.swing.JPanel {
         line1 = new swingComponents.Line();
         imgUser = new javax.swing.JLabel();
         lblTime = new javax.swing.JLabel();
+        lblOpciones = new javax.swing.JLabel();
+
+        addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                formMouseWheelMoved(evt);
+            }
+        });
 
         layer.setLayout(new java.awt.GridLayout(0, 1));
 
@@ -72,6 +85,15 @@ public class PublicacionTitle extends javax.swing.JPanel {
         lblTime.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         lblTime.setForeground(new java.awt.Color(99, 100, 104));
         lblTime.setText("22/22/2222");
+
+        lblOpciones.setFont(new java.awt.Font("SansSerif", 0, 28)); // NOI18N
+        lblOpciones.setText("...");
+        lblOpciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblOpciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblOpcionesMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -89,7 +111,9 @@ public class PublicacionTitle extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNombre)
                     .addComponent(lblTime))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblOpciones)
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,15 +124,27 @@ public class PublicacionTitle extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(lblTime)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(lblTime)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(line1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(layer))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblOpcionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcionesMouseClicked
+        System.out.println();
+        new PublicacionOpciones(lblOpciones.getLocationOnScreen()).setVisible(true);
+    }//GEN-LAST:event_lblOpcionesMouseClicked
+
+    private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_formMouseWheelMoved
+        
+    }//GEN-LAST:event_formMouseWheelMoved
 
     @Override
     protected void paintComponent(Graphics grphcs) {
@@ -123,6 +159,7 @@ public class PublicacionTitle extends javax.swing.JPanel {
     private javax.swing.JLabel imgUser;
     private javax.swing.JLayeredPane layer;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblOpciones;
     private javax.swing.JLabel lblTime;
     private swingComponents.Line line1;
     // End of variables declaration//GEN-END:variables

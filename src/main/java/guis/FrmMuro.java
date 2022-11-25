@@ -19,19 +19,17 @@ import peticiones.PeticionPublicaciones;
 public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPublicacion, ObserverConsultarPublicaciones {
 
     private IFachadaConexion fachadaConexion;
-    private Usuario usuario;
 
     /**
      * Creates new form FrmMuro
      */
-    public FrmMuro(Usuario usuario) {
-        this.usuario = usuario;
+    public FrmMuro() {
         initComponents();
         this.fachadaConexion = new FachadaConexion();
         EventoRegistrarPublicacion.getInstance().addObserver(this);
         EventoConsultarPublicaciones.getInstance().addObserver(this);
+        revalidate();
         consultarPublicaciones();
-        System.out.println(usuario.getUsuario());
     }
 
     private void mostrarPublicacion(PeticionPublicacion peticion) {
@@ -56,27 +54,31 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panMuro = new guis.PMuro(this.usuario);
+        panMuro = new guis.PMuro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Faceboot");
+        setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
         javax.swing.GroupLayout panMuroLayout = new javax.swing.GroupLayout(panMuro);
         panMuro.setLayout(panMuroLayout);
         panMuroLayout.setHorizontalGroup(
             panMuroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 778, Short.MAX_VALUE)
+            .addGap(0, 830, Short.MAX_VALUE)
         );
         panMuroLayout.setVerticalGroup(
             panMuroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 602, Short.MAX_VALUE)
+            .addGap(0, 638, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panMuro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panMuro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,7 +121,7 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmMuro(null).setVisible(true);
+                new FrmMuro().setVisible(true);
             }
         });
     }

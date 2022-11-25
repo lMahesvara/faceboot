@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import logica.Context;
 import logica.FachadaConexion;
 import net.miginfocom.swing.MigLayout;
 
@@ -26,11 +27,11 @@ public class PublicacionComentar extends javax.swing.JPanel {
     private Publicacion publicacion;
     private Usuario usuario;
     
-    public PublicacionComentar(Publicacion publicacion, Usuario usuario) {
+    public PublicacionComentar(Publicacion publicacion) {
         initComponents();
         this.fachadaConexion = new FachadaConexion();
         this.publicacion = publicacion;
-        this.usuario = usuario;
+        this.usuario = Context.getInstance().getUsuario();
         init();
     }
 

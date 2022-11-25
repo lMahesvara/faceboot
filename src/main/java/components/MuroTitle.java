@@ -1,14 +1,16 @@
 package components;
 
 import entidades.Usuario;
+import logica.Context;
 
 public class MuroTitle extends javax.swing.JPanel {
-
+    private Usuario usuario;
     /**
      * Creates new form MuroTitulo
      */
-    public MuroTitle(Usuario usuario) {
+    public MuroTitle() {
         initComponents();
+        this.usuario = Context.getInstance().getUsuario();
         txtSearch.setHintText("¿Qué jashta estás buscando, "+ usuario.getUsuario()+"?");
         lblUsuario.setText(usuario.getUsuario());
     }

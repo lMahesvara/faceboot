@@ -1,13 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package components;
 
-/**
- *
- * @author erick
- */
+import java.awt.Color;
+
 public class Linea extends javax.swing.JPanel {
 
     /**
@@ -16,6 +10,13 @@ public class Linea extends javax.swing.JPanel {
     public Linea() {
         initComponents();
     }
+    
+    public Linea(Color color){
+        initComponents();
+        setBackground(color);
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
