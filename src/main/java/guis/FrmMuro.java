@@ -11,6 +11,7 @@ import events.EventoConsultarPublicaciones;
 import events.EventoRegistrarPublicacion;
 import interfaces.IFachadaConexion;
 import java.util.List;
+import javax.swing.JOptionPane;
 import logica.Context;
 import logica.FachadaConexion;
 import observers.ObserverActualizarUsuario;
@@ -148,6 +149,10 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
 
     @Override
     public void update(PeticionUsuario peticion) {
+        if(peticion.getUsuario() == null){
+            JOptionPane.showMessageDialog(this, "No se pudo actualizar el usuario", "Actualizar usuario",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         Context.getInstance().setUsuario(peticion.getUsuario());
         consultarPublicaciones();
     }

@@ -18,9 +18,10 @@ import logica.FachadaConexion;
  * @author Vastem
  */
 public class FrmEditarUsuario extends javax.swing.JFrame {
+
     private IFachadaConexion fachadaConexion;
     private Usuario user;
-    
+
     /**
      * Creates new form FrmEditarUsuario
      */
@@ -60,7 +61,7 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -292,20 +293,20 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void init(){
-        if (user.getToken() != null && user.getFechaNacimiento() == null) {
-            txtUsuario.setText(user.getUsuario());
-            txtUsuario.setEditable(false);
+    public void init() {
+        if (user.getToken() != null) {
             txtPassword.setEditable(false);
-            txtPassword.setText(user.getPassword());
+            txtPassword.setText(null);
         } else {
-            txtUsuario.setText(user.getUsuario());
             txtPassword.setText(user.getPassword());
-
+        }
+        txtUsuario.setText(user.getUsuario());
+        if (user.getFechaNacimiento() != null) {
             txtDia.setText(Integer.toString(user.getFechaNacimiento().get(Calendar.DATE)));
             txtMes.setText(Integer.toString(user.getFechaNacimiento().get(Calendar.MONTH) + 1));
             txtAnio.setText(Integer.toString(user.getFechaNacimiento().get(Calendar.YEAR)));
-
+        }
+        if (user.getSexo() != null) {
             if (user.getSexo().equals(HOMBRE)) {
                 radHombre.setSelected(true);
             } else if (user.getSexo().equals(MUJER)) {
@@ -314,14 +315,14 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
         }
 
     }
-   
-    public void actualizar(){
+
+    public void actualizar() {
         String username = txtUsuario.getText().trim();
         String password = txtPassword.getText().trim();
         int dia = Integer.parseInt(txtDia.getText().trim());
         int mes = Integer.parseInt(txtMes.getText().trim());
         int anio = Integer.parseInt(txtAnio.getText().trim());
-        Calendar fecha = new GregorianCalendar(anio, mes-1, dia);
+        Calendar fecha = new GregorianCalendar(anio, mes - 1, dia);
         Sexo sexo = radHombre.isSelected() ? Sexo.HOMBRE : Sexo.MUJER;
 
         Usuario update = user;//new Usuario(username, password, user.getCorreo(), user.getNumeroCelular(), fecha, sexo, null);
@@ -329,10 +330,10 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
         update.setPassword(password);
         update.setFechaNacimiento(fecha);
         update.setSexo(sexo);
-        
+
         fachadaConexion.actualizarUsuario(update);
     }
-    
+
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed

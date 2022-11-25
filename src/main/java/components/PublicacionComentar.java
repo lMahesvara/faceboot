@@ -62,7 +62,7 @@ public class PublicacionComentar extends javax.swing.JPanel {
         cmd.setBorder(null);
         cmd.setContentAreaFilled(false);
         cmd.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        cmd.setIcon(new ImageIcon("F:\\Documents\\GitHub\\blackcock\\faceboot\\src\\main\\java\\images\\send.png"));
+        cmd.setIcon(new ImageIcon("src/main/java/images/send.png"));
         cmd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {

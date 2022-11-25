@@ -212,25 +212,14 @@ public class FrmCrearPublicacion extends javax.swing.JFrame {
     
     public List<Hashtag> separarHashtags(String text){
         List<Hashtag> ht = new ArrayList();
-        char[] textChar = text.toCharArray();
-        int start, end;
-
-        for(int i = 0; i < textChar.length;i++){
-            if(textChar [i] == '#'){
-                start= i;
-                for(int c = start; c < textChar.length;c++){
-                    if(textChar [c] == ' ' || c+1 == textChar.length){ 
-                        if(c+1 == textChar.length){
-                            end = c+1;
-                        }else{
-                            end = c;
-                        }
-                        i = c;
-                        ht.add(new Hashtag(text.substring(start,end)));
-                        c = textChar.length;
-                   }
-               }
-           }
+        
+        String[] filtro = text.split("#");
+        String[] hashtags = new String[filtro.length-1];
+        for (int i=1;i<filtro.length; i++) {
+            ht.add(new Hashtag( filtro[i].split(" ")[0]));
+        }
+        for (int i=0;i<hashtags.length; i++){
+            System.out.println(i+ " "+ hashtags[i]);
         }
         return ht;
     }

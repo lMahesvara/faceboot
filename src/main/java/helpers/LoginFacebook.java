@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package helpers;
 
 import com.restfb.DefaultFacebookClient;
@@ -9,17 +5,9 @@ import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.types.User;
 import entidades.Usuario;
-import java.awt.event.ActionEvent;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-/**
- *
- * @author germa
- */
 public class LoginFacebook {
 
     String domain = "https://localhost/";
