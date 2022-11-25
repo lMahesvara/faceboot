@@ -9,6 +9,7 @@ public class EventHandler {
     private EventoConsultarPublicaciones evConsultarPublicaciones;
     private EventoRegistrarComentario evRegistrarComentario;
     private EventoActualizarUsuario evActualizarUsuario;
+    private EventoIniciarSesionFb evIniciarSesionFb;
     private static EventHandler instance;
 
     private EventHandler() {
@@ -18,6 +19,7 @@ public class EventHandler {
         evConsultarPublicaciones = EventoConsultarPublicaciones.getInstance();
         evRegistrarComentario = EventoRegistrarComentario.getInstance();
         evActualizarUsuario = EventoActualizarUsuario.getInstance();
+        evIniciarSesionFb = EventoIniciarSesionFb.getInstance();
     }
     
     public static EventHandler getInstance(){
@@ -38,6 +40,8 @@ public class EventHandler {
             evRegistrarComentario.setPeticion(peticion);
         }else if(peticion.getPeticionRespuesta().equals(ACTUALIZAR_USUARIO)){
             evActualizarUsuario.setPeticion(peticion);
+        }else if(peticion.getPeticionRespuesta().equals(INICIAR_SESION_FB)){
+            evIniciarSesionFb.setPeticion(peticion);
         }
     }    
 }

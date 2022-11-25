@@ -293,19 +293,26 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void init(){
-        txtUsuario.setText(user.getUsuario());
-        txtPassword.setText(user.getPassword());
+        if (user.getToken() != null && user.getFechaNacimiento() == null) {
+            txtUsuario.setText(user.getUsuario());
+            txtUsuario.setEditable(false);
+            txtPassword.setEditable(false);
+            txtPassword.setText(user.getPassword());
+        } else {
+            txtUsuario.setText(user.getUsuario());
+            txtPassword.setText(user.getPassword());
 
-        txtDia.setText(Integer.toString(user.getFechaNacimiento().get(Calendar.DATE)));
-        txtMes.setText(Integer.toString(user.getFechaNacimiento().get(Calendar.MONTH)+1));
-        txtAnio.setText(Integer.toString(user.getFechaNacimiento().get(Calendar.YEAR)));
-        
-        if(user.getSexo().equals(HOMBRE)){
-            radHombre.setSelected(true);
+            txtDia.setText(Integer.toString(user.getFechaNacimiento().get(Calendar.DATE)));
+            txtMes.setText(Integer.toString(user.getFechaNacimiento().get(Calendar.MONTH) + 1));
+            txtAnio.setText(Integer.toString(user.getFechaNacimiento().get(Calendar.YEAR)));
+
+            if (user.getSexo().equals(HOMBRE)) {
+                radHombre.setSelected(true);
+            } else if (user.getSexo().equals(MUJER)) {
+                radMujer.setSelected(true);
+            }
         }
-        else if(user.getSexo().equals(MUJER)){
-            radMujer.setSelected(true);
-        }
+
     }
    
     public void actualizar(){

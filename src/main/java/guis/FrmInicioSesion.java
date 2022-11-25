@@ -2,15 +2,18 @@ package guis;
 
 import entidades.Usuario;
 import events.EventoIniciarSesion;
+import events.EventoIniciarSesionFb;
+import helpers.LoginFacebook;
 import interfaces.IFachadaConexion;
 import javax.swing.JOptionPane;
 import logica.Context;
 import logica.FachadaConexion;
 import observers.ObserverIniciarSesion;
+import observers.ObserverIniciarSesionFb;
 import peticiones.PeticionUsuario;
 
-public class FrmInicioSesion extends javax.swing.JFrame implements ObserverIniciarSesion {
-
+public class FrmInicioSesion extends javax.swing.JFrame implements ObserverIniciarSesion, ObserverIniciarSesionFb {
+    
     IFachadaConexion facConexion;
 
     /**
@@ -20,6 +23,7 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         initComponents();
         facConexion = new FachadaConexion();
         EventoIniciarSesion.getInstance().addObserver(this);
+        EventoIniciarSesionFb.getInstance().addObserver(this);
         //pruebaInicio();
     }
     
@@ -36,6 +40,19 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         facConexion.iniciarSesion(user);
     }
 
+    private void verificarUsuarioFb(PeticionUsuario peticion){
+        System.out.println("Entro al verificar");
+        Usuario usuario = peticion.getUsuario();
+        if (usuario == null) {
+            JOptionPane.showMessageDialog(this, "Credenciales incorrectas", "Iniciar Sesión", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        Context.getInstance().setUsuario(usuario);
+        FrmMuro frmMuro = new FrmMuro();
+        frmMuro.setVisible(true);
+        this.dispose();
+    }
+    
     private void verificarUsuario(PeticionUsuario peticion) {
         System.out.println("Entro al verificar");
         Usuario usuario = peticion.getUsuario();
@@ -260,7 +277,10 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
     }//GEN-LAST:event_btnCrearCuentaActionPerformed
 
     private void btnIniciarFacebookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarFacebookActionPerformed
-        // TODO add your handling code here:
+        LoginFacebook logF = new LoginFacebook();
+        Usuario usuario = logF.authUser();
+        System.out.println(usuario.getToken());
+        facConexion.iniciarSesionFB(usuario);
     }//GEN-LAST:event_btnIniciarFacebookActionPerformed
 
     /**
@@ -317,5 +337,10 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
     public void update(PeticionUsuario peticion) {
         verificarUsuario(peticion);
 
+    }
+
+    @Override
+    public void updateIniciarSesionFb(PeticionUsuario peticion) {
+        verificarUsuarioFb(peticion);        
     }
 }

@@ -12,7 +12,7 @@ public class MuroTitle extends javax.swing.JPanel {
     public MuroTitle() {
         initComponents();
         this.usuario = Context.getInstance().getUsuario();
-        txtSearch.setHintText("¿Qué jashta estás buscando, "+ usuario.getUsuario()+"?");
+        txtSearch.setHintText("¿Qué jashta estás buscando?");
         //lblUsuario.setText(usuario.getUsuario());
         btnUser.setText(usuario.getUsuario());
     }

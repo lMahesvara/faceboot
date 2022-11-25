@@ -1,38 +1,42 @@
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\guis\PMuro.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\server\Conector.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\swingComponents\ComponentResizer.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\components\PublicacionTitle.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\observers\ObserverRegistrarPublicacion.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\components\PublicacionComentar.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\guis\FrmInicioSesion.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\swingComponents\PanelSlide.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\swingComponents\ScrollBar.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\events\EventoIniciarSesion.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\logica\FachadaConexion.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\swingComponents\LimitJTextField.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\swingComponents\ImageAvatar.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\swingComponents\JIMSendTextPane.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\components\MuroPublicacion.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\components\MuroBody.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\swingComponents\Line.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\components\MuroTitle.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\components\MuroPublicar.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\events\EventHandler.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\helpers\ConvertirImagen.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\components\Linea.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\events\EventoConsultarPublicaciones.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\guis\FrmMuro.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\guis\FrmRegistrarUsuario.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\swingComponents\PictureBox.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\observers\ObserverConsultarPublicaciones.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\components\PublicacionBody.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\components\PublicacionComentarios.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\observers\ObserverIniciarSesion.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\observers\ObserverRegistrarComentario.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\guis\FrmEditarUsuario.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\guis\FrmCrearPublicacion.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\events\EventoRegistrarComentario.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\swingComponents\ModernScrollBarUI.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\components\ComentarioItem.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\interfaces\IFachadaConexion.java
-F:\Documents\GitHub\blackcock\faceboot\src\main\java\events\EventoRegistrarPublicacion.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\components\PublicacionComentar.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\logica\Context.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\guis\FrmInicioSesion.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\interfaces\IFachadaConexion.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\components\PublicacionBody.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\guis\FrmMuro.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\swingComponents\ScrollBar.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\events\EventoRegistrarComentario.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\components\ComentarioItem.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\events\EventoActualizarUsuario.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\components\Linea.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\swingComponents\Line.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\helpers\ConvertirImagen.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\observers\ObserverConsultarPublicaciones.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\events\EventoRegistrarPublicacion.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\guis\PMuro.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\logica\FachadaConexion.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\swingComponents\ComponentResizer.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\swingComponents\PictureBox.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\components\MuroBody.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\components\MuroPublicacion.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\observers\ObserverRegistrarComentario.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\observers\ObserverActualizarUsuario.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\observers\ObserverRegistrarPublicacion.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\events\EventoIniciarSesion.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\components\PublicacionTitle.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\swingComponents\JIMSendTextPane.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\observers\ObserverIniciarSesion.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\server\Conector.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\guis\FrmCrearPublicacion.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\swingComponents\ModernScrollBarUI.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\events\EventHandler.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\components\MuroPublicar.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\components\PublicacionOpciones.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\events\EventoConsultarPublicaciones.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\guis\FrmEditarUsuario.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\swingComponents\PanelSlide.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\components\MuroTitle.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\components\PublicacionComentarios.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\swingComponents\LimitJTextField.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\guis\FrmRegistrarUsuario.java
+D:\Cosas Escuela\Trabajos de clase\5to Semestre\Arquitectura de Software\ProyectoFinal\faceboot\src\main\java\swingComponents\ImageAvatar.java
