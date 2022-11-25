@@ -8,6 +8,7 @@ public class EventHandler {
     private EventoRegistrarPublicacion evRegistrarPublicacion;
     private EventoConsultarPublicaciones evConsultarPublicaciones;
     private EventoRegistrarComentario evRegistrarComentario;
+    private EventoActualizarUsuario evActualizarUsuario;
     private static EventHandler instance;
 
     private EventHandler() {
@@ -16,6 +17,7 @@ public class EventHandler {
         evRegistrarPublicacion = EventoRegistrarPublicacion.getInstance();
         evConsultarPublicaciones = EventoConsultarPublicaciones.getInstance();
         evRegistrarComentario = EventoRegistrarComentario.getInstance();
+        evActualizarUsuario = EventoActualizarUsuario.getInstance();
     }
     
     public static EventHandler getInstance(){
@@ -34,6 +36,8 @@ public class EventHandler {
             evConsultarPublicaciones.setPeticion(peticion);
         }else if(peticion.getPeticionRespuesta().equals(AGREGAR_COMENTARIO)){
             evRegistrarComentario.setPeticion(peticion);
+        }else if(peticion.getPeticionRespuesta().equals(ACTUALIZAR_USUARIO)){
+            evActualizarUsuario.setPeticion(peticion);
         }
     }    
 }

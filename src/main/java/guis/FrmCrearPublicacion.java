@@ -1,12 +1,15 @@
 package guis;
 
+import entidades.Hashtag;
 import entidades.Publicacion;
 import entidades.Usuario;
 import helpers.ConvertirImagen;
 import interfaces.IFachadaConexion;
 import java.awt.Image;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -195,14 +198,43 @@ public class FrmCrearPublicacion extends javax.swing.JFrame {
             Image image = ConvertirImagen.iconoAImagen(this.lblIcon.getIcon());
             byte[] bytes = ConvertirImagen.imagenABytes(image);
             publicacion = new Publicacion(usuario, Calendar.getInstance(), txtTexto.getText().trim(), bytes);
+            publicacion.setHashtag(separarHashtags(txtTexto.getText()));
+            
         }else {
             publicacion = new Publicacion(usuario, Calendar.getInstance(), txtTexto.getText().trim());
+            publicacion.setHashtag(separarHashtags(txtTexto.getText()));
         }
         fachadaConexion.registrarPublicacion(publicacion);
         System.out.println("Se envio");
         dispose();
     }//GEN-LAST:event_btnPublicarActionPerformed
 
+    
+    public List<Hashtag> separarHashtags(String text){
+        List<Hashtag> ht = new ArrayList();
+        char[] textChar = text.toCharArray();
+        int start, end;
+
+        for(int i = 0; i < textChar.length;i++){
+            if(textChar [i] == '#'){
+                start= i;
+                for(int c = start; c < textChar.length;c++){
+                    if(textChar [c] == ' ' || c+1 == textChar.length){ 
+                        if(c+1 == textChar.length){
+                            end = c+1;
+                        }else{
+                            end = c;
+                        }
+                        i = c;
+                        ht.add(new Hashtag(text.substring(start,end)));
+                        c = textChar.length;
+                   }
+               }
+           }
+        }
+        return ht;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarImagen;
