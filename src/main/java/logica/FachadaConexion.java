@@ -1,12 +1,15 @@
 package logica;
 
 import entidades.Comentario;
+import entidades.Notificacion;
 import entidades.Publicacion;
 import entidades.Usuario;
 import helpers.ConvertirPeticion;
 import static helpers.Peticiones.*;
 import interfaces.IFachadaConexion;
 import peticiones.PeticionComentario;
+import peticiones.PeticionNotificacion;
+import peticiones.PeticionNotificaciones;
 import peticiones.PeticionPublicacion;
 import peticiones.PeticionPublicaciones;
 import peticiones.PeticionUsuario;
@@ -59,5 +62,27 @@ public class FachadaConexion implements IFachadaConexion {
         conector.enviarPeticion(json);
     }
     
+    @Override
+    public void notificarCorreo(Notificacion notificacion){
+        String json = ConvertirPeticion.JSONConverter(new PeticionNotificacion(NOTIFICACION_CORREO, notificacion));
+        conector.enviarPeticion(json);
+    }
     
+    @Override
+    public void notificarSMS(Notificacion notificacion){
+        String json = ConvertirPeticion.JSONConverter(new PeticionNotificacion(NOTIFICACION_SMS, notificacion));
+        conector.enviarPeticion(json);
+    }
+    
+    @Override
+    public void notificarTodos(Notificacion notificacion){
+        String json = ConvertirPeticion.JSONConverter(new PeticionNotificacion(NOTIFICACION_TODOS, notificacion));
+        conector.enviarPeticion(json);
+    }
+    
+    @Override
+    public void consultarNotificaciones(Usuario usuario){
+        String json = ConvertirPeticion.JSONConverter(new PeticionNotificaciones(CONSULTAR_NOTIFICACIONES, usuario));
+        conector.enviarPeticion(json);
+    }
 }

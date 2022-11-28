@@ -10,6 +10,8 @@ public class EventHandler {
     private EventoRegistrarComentario evRegistrarComentario;
     private EventoActualizarUsuario evActualizarUsuario;
     private EventoIniciarSesionFb evIniciarSesionFb;
+    private EventoRegistrarNotificacion evRegistrarNotificacion;
+    private EventoConsultarNotificaciones evConsultarNotificaciones;
     private static EventHandler instance;
 
     private EventHandler() {
@@ -20,6 +22,8 @@ public class EventHandler {
         evRegistrarComentario = EventoRegistrarComentario.getInstance();
         evActualizarUsuario = EventoActualizarUsuario.getInstance();
         evIniciarSesionFb = EventoIniciarSesionFb.getInstance();
+        evRegistrarNotificacion = EventoRegistrarNotificacion.getInstance();
+        evConsultarNotificaciones = EventoConsultarNotificaciones.getInstance();
     }
     
     public static EventHandler getInstance(){
@@ -42,6 +46,10 @@ public class EventHandler {
             evActualizarUsuario.setPeticion(peticion);
         }else if(peticion.getPeticionRespuesta().equals(INICIAR_SESION_FB)){
             evIniciarSesionFb.setPeticion(peticion);
+        }else if(peticion.getPeticionRespuesta().equals(CONSULTAR_NOTIFICACIONES)){
+            evConsultarNotificaciones.setPeticion(peticion);
+        }else if(peticion.getPeticionRespuesta().equals(NOTIFICACION_SMS) || peticion.getPeticionRespuesta().equals(NOTIFICACION_CORREO) || peticion.getPeticionRespuesta().equals(NOTIFICACION_TODOS)){
+            evRegistrarNotificacion.setPeticion(peticion);
         }
     }    
 }

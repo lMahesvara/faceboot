@@ -2,6 +2,7 @@ package interfaces;
 
 
 import entidades.Comentario;
+import entidades.Notificacion;
 import entidades.Publicacion;
 import entidades.Usuario;
 
@@ -12,5 +13,9 @@ public interface IFachadaConexion {
     public void registrarPublicacion(Publicacion publicacion);
     public void consultarPublicaciones();
     public void registrarComentario(Comentario comentario);
-     public void iniciarSesionFB(Usuario usuario);
+    public void iniciarSesionFB(Usuario usuario);
+    public void notificarCorreo(Notificacion notificacion);
+    public void notificarSMS(Notificacion notificacion);
+    public void notificarTodos(Notificacion notificacion);
+    public void consultarNotificaciones(Usuario usuario);
 }

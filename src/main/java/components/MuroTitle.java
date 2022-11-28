@@ -3,6 +3,7 @@ package components;
 import entidades.Usuario;
 import logica.Context;
 import guis.FrmEditarUsuario;
+import guis.FrmNotificaciones;
 
 public class MuroTitle extends javax.swing.JPanel {
     private Usuario usuario;
@@ -30,6 +31,7 @@ public class MuroTitle extends javax.swing.JPanel {
         btnUser = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtSearch = new swingComponents.JIMSendTextPane();
+        btnNotificaciones = new javax.swing.JButton();
 
         setBackground(null);
 
@@ -57,6 +59,12 @@ public class MuroTitle extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(txtSearch);
 
+        btnNotificaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNotificacionesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,19 +74,22 @@ public class MuroTitle extends javax.swing.JPanel {
                 .addComponent(lblLogo)
                 .addGap(56, 56, 56)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnUser, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnNotificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnUser, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
+                    .addComponent(btnUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnNotificaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -86,8 +97,13 @@ public class MuroTitle extends javax.swing.JPanel {
         new FrmEditarUsuario(usuario).setVisible(true);
     }//GEN-LAST:event_btnUserActionPerformed
 
+    private void btnNotificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificacionesActionPerformed
+        new FrmNotificaciones().setVisible(true);
+    }//GEN-LAST:event_btnNotificacionesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnNotificaciones;
     private javax.swing.JButton btnUser;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLogo;
