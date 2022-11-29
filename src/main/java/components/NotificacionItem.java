@@ -2,17 +2,10 @@ package components;
 
 import entidades.Notificacion;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.border.EmptyBorder;
 import swingComponents.JIMSendTextPane;
 
 public class NotificacionItem extends javax.swing.JLayeredPane {
@@ -58,7 +51,7 @@ public class NotificacionItem extends javax.swing.JLayeredPane {
 
         txtTexto = new swingComponents.JIMSendTextPane();
 
-        setBackground(new java.awt.Color(241, 242, 246));
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.PAGE_AXIS));
 
         txtTexto.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 5, 10));

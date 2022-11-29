@@ -5,24 +5,25 @@
 package guis;
 
 import entidades.Publicacion;
-import entidades.Usuario;
 import events.EventoActualizarUsuario;
 import events.EventoConsultarPublicaciones;
+import events.EventoConsultarPublicacionesHashtag;
 import events.EventoRegistrarPublicacion;
 import interfaces.IFachadaConexion;
 import java.util.List;
 import javax.swing.JOptionPane;
 import logica.Context;
 import logica.FachadaConexion;
+import logica.MuroState;
 import observers.ObserverActualizarUsuario;
 import observers.ObserverConsultarPublicaciones;
+import observers.ObserverConsultarPublicacionesHashtag;
 import observers.ObserverRegistrarPublicacion;
 import peticiones.PeticionPublicacion;
 import peticiones.PeticionPublicaciones;
 import peticiones.PeticionUsuario;
 
-public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPublicacion, ObserverConsultarPublicaciones, ObserverActualizarUsuario{
-
+public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPublicacion, ObserverConsultarPublicaciones, ObserverActualizarUsuario, ObserverConsultarPublicacionesHashtag{
     private IFachadaConexion fachadaConexion;
 
     /**
@@ -34,6 +35,7 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
         EventoRegistrarPublicacion.getInstance().addObserver(this);
         EventoConsultarPublicaciones.getInstance().addObserver(this);
         EventoActualizarUsuario.getInstance().addObserver(this);
+        EventoConsultarPublicacionesHashtag.getInstance().addObserver(this);
         revalidate();
         consultarPublicaciones();
     }
@@ -138,14 +140,19 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
 
     @Override
     public void update(PeticionPublicacion peticion) {
+        if(MuroState.getInstance().getState().equals(MuroState.IN_HASHTAG)){
+            return;
+        }
         mostrarPublicacion(peticion);
-
     }
 
     @Override
     public void update(PeticionPublicaciones peticion) {
+        MuroState.getInstance().setStateALL();
         pintarMuro(peticion.getPublicaciones());
     }
+    
+    
 
     @Override
     public void update(PeticionUsuario peticion) {
@@ -156,4 +163,11 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
         Context.getInstance().setUsuario(peticion.getUsuario());
         consultarPublicaciones();
     }
+
+    @Override
+    public void updatePublicacionesTag(PeticionPublicaciones peticion) {
+        MuroState.getInstance().setStateIN_HASHTAG();
+        pintarMuro(peticion.getPublicaciones());
+    }
+    
 }

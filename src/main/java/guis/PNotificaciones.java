@@ -22,14 +22,14 @@ public class PNotificaciones extends javax.swing.JPanel {
 
     public void init(List<Notificacion> notificaciones) {
         removeAll();
-        setLayout(new MigLayout("wrap", "0[]", "0[77%]"));
         
+        setLayout(new MigLayout("fillx", "5[]5"));
         this.notiBody = new NotificacionesBody(notificaciones);
-
         add(notiBody, "wrap, width 100%");
+        
         refresh();
     }
-
+    
     private void refresh() {
         repaint();
         revalidate();
@@ -39,9 +39,7 @@ public class PNotificaciones extends javax.swing.JPanel {
         notiBody.agregarNotificacion(notificacion);
         refresh();
     }
-
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,11 +55,11 @@ public class PNotificaciones extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 772, Short.MAX_VALUE)
+            .addGap(0, 269, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 405, Short.MAX_VALUE)
+            .addGap(0, 69, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

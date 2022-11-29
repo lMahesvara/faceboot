@@ -2,16 +2,9 @@ package components;
 
 import entidades.Publicacion;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.border.EmptyBorder;
-import swingComponents.Line;
 
 public class PublicacionBody extends javax.swing.JLayeredPane {
 

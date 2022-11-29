@@ -1,6 +1,7 @@
 package logica;
 
 import entidades.Comentario;
+import entidades.Hashtag;
 import entidades.Notificacion;
 import entidades.Publicacion;
 import entidades.Usuario;
@@ -83,6 +84,12 @@ public class FachadaConexion implements IFachadaConexion {
     @Override
     public void consultarNotificaciones(Usuario usuario){
         String json = ConvertirPeticion.JSONConverter(new PeticionNotificaciones(CONSULTAR_NOTIFICACIONES, usuario));
+        conector.enviarPeticion(json);
+    }
+    
+    @Override
+    public void consultarPublicacionesHashtag(Hashtag hashtag){
+        String json = ConvertirPeticion.JSONConverter(new PeticionPublicaciones(CONSULTAR_PUBLICACIONES_HASHTAG, hashtag));
         conector.enviarPeticion(json);
     }
 }

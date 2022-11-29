@@ -11,6 +11,7 @@ import entidades.Usuario;
 import interfaces.IFachadaConexion;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import logica.Context;
 import logica.FachadaConexion;
 
 /**
@@ -27,7 +28,7 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
      */
     public FrmEditarUsuario(Usuario usuario) {
         initComponents();
-        this.user = usuario;
+        this.user = Context.getInstance().getUsuario();
         fachadaConexion = new FachadaConexion();
         init();
     }

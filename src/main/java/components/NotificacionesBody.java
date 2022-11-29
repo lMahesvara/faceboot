@@ -26,7 +26,7 @@ public class NotificacionesBody extends javax.swing.JPanel {
     }
 
     private void init() {
-        panBody.setLayout(new MigLayout("fillx, btt", "10[]0", "0[]10"));
+        panBody.setLayout(new MigLayout("fillx, btt"));
         panMuroBody.setVerticalScrollBar(new ScrollBar());
         cargarItems();
     }
@@ -35,7 +35,7 @@ public class NotificacionesBody extends javax.swing.JPanel {
         notificaciones.forEach(noti -> {
             NotificacionItem notificacion = new NotificacionItem(noti);
             listNotificaciones.add(notificacion);
-            panBody.add(notificacion, "wrap, al center");
+            panBody.add(notificacion, "wrap, width 100%");
         });
         refresh();
     }
@@ -43,7 +43,7 @@ public class NotificacionesBody extends javax.swing.JPanel {
     public void agregarNotificacion(Notificacion noti) {
         NotificacionItem notificacion = new NotificacionItem(noti);
         listNotificaciones.add(notificacion);
-        panBody.add(notificacion, "wrap, al center");
+        panBody.add(notificacion, "wrap, width 100%");
         refresh();
     }
 
@@ -76,11 +76,11 @@ public class NotificacionesBody extends javax.swing.JPanel {
         panBody.setLayout(panBodyLayout);
         panBodyLayout.setHorizontalGroup(
             panBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 766, Short.MAX_VALUE)
+            .addGap(0, 269, Short.MAX_VALUE)
         );
         panBodyLayout.setVerticalGroup(
             panBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 564, Short.MAX_VALUE)
+            .addGap(0, 68, Short.MAX_VALUE)
         );
 
         panMuroBody.setViewportView(panBody);

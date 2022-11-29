@@ -2,6 +2,7 @@ package interfaces;
 
 
 import entidades.Comentario;
+import entidades.Hashtag;
 import entidades.Notificacion;
 import entidades.Publicacion;
 import entidades.Usuario;
@@ -18,4 +19,5 @@ public interface IFachadaConexion {
     public void notificarSMS(Notificacion notificacion);
     public void notificarTodos(Notificacion notificacion);
     public void consultarNotificaciones(Usuario usuario);
+    public void consultarPublicacionesHashtag(Hashtag hashtag);
 }

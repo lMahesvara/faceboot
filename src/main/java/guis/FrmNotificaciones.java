@@ -38,19 +38,6 @@ public class FrmNotificaciones extends javax.swing.JFrame implements ObserverReg
         EventoConsultarNotificaciones.getInstance().addObserver(this);
         EventoRegistrarNotificacion.getInstance().addObserver(this);
         consultarNotificaciones();
-        
-//        notificaciones.add(new Notificacion(new Usuario("vastem"),"saca weras"));
-//        notificaciones.add(new Notificacion(new Usuario("vastem"),"saca weras"));
-//        notificaciones.add(new Notificacion(new Usuario("vastem"),"saca weras"));
-//        notificaciones.add(new Notificacion(new Usuario("vastem"),"saca weras"));
-//        notificaciones.add(new Notificacion(new Usuario("vastem"),"saca weras"));
-//        notificaciones.add(new Notificacion(new Usuario("vastem"),"saca peda"));
-//        notificaciones.add(new Notificacion(new Usuario("vastem"),"saca mamadas"));
-//        notificaciones.add(new Notificacion(new Usuario("royalrex"),"saca 2"));
-//        
-//        pNotificaciones.init(notificaciones);
-        
-        //agregarNotificacion();
     }
     
     public void consultarNotificaciones(){
@@ -85,7 +72,7 @@ public class FrmNotificaciones extends javax.swing.JFrame implements ObserverReg
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(233, 233, 233));
 
         lblTitulo.setBackground(new java.awt.Color(0, 0, 0));
         lblTitulo.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
@@ -100,17 +87,15 @@ public class FrmNotificaciones extends javax.swing.JFrame implements ObserverReg
             }
         });
 
-        pNotificaciones.setBackground(new java.awt.Color(255, 255, 255));
-
         javax.swing.GroupLayout pNotificacionesLayout = new javax.swing.GroupLayout(pNotificaciones);
         pNotificaciones.setLayout(pNotificacionesLayout);
         pNotificacionesLayout.setHorizontalGroup(
             pNotificacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 338, Short.MAX_VALUE)
+            .addGap(0, 380, Short.MAX_VALUE)
         );
         pNotificacionesLayout.setVerticalGroup(
             pNotificacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
+            .addGap(0, 458, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -122,7 +107,7 @@ public class FrmNotificaciones extends javax.swing.JFrame implements ObserverReg
                 .addComponent(line1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 98, Short.MAX_VALUE)
                 .addComponent(btnNotificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(98, 98, 98))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -131,9 +116,9 @@ public class FrmNotificaciones extends javax.swing.JFrame implements ObserverReg
                         .addGap(141, 141, 141)
                         .addComponent(lblTitulo))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
+                        .addGap(16, 16, 16)
                         .addComponent(pNotificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,9 +128,8 @@ public class FrmNotificaciones extends javax.swing.JFrame implements ObserverReg
                 .addComponent(line1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNotificacion)
-                .addGap(18, 18, 18)
-                .addComponent(pNotificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addComponent(pNotificaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
