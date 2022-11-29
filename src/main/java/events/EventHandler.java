@@ -13,6 +13,7 @@ public class EventHandler {
     private EventoRegistrarNotificacion evRegistrarNotificacion;
     private EventoConsultarNotificaciones evConsultarNotificaciones;
     private EventoConsultarPublicacionesHashtag evConsultarPublicacionesHashtag;
+    private EventoCerrarSesion evCerrarSesion;
     private static EventHandler instance;
 
     private EventHandler() {
@@ -26,6 +27,7 @@ public class EventHandler {
         evRegistrarNotificacion = EventoRegistrarNotificacion.getInstance();
         evConsultarNotificaciones = EventoConsultarNotificaciones.getInstance();
         evConsultarPublicacionesHashtag = EventoConsultarPublicacionesHashtag.getInstance();
+        evCerrarSesion = EventoCerrarSesion.getInstance();
     }
     
     public static EventHandler getInstance(){
@@ -54,6 +56,8 @@ public class EventHandler {
             evRegistrarNotificacion.setPeticion(peticion);
         }else if(peticion.getPeticionRespuesta().equals(CONSULTAR_PUBLICACIONES_HASHTAG)){
             evConsultarPublicacionesHashtag.setPeticion(peticion);
+        }else if(peticion.getPeticionRespuesta().equals(CERRAR_SESION)){
+            evCerrarSesion.setPeticion(peticion);
         }
     }    
 }

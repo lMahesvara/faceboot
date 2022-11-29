@@ -13,7 +13,7 @@ import observers.ObserverIniciarSesionFb;
 import peticiones.PeticionUsuario;
 
 public class FrmInicioSesion extends javax.swing.JFrame implements ObserverIniciarSesion, ObserverIniciarSesionFb {
-    
+    private static FrmInicioSesion instance;
     IFachadaConexion facConexion;
 
     /**
@@ -21,10 +21,17 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
      */
     public FrmInicioSesion() {
         initComponents();
+        EventoIniciarSesion.getInstance().deleteObserver(this);
+        
         facConexion = new FachadaConexion();
         EventoIniciarSesion.getInstance().addObserver(this);
         EventoIniciarSesionFb.getInstance().addObserver(this);
         //pruebaInicio();
+    }
+    
+    public static FrmInicioSesion getInstance(){
+        if(instance == null) instance = new FrmInicioSesion();
+        return instance;
     }
     
     private void pruebaInicio(){
@@ -61,8 +68,7 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
             return;
         }
         Context.getInstance().setUsuario(usuario);
-        FrmMuro frmMuro = new FrmMuro();
-        frmMuro.setVisible(true);
+        new FrmMuro().setVisible(true);
         this.dispose();
 
     }
@@ -335,8 +341,8 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
 
     @Override
     public void update(PeticionUsuario peticion) {
+        System.out.println("entro aki alavergaaaaaaaa aaaaaaaaaa a saquen weras");
         verificarUsuario(peticion);
-
     }
 
     @Override

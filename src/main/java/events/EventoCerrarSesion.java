@@ -1,40 +1,46 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package events;
 
-import java.util.List;
 import java.util.LinkedList;
-import observers.ObserverIniciarSesion;
+import java.util.List;
+import observers.ObserverCerrarSesion;
 import peticiones.AbstractPeticion;
 import peticiones.PeticionUsuario;
 
-public class EventoIniciarSesion {
+/**
+ *
+ * @author Vastem
+ */
+public class EventoCerrarSesion {
+    private static EventoCerrarSesion instance;
+    private List<ObserverCerrarSesion> observers;
 
-    private static EventoIniciarSesion instance;
-    private List<ObserverIniciarSesion> observers;
-
-    private EventoIniciarSesion() {
+    private EventoCerrarSesion() {
         this.observers = new LinkedList<>();
     }
 
-    public static EventoIniciarSesion getInstance() {
+    public static EventoCerrarSesion getInstance() {
         if (instance == null) {
-            instance = new EventoIniciarSesion();
+            instance = new EventoCerrarSesion();
         }
         return instance;
     }
 
     public void setPeticion(AbstractPeticion peticion) {
         System.out.println("Entro al EVENTO");
-        System.out.println(observers);
         notifyObservers((PeticionUsuario) peticion);
     }
 
     public void notifyObservers(PeticionUsuario peticion) {
         observers.forEach(observer -> {
-            observer.update(peticion);
+            observer.updateLogOut(peticion);
         });
     }
 
-    public void addObserver(ObserverIniciarSesion observer) {
+    public void addObserver(ObserverCerrarSesion observer) {
         if (observer == null)
             throw new NullPointerException();
         if (!observers.contains(observer)) {
@@ -42,8 +48,7 @@ public class EventoIniciarSesion {
         }
     }
 
-    public void deleteObserver(ObserverIniciarSesion observer) {
+    public void deleteObserver(ObserverCerrarSesion observer) {
         observers.remove(observer);
     }
-
 }

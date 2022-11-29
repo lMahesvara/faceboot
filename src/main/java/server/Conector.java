@@ -37,11 +37,21 @@ public class Conector {
         }
         return instance;
     }
-
+    
+    public void setInstance() {
+       if (instance != null){
+           closeAll();
+           Conector.instance = null;
+       }
+    }
+    
     public void enviarPeticion(String json) {
         try {
             //String json = mappear();
             if (!json.equals(" ")) {
+                
+                System.out.println("se enviara petición: " + json);
+                
                 salida.println(json);
             }
 //            String respuesta = entrada.readLine();
@@ -56,19 +66,31 @@ public class Conector {
         new Thread(new Runnable(){
             @Override
             public void run() {
-                String json;
-                while(cliente.isConnected()){
-                    try {
+                try {
+                    String json;
+                    while(!cliente.isClosed()){
                         json = entrada.readLine();
                         System.out.println("2"+ json);
-                        AbstractPeticion peticion = ConvertirPeticion.PetitionConverter(json);
+
+                        AbstractPeticion peticion = null;
+
+                        if(json != null){
+                            peticion = ConvertirPeticion.PetitionConverter(json);
+                        }
+
                         System.out.println("ea "+peticion);
-                        EventHandler.getInstance().manejarEvento(peticion);
+
+                        if(peticion != null){
+                            EventHandler.getInstance().manejarEvento(peticion);
+                        }
                         //Mandar Peticion -> EventHandler
                         //EventHandler -> Se va a encargar de determinar a que evento corresponde la peticion y va ejecutar el notificarTodos()
-                    } catch (IOException ex) {
-                        Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
+
                     }
+                    
+                    System.out.println("AQUI ANDAMOS");
+                }catch (IOException ex) {
+                    Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }).start();
@@ -83,18 +105,4 @@ public class Conector {
             Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-//    public String mappear() {
-//        try {
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            Usuario usuario = new Usuario("kura", "1234", "asd@asd.com", "1231231231", Calendar.getInstance(), Sexo.HOMBRE, null);
-//            BlackBoardObject bbo = new BlackBoardObject(Peticiones.REGISTRAR_USUARIO, usuario);
-//            
-//            String peticion = objectMapper.writeValueAsString(bbo);
-//            return peticion;
-//        } catch (JsonProcessingException ex) {
-//            Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return null;
-//    }
 }

@@ -21,7 +21,7 @@ public class FachadaConexion implements IFachadaConexion {
     private Conector conector;
 
     public FachadaConexion() {
-        conector = Conector.getInstance();
+         conector = Conector.getInstance();
     }
 
     @Override
@@ -37,6 +37,7 @@ public class FachadaConexion implements IFachadaConexion {
     
     @Override
     public void iniciarSesion(Usuario usuario){
+        System.out.println("Entro a iniciar sesion fakkk aaaa");
         String json = ConvertirPeticion.JSONConverter(new PeticionUsuario(INICIAR_SESION, usuario));
         conector.enviarPeticion(json);
     }
@@ -91,5 +92,20 @@ public class FachadaConexion implements IFachadaConexion {
     public void consultarPublicacionesHashtag(Hashtag hashtag){
         String json = ConvertirPeticion.JSONConverter(new PeticionPublicaciones(CONSULTAR_PUBLICACIONES_HASHTAG, hashtag));
         conector.enviarPeticion(json);
+    }
+    
+    public void cerrarSesion(Usuario usuario){
+        String json = ConvertirPeticion.JSONConverter(new PeticionUsuario(CERRAR_SESION, usuario));
+        conector.enviarPeticion(json);
+    }
+
+    @Override
+    public void eliminarPublicacion(Publicacion publicacion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void editarPublicacion(Publicacion publicacion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

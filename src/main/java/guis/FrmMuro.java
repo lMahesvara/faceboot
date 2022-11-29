@@ -6,6 +6,7 @@ package guis;
 
 import entidades.Publicacion;
 import events.EventoActualizarUsuario;
+import events.EventoCerrarSesion;
 import events.EventoConsultarPublicaciones;
 import events.EventoConsultarPublicacionesHashtag;
 import events.EventoRegistrarPublicacion;
@@ -16,14 +17,17 @@ import logica.Context;
 import logica.FachadaConexion;
 import logica.MuroState;
 import observers.ObserverActualizarUsuario;
+import observers.ObserverCerrarSesion;
 import observers.ObserverConsultarPublicaciones;
 import observers.ObserverConsultarPublicacionesHashtag;
 import observers.ObserverRegistrarPublicacion;
 import peticiones.PeticionPublicacion;
 import peticiones.PeticionPublicaciones;
 import peticiones.PeticionUsuario;
+import server.Conector;
 
-public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPublicacion, ObserverConsultarPublicaciones, ObserverActualizarUsuario, ObserverConsultarPublicacionesHashtag{
+public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPublicacion, ObserverConsultarPublicaciones, ObserverActualizarUsuario, ObserverConsultarPublicacionesHashtag, ObserverCerrarSesion{
+
     private IFachadaConexion fachadaConexion;
 
     /**
@@ -36,6 +40,7 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
         EventoConsultarPublicaciones.getInstance().addObserver(this);
         EventoActualizarUsuario.getInstance().addObserver(this);
         EventoConsultarPublicacionesHashtag.getInstance().addObserver(this);
+        EventoCerrarSesion.getInstance().addObserver(this);
         revalidate();
         consultarPublicaciones();
     }
@@ -169,5 +174,12 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
         MuroState.getInstance().setStateIN_HASHTAG();
         pintarMuro(peticion.getPublicaciones());
     }
-    
+
+    @Override
+    public void updateLogOut(PeticionUsuario peticion) {
+        Conector.getInstance().setInstance();
+        
+        new FrmInicioSesion().setVisible(true);
+        this.dispose();
+    }
 }
