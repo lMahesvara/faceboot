@@ -15,6 +15,7 @@ public class EventHandler {
     private EventoRegistrarNotificacion evRegistrarNotificacion;
     private EventoConsultarNotificaciones evConsultarNotificaciones;
     private EventoConsultarPublicacionesHashtag evConsultarPublicacionesHashtag;
+    private EventoEliminarComentario evEliminarComentario;
     private static EventHandler instance;
 
     private EventHandler() {
@@ -30,6 +31,7 @@ public class EventHandler {
         evRegistrarNotificacion = EventoRegistrarNotificacion.getInstance();
         evConsultarNotificaciones = EventoConsultarNotificaciones.getInstance();
         evConsultarPublicacionesHashtag = EventoConsultarPublicacionesHashtag.getInstance();
+        evEliminarComentario = EventoEliminarComentario.getInstance();
     }
     
     public static EventHandler getInstance(){
@@ -62,6 +64,8 @@ public class EventHandler {
             evRegistrarNotificacion.setPeticion(peticion);
         }else if(peticion.getPeticionRespuesta().equals(CONSULTAR_PUBLICACIONES_HASHTAG)){
             evConsultarPublicacionesHashtag.setPeticion(peticion);
+        }else if(peticion.getPeticionRespuesta().equals(ELIMINAR_COMENTARIO)){
+            evEliminarComentario.setPeticion(peticion);
         }
     }    
 }

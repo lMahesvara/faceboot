@@ -104,4 +104,10 @@ public class FachadaConexion implements IFachadaConexion {
         String json = ConvertirPeticion.JSONConverter(new PeticionPublicaciones(CONSULTAR_PUBLICACIONES_HASHTAG, hashtag));
         conector.enviarPeticion(json);
     }
+
+    @Override
+    public void eliminarComentario(Comentario comentario) {
+        String json = ConvertirPeticion.JSONConverter(new PeticionComentario(ELIMINAR_COMENTARIO, comentario));
+        conector.enviarPeticion(json);
+    }
 }

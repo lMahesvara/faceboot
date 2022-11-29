@@ -22,4 +22,5 @@ public interface IFachadaConexion {
     public void notificarTodos(Notificacion notificacion);
     public void consultarNotificaciones(Usuario usuario);
     public void consultarPublicacionesHashtag(Hashtag hashtag);
+    public void eliminarComentario(Comentario comentario);
 }

@@ -19,7 +19,7 @@ public class PMuro extends javax.swing.JPanel {
 
     public void init(List<Publicacion> publicaciones) {
         removeAll();
-        setLayout(new MigLayout("fillx", "0[]0[]0[]0[]0", "0[shrink 0]0[]5[]-10[77%, top]0"));
+        setLayout(new MigLayout("wrap", "0[]0[]0[]0[]0", "0[10%]0[1%]5[10%]-10[79%, top]5"));
         MuroTitle muroTitulo = new MuroTitle();
         this.muroBody = new MuroBody(publicaciones);
         MuroPublicar muroPublicar = new MuroPublicar();

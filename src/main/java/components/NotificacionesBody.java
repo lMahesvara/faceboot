@@ -18,16 +18,15 @@ public class NotificacionesBody extends javax.swing.JPanel {
     /**
      * Creates new form MuroBody
      */
-    public NotificacionesBody(List<Notificacion> notificaciones) {
+    public NotificacionesBody() {
         initComponents();
-        this.notificaciones = notificaciones;
         this.listNotificaciones = new LinkedList<>();
-        init();
     }
 
-    private void init() {
-        panBody.setLayout(new MigLayout("fillx, btt"));
-        panMuroBody.setVerticalScrollBar(new ScrollBar());
+    public void init(List<Notificacion> notificaciones) {
+        this.notificaciones = notificaciones;
+        panBody.setLayout(new MigLayout("fillx", "10[fill]10", "0[top]10"));
+        panNotiBody.setVerticalScrollBar(new ScrollBar());
         cargarItems();
     }
 
@@ -35,7 +34,7 @@ public class NotificacionesBody extends javax.swing.JPanel {
         notificaciones.forEach(noti -> {
             NotificacionItem notificacion = new NotificacionItem(noti);
             listNotificaciones.add(notificacion);
-            panBody.add(notificacion, "wrap, width 100%");
+            panBody.add(notificacion, "wrap");
         });
         refresh();
     }
@@ -43,7 +42,7 @@ public class NotificacionesBody extends javax.swing.JPanel {
     public void agregarNotificacion(Notificacion noti) {
         NotificacionItem notificacion = new NotificacionItem(noti);
         listNotificaciones.add(notificacion);
-        panBody.add(notificacion, "wrap, width 100%");
+        panBody.add(notificacion, "wrap");
         refresh();
     }
 
@@ -61,14 +60,14 @@ public class NotificacionesBody extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panMuroBody = new javax.swing.JScrollPane();
+        panNotiBody = new javax.swing.JScrollPane();
         panBody = new javax.swing.JPanel();
 
         setBackground(java.awt.Color.white);
 
-        panMuroBody.setBackground(java.awt.Color.white);
-        panMuroBody.setBorder(null);
-        panMuroBody.setMaximumSize(new java.awt.Dimension(32767, 15000));
+        panNotiBody.setBackground(java.awt.Color.white);
+        panNotiBody.setBorder(null);
+        panNotiBody.setMaximumSize(new java.awt.Dimension(32767, 15000));
 
         panBody.setBackground(new java.awt.Color(233, 233, 233));
 
@@ -80,26 +79,28 @@ public class NotificacionesBody extends javax.swing.JPanel {
         );
         panBodyLayout.setVerticalGroup(
             panBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 68, Short.MAX_VALUE)
+            .addGap(0, 441, Short.MAX_VALUE)
         );
 
-        panMuroBody.setViewportView(panBody);
+        panNotiBody.setViewportView(panBody);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panMuroBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panNotiBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panMuroBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panNotiBody, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel panBody;
-    private javax.swing.JScrollPane panMuroBody;
+    private javax.swing.JScrollPane panNotiBody;
     // End of variables declaration//GEN-END:variables
 }
