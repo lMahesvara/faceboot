@@ -13,4 +13,6 @@ public interface IFachadaConexion {
     public void consultarPublicaciones();
     public void registrarComentario(Comentario comentario);
      public void iniciarSesionFB(Usuario usuario);
+     public void eliminarPublicacion(Publicacion publicacion);
+     public void editarPublicacion(Publicacion publicacion);
 }

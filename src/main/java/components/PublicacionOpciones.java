@@ -1,17 +1,28 @@
 package components;
 
+import entidades.Publicacion;
+import guis.FrmEditarPublicacion;
+import interfaces.IFachadaConexion;
 import java.awt.Point;
-
+import javax.swing.JOptionPane;
+import logica.FachadaConexion;
 
 public class PublicacionOpciones extends javax.swing.JFrame {
+
     private Point point;
+    private Publicacion publicacion;
+    private IFachadaConexion facConexion;
+    private boolean cerrar;
+
     /**
      * Creates new form PublicacionOpciones
      */
-    public PublicacionOpciones(Point point) {
+    public PublicacionOpciones(Point point, Publicacion publicacion) {
         initComponents();
         setLocation(point);
         this.point = point;
+        this.publicacion = publicacion;
+        this.facConexion = new FachadaConexion();
     }
 
     /**
@@ -121,30 +132,39 @@ public class PublicacionOpciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusLost
-        
+
     }//GEN-LAST:event_formFocusLost
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        
+        new FrmEditarPublicacion(publicacion).setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
+        cerrar = true;
+        int opcion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de eliminar la publicación?", "Eliminar Publicación", JOptionPane.WARNING_MESSAGE);
+        if (JOptionPane.OK_OPTION != opcion) {
+            cerrar = false;
+            return;
+        }
+        facConexion.eliminarPublicacion(publicacion);
+        System.out.println("12312312");
+        dispose();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
-        dispose();
+        if (!cerrar)
+            dispose();
     }//GEN-LAST:event_formWindowLostFocus
 
     private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_formMouseWheelMoved
-       
+
     }//GEN-LAST:event_formMouseWheelMoved
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
 
     }
 

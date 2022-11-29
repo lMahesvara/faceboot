@@ -1,24 +1,29 @@
 package components;
 
 import entidades.Publicacion;
-import entidades.Usuario;
+import events.EventoEliminarPublicacion;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import logica.Context;
 import net.miginfocom.swing.MigLayout;
+import observers.ObserverEliminarPublicacion;
+import peticiones.PeticionPublicacion;
 
-public class MuroPublicacion extends javax.swing.JPanel {
+public class MuroPublicacion extends javax.swing.JPanel implements ObserverEliminarPublicacion{
 
     private Publicacion publicacion;
     private PublicacionComentarios pubComentarios;
+    private MuroBody parent;
+    
 
     /**
      * Creates new form MuroPublicacion
      */
-    public MuroPublicacion(Publicacion publicacion) {
+    public MuroPublicacion(Publicacion publicacion, MuroBody parent) {
         initComponents();
         this.publicacion = publicacion;
+        this.parent = parent;
+        EventoEliminarPublicacion.getInstance().addObserver(this);
         init();
     }
 
@@ -47,6 +52,11 @@ public class MuroPublicacion extends javax.swing.JPanel {
 
     public Publicacion getPublicacion() {
         return publicacion;
+    }
+    
+    private void eliminarPublicacion(Publicacion publicacion){
+        if(!publicacion.equals(this.publicacion))return;
+        parent.remove(this);
     }
 
     /**
@@ -81,6 +91,11 @@ public class MuroPublicacion extends javax.swing.JPanel {
         g2.setColor(getBackground());
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
         super.paintComponent(grphcs);
+    }
+
+    @Override
+    public void updateEliminarPublicacion(PeticionPublicacion peticion) {
+        eliminarPublicacion(peticion.getPublicacion());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -12,7 +12,6 @@ import swingComponents.ScrollBar;
 public class MuroBody extends javax.swing.JPanel {
 
     private List<Publicacion> publicaciones;
-    private List<MuroPublicacion> muroPublicaciones;
 
     /**
      * Creates new form MuroBody
@@ -20,7 +19,6 @@ public class MuroBody extends javax.swing.JPanel {
     public MuroBody(List<Publicacion> publicaciones) {
         initComponents();
         this.publicaciones = publicaciones;
-        this.muroPublicaciones = new LinkedList<>();
         init();
     }
 
@@ -32,16 +30,14 @@ public class MuroBody extends javax.swing.JPanel {
 
     private void cargarItems() {
         publicaciones.forEach(publi -> {
-            MuroPublicacion muroPub = new MuroPublicacion(publi);
-            muroPublicaciones.add(muroPub);
+            MuroPublicacion muroPub = new MuroPublicacion(publi, this);
             panBody.add(muroPub, "wrap, al center");
         });
         refresh();
     }
 
     public void agregarPublicacion(Publicacion publicacion) {
-        MuroPublicacion muroPub = new MuroPublicacion(publicacion);
-        muroPublicaciones.add(muroPub);
+        MuroPublicacion muroPub = new MuroPublicacion(publicacion, this);
         panBody.add(muroPub, "wrap, al center");
         refresh();
     }

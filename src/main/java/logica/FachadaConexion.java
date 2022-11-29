@@ -58,6 +58,18 @@ public class FachadaConexion implements IFachadaConexion {
         String json = ConvertirPeticion.JSONConverter(new PeticionUsuario(INICIAR_SESION_FB, usuario));
         conector.enviarPeticion(json);
     }
+
+    @Override
+    public void eliminarPublicacion(Publicacion publicacion) {
+        String json = ConvertirPeticion.JSONConverter(new PeticionPublicacion(ELIMINAR_PUBLICACION, publicacion));
+        conector.enviarPeticion(json);
+    }
+
+    @Override
+    public void editarPublicacion(Publicacion publicacion) {
+        String json = ConvertirPeticion.JSONConverter(new PeticionPublicacion(ACTUALIZAR_PUBLICACION, publicacion));
+        conector.enviarPeticion(json);
+    }
     
     
 }

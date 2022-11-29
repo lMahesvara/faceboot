@@ -1,31 +1,31 @@
 package components;
 
 import entidades.Publicacion;
+import events.EventoEditarPublicacion;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.border.EmptyBorder;
-import swingComponents.Line;
+import observers.ObserverEditarPublicacion;
+import peticiones.PeticionPublicacion;
 
-public class PublicacionBody extends javax.swing.JLayeredPane {
+public class PublicacionBody extends javax.swing.JLayeredPane implements ObserverEditarPublicacion{
 
     private Publicacion publicacion;
 
     public PublicacionBody(Publicacion publicacion) {
         initComponents();
         this.publicacion=publicacion;
+        EventoEditarPublicacion.getInstance().addObserver(this);
+        init();
+    }
+    
+    private void init(){
         txtTexto.setEditable(false);
         txtTexto.setBackground(new Color(0, 0, 0, 0));
         txtTexto.setOpaque(false);
         setText(publicacion.getTexto());
-        repaint();
-        revalidate();
+        refresh();
     }
 
     public void setText(String text) {
@@ -34,6 +34,19 @@ public class PublicacionBody extends javax.swing.JLayeredPane {
 
     public void hideText() {
         txtTexto.setVisible(false);
+    }
+    
+    private void editarPublicacion(Publicacion publicacion){
+        if(!publicacion.equals(this.publicacion))return;
+        txtTexto.setText(publicacion.getTexto());
+        //Aqui va para cambiar la imagen
+        
+        refresh();
+    }
+    
+    private void refresh(){
+        repaint();
+        revalidate();
     }
     
 
@@ -63,4 +76,9 @@ public class PublicacionBody extends javax.swing.JLayeredPane {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private swingComponents.JIMSendTextPane txtTexto;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void updateEditarPublicacion(PeticionPublicacion peticion) {
+        editarPublicacion(peticion.getPublicacion());
+    }
 }

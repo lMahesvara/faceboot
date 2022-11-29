@@ -140,7 +140,7 @@ public class PublicacionTitle extends javax.swing.JPanel {
 
     private void lblOpcionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcionesMouseClicked
         System.out.println();
-        new PublicacionOpciones(lblOpciones.getLocationOnScreen()).setVisible(true);
+        new PublicacionOpciones(lblOpciones.getLocationOnScreen(),publicacion).setVisible(true);
     }//GEN-LAST:event_lblOpcionesMouseClicked
 
     private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_formMouseWheelMoved

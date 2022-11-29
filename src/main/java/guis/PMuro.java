@@ -4,7 +4,6 @@ import components.Linea;
 import components.MuroBody;
 import components.MuroPublicar;
 import components.MuroTitle;
-import entidades.Comentario;
 import entidades.Publicacion;
 import java.awt.Color;
 import java.util.List;
