@@ -26,7 +26,7 @@ public class PublicacionComentarios extends javax.swing.JPanel implements Observ
     }
 
     private void init() {
-        setLayout(new MigLayout("fillx", "", "5[]5"));
+        setLayout(new MigLayout("fillx","5[]5"));
         cargarItems();
     }
 

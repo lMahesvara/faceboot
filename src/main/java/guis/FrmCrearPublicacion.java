@@ -1,5 +1,6 @@
 package guis;
 
+import entidades.Etiqueta;
 import entidades.Hashtag;
 import entidades.Publicacion;
 import entidades.Usuario;
@@ -199,10 +200,12 @@ public class FrmCrearPublicacion extends javax.swing.JFrame {
             byte[] bytes = ConvertirImagen.imagenABytes(image);
             publicacion = new Publicacion(usuario, Calendar.getInstance(), txtTexto.getText().trim(), bytes);
             publicacion.setHashtag(separarHashtags(txtTexto.getText()));
+            publicacion.setEtiquetas(separarEtiquetas(txtTexto.getText()));
             
         }else {
             publicacion = new Publicacion(usuario, Calendar.getInstance(), txtTexto.getText().trim());
             publicacion.setHashtag(separarHashtags(txtTexto.getText()));
+            publicacion.setEtiquetas(separarEtiquetas(txtTexto.getText()));
         }
         fachadaConexion.registrarPublicacion(publicacion);
         System.out.println("Se envio");
@@ -222,6 +225,21 @@ public class FrmCrearPublicacion extends javax.swing.JFrame {
             System.out.println(i+ " "+ hashtags[i]);
         }
         return ht;
+    }
+    
+    
+    public List<Etiqueta> separarEtiquetas(String text){
+        List<Etiqueta> etiquetas = new ArrayList();
+        
+        String[] filtro = text.split("@");
+        String[] hashtags = new String[filtro.length-1];
+        for (int i=1;i<filtro.length; i++) {
+            etiquetas.add(new Etiqueta(new Usuario(filtro[i].split(" ")[0])));
+        }
+        for (int i=0;i<hashtags.length; i++){
+            System.out.println(i+ " "+ hashtags[i]);
+        }
+        return etiquetas;
     }
     
 

@@ -6,7 +6,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import javax.swing.JLabel;
 import observers.ObserverEditarPublicacion;
 import peticiones.PeticionPublicacion;
 
