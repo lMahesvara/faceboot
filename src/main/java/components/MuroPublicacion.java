@@ -36,11 +36,6 @@ public class MuroPublicacion extends javax.swing.JPanel implements ObserverElimi
         PublicacionComentar pubComentar = new PublicacionComentar(publicacion);
         add(pubTitle, "wrap");
         add(pubBody, "wrap");
-//        if(publicacion.getComentarios() != null){
-//            pubComentarios = new PublicacionComentarios(publicacion);
-//            add(line, "wrap");
-//            add(pubComentarios, "wrap");            
-//        }
         pubComentarios = new PublicacionComentarios(publicacion);
         add(line, "wrap");
         add(pubComentarios, "wrap");

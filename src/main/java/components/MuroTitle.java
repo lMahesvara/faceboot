@@ -1,20 +1,42 @@
 package components;
 
+import entidades.Hashtag;
 import entidades.Usuario;
 import logica.Context;
 import guis.FrmEditarUsuario;
+import guis.FrmNotificaciones;
+import interfaces.IFachadaConexion;
+import java.awt.Cursor;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import logica.FachadaConexion;
 
 public class MuroTitle extends javax.swing.JPanel {
     private Usuario usuario;
+    private IFachadaConexion fachadaConexion;
+    
     /**
      * Creates new form MuroTitulo
      */
     public MuroTitle() {
         initComponents();
         this.usuario = Context.getInstance().getUsuario();
+        this.fachadaConexion = new FachadaConexion();
+        
         txtSearch.setHintText("¿Qué jashta estás buscando?");
-        //lblUsuario.setText(usuario.getUsuario());
+        
         btnUser.setText(usuario.getUsuario());
+        lblLogo.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        
+        ImageIcon imageNotis = new ImageIcon("src/main/java/images/notification.png");
+        btnNotificaciones.setIcon(new ImageIcon(imageNotis.getImage().getScaledInstance(17, 17, Image.SCALE_DEFAULT)));
+        btnNotificaciones.setBorder(null);
+        btnNotificaciones.setContentAreaFilled(false);
+        
+        ImageIcon imageBuscar = new ImageIcon("src/main/java/images/search.png");
+        btnBuscar.setIcon(new ImageIcon(imageBuscar.getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT)));
+        btnBuscar.setBorder(null);
+        btnBuscar.setContentAreaFilled(false);
     }
 
     /**
@@ -27,9 +49,11 @@ public class MuroTitle extends javax.swing.JPanel {
     private void initComponents() {
 
         lblLogo = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
         btnUser = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtSearch = new swingComponents.JIMSendTextPane();
+        btnNotificaciones = new javax.swing.JButton();
 
         setBackground(null);
 
@@ -37,6 +61,21 @@ public class MuroTitle extends javax.swing.JPanel {
         lblLogo.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         lblLogo.setForeground(new java.awt.Color(24, 119, 242));
         lblLogo.setText("FACEBOOT");
+        lblLogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLogoMouseClicked(evt);
+            }
+        });
+
+        btnBuscar.setBackground(new java.awt.Color(0, 0, 0));
+        btnBuscar.setFont(new java.awt.Font("Dialog", 2, 10)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnUser.setBackground(new java.awt.Color(0, 102, 204));
         btnUser.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -57,28 +96,45 @@ public class MuroTitle extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(txtSearch);
 
+        btnNotificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNotificaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNotificacionesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(24, 24, 24)
                 .addComponent(lblLogo)
-                .addGap(56, 56, 56)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addComponent(btnUser, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89)
+                .addComponent(btnUser, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnNotificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnUser, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jScrollPane1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblLogo))
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnNotificaciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(13, 13, 13))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -86,8 +142,24 @@ public class MuroTitle extends javax.swing.JPanel {
         new FrmEditarUsuario(usuario).setVisible(true);
     }//GEN-LAST:event_btnUserActionPerformed
 
+    private void btnNotificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificacionesActionPerformed
+        new FrmNotificaciones().setVisible(true);
+    }//GEN-LAST:event_btnNotificacionesActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        Hashtag hashtag = new Hashtag(txtSearch.getText());
+        fachadaConexion.consultarPublicacionesHashtag(hashtag);
+        System.out.println("Se envio 'Consultar por hashtag'");
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void lblLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoMouseClicked
+        fachadaConexion.consultarPublicaciones();
+    }//GEN-LAST:event_lblLogoMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnNotificaciones;
     private javax.swing.JButton btnUser;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLogo;

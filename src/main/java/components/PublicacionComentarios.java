@@ -26,7 +26,7 @@ public class PublicacionComentarios extends javax.swing.JPanel implements Observ
     }
 
     private void init() {
-        setLayout(new MigLayout("fillx", "", "5[]5"));
+        setLayout(new MigLayout("fillx","5[]5"));
         cargarItems();
     }
 
@@ -37,7 +37,7 @@ public class PublicacionComentarios extends javax.swing.JPanel implements Observ
     private void cargarItems() {
         if(comentarios == null) return;
         comentarios.forEach(comentario -> {
-            ComentarioItem comentarioItem = new ComentarioItem();
+            ComentarioItem comentarioItem = new ComentarioItem(comentario, this);
             comentarioItem.setUsuario(comentario.getUsuario().getUsuario());
             comentarioItem.setComentario(comentario.getTexto());
             add(comentarioItem, "wrap, width 100%");
@@ -57,7 +57,7 @@ public class PublicacionComentarios extends javax.swing.JPanel implements Observ
 
     private void agregarComentario(Comentario comentario) {
         if (publicacion.equals(comentario.getPublicacion())) {
-            ComentarioItem comentarioItem = new ComentarioItem();
+            ComentarioItem comentarioItem = new ComentarioItem(comentario, this);
             comentarioItem.setUsuario(comentario.getUsuario().getUsuario());
             comentarioItem.setComentario(comentario.getTexto());
             add(comentarioItem, "wrap, width 100%");
