@@ -4,11 +4,13 @@ components\MuroTitle.class
 guis\FrmRegistrarUsuario$5.class
 swingComponents\ModernScrollBarUI$InvisibleScrollBarButton.class
 swingComponents\ModernScrollBarUI.class
+observers\ObserverEditarPublicacion.class
 components\MuroPublicar$1.class
 components\PublicacionTitle$1.class
 swingComponents\ComponentResizer.class
 components\MuroPublicar.class
 logica\FachadaConexion.class
+events\EventoEditarPublicacion.class
 guis\FrmInicioSesion$5.class
 guis\FrmRegistrarUsuario$1.class
 guis\FrmEditarUsuario$3.class
@@ -16,6 +18,7 @@ guis\FrmMuro.class
 components\PublicacionOpciones$2.class
 events\EventoRegistrarPublicacion.class
 components\PublicacionComentarios.class
+guis\FrmEditarPublicacion$2.class
 swingComponents\JIMSendTextPane$WarpEditorKit.class
 observers\ObserverRegistrarComentario.class
 components\MuroPublicacion.class
@@ -26,6 +29,7 @@ helpers\LoginFacebook.class
 guis\FrmEditarUsuario.class
 logica\Context.class
 guis\FrmRegistrarUsuario.class
+events\EventoEliminarPublicacion.class
 components\PublicacionBody.class
 guis\FrmRegistrarUsuario$4.class
 components\PublicacionOpciones.class
@@ -37,6 +41,8 @@ guis\FrmInicioSesion$6.class
 components\Linea.class
 helpers\ConvertirImagen.class
 events\EventoIniciarSesionFb.class
+guis\FrmEditarPublicacion$1.class
+observers\ObserverEliminarPublicacion.class
 components\PublicacionOpciones$3.class
 guis\FrmInicioSesion$3.class
 guis\FrmEditarUsuario$1.class
@@ -69,6 +75,7 @@ components\PublicacionOpciones$1.class
 events\EventoActualizarUsuario.class
 swingComponents\JIMSendTextPane$WarpLabelView.class
 guis\PMuro.class
+guis\FrmEditarPublicacion.class
 observers\ObserverIniciarSesion.class
 guis\FrmRegistrarUsuario$2.class
 guis\FrmEditarUsuario$5.class
