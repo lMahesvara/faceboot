@@ -5,9 +5,9 @@
 package guis;
 
 import entidades.Publicacion;
-import entidades.Usuario;
 import events.EventoActualizarUsuario;
 import events.EventoConsultarPublicaciones;
+import events.EventoEliminarPublicacion;
 import events.EventoRegistrarPublicacion;
 import interfaces.IFachadaConexion;
 import java.util.List;
@@ -16,12 +16,13 @@ import logica.Context;
 import logica.FachadaConexion;
 import observers.ObserverActualizarUsuario;
 import observers.ObserverConsultarPublicaciones;
+import observers.ObserverEliminarPublicacion;
 import observers.ObserverRegistrarPublicacion;
 import peticiones.PeticionPublicacion;
 import peticiones.PeticionPublicaciones;
 import peticiones.PeticionUsuario;
 
-public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPublicacion, ObserverConsultarPublicaciones, ObserverActualizarUsuario{
+public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPublicacion, ObserverConsultarPublicaciones, ObserverActualizarUsuario, ObserverEliminarPublicacion{
 
     private IFachadaConexion fachadaConexion;
 
@@ -34,6 +35,7 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
         EventoRegistrarPublicacion.getInstance().addObserver(this);
         EventoConsultarPublicaciones.getInstance().addObserver(this);
         EventoActualizarUsuario.getInstance().addObserver(this);
+        EventoEliminarPublicacion.getInstance().addObserver(this);
         revalidate();
         consultarPublicaciones();
     }
@@ -155,5 +157,10 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
         }
         Context.getInstance().setUsuario(peticion.getUsuario());
         consultarPublicaciones();
+    }
+
+    @Override
+    public void updateEliminarPublicacion(PeticionPublicacion peticion) {
+        this.consultarPublicaciones();
     }
 }
