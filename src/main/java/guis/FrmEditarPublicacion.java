@@ -1,5 +1,6 @@
 package guis;
 
+import entidades.Etiqueta;
 import entidades.Hashtag;
 import entidades.Publicacion;
 import entidades.Usuario;
@@ -204,10 +205,11 @@ public class FrmEditarPublicacion extends javax.swing.JFrame {
             publicacion.setTexto(txtTexto.getText().trim());
             publicacion.setImagen(bytes);
             publicacion.setHashtag(separarHashtags(txtTexto.getText()));
-
+            publicacion.setEtiquetas(separarEtiquetas(txtTexto.getText()));
         } else {
             publicacion.setTexto(txtTexto.getText().trim());
             publicacion.setHashtag(separarHashtags(txtTexto.getText()));
+            publicacion.setEtiquetas(separarEtiquetas(txtTexto.getText()));
         }
         fachadaConexion.editarPublicacion(publicacion);
         dispose();
@@ -227,6 +229,19 @@ public class FrmEditarPublicacion extends javax.swing.JFrame {
         return ht;
     }
 
+    public List<Etiqueta> separarEtiquetas(String text){
+        List<Etiqueta> etiquetas = new ArrayList();
+        
+        String[] filtro = text.split("@");
+        String[] hashtags = new String[filtro.length-1];
+        for (int i=1;i<filtro.length; i++) {
+            etiquetas.add(new Etiqueta(new Usuario(filtro[i].split(" ")[0])));
+        }
+        for (int i=0;i<hashtags.length; i++){
+            System.out.println(i+ " "+ hashtags[i]);
+        }
+        return etiquetas;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarImagen;

@@ -26,7 +26,7 @@ public class NotificacionesBody extends javax.swing.JPanel {
     }
 
     private void init() {
-        panBody.setLayout(new MigLayout("fillx, btt"));
+        panBody.setLayout(new MigLayout("fillx, btt","0[fill]0","0[]10"));
         panMuroBody.setVerticalScrollBar(new ScrollBar());
         cargarItems();
     }
@@ -35,7 +35,7 @@ public class NotificacionesBody extends javax.swing.JPanel {
         notificaciones.forEach(noti -> {
             NotificacionItem notificacion = new NotificacionItem(noti);
             listNotificaciones.add(notificacion);
-            panBody.add(notificacion, "wrap, width 100%");
+            panBody.add(notificacion, "wrap");
         });
         refresh();
     }
@@ -43,7 +43,7 @@ public class NotificacionesBody extends javax.swing.JPanel {
     public void agregarNotificacion(Notificacion noti) {
         NotificacionItem notificacion = new NotificacionItem(noti);
         listNotificaciones.add(notificacion);
-        panBody.add(notificacion, "wrap, width 100%");
+        panBody.add(notificacion, "wrap");
         refresh();
     }
 
