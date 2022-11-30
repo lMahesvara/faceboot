@@ -30,7 +30,6 @@ import peticiones.PeticionUsuario;
 
 public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPublicacion, ObserverConsultarPublicaciones, ObserverActualizarUsuario, ObserverConsultarPublicacionesHashtag, ObserverEliminarPublicacion, ObserverCerrarSesion{
     private IFachadaConexion fachadaConexion;
-    private static FrmMuro instance;
     /**
      * Creates new form FrmMuro
      */
@@ -45,11 +44,6 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
         EventoCerrarSesion.getInstance().addObserver(this);
         revalidate();
         consultarPublicaciones();
-    }
-    
-    public static FrmMuro getInstance(){
-        if(instance == null)instance = new FrmMuro();
-        return instance;
     }
 
     private void mostrarPublicacion(PeticionPublicacion peticion) {

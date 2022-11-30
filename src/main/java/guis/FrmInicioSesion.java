@@ -53,7 +53,7 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
             return;
         }
         Context.getInstance().setUsuario(usuario);
-        FrmMuro.getInstance().setVisible(true);
+        new FrmMuro().setVisible(true);
         this.dispose();
     }
     
@@ -65,7 +65,7 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
             return;
         }
         Context.getInstance().setUsuario(usuario);
-        FrmMuro.getInstance().setVisible(true);
+        new FrmMuro().setVisible(true);
         this.dispose();
     }
 
