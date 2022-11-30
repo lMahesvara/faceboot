@@ -1,4 +1,4 @@
-package components;
+ package components;
 
 import entidades.Comentario;
 import events.EventoEliminarComentario;
@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import logica.Context;
 import logica.FachadaConexion;
 import observers.ObserverEliminarComentario;
 import peticiones.PeticionComentario;
@@ -31,9 +32,9 @@ public class ComentarioItem extends javax.swing.JLayeredPane implements Observer
         this.facConexion = new FachadaConexion();
         txtTexto.setEditable(false);
         txtTexto.setBackground(new Color(0, 0, 0, 0));
+        this.compararUsuario();
         
         txtTexto.setOpaque(false);
-        setBtnDelete();
 
     }
 
@@ -48,6 +49,12 @@ public class ComentarioItem extends javax.swing.JLayeredPane implements Observer
         txt.setOpaque(false);
         txt.setText(texto);
         add(txt);
+    }
+    
+    private void compararUsuario(){
+        if(Context.getInstance().getUsuario().equals(comentario.getUsuario())){
+            this.setBtnDelete();
+        }
     }
     
     public void setBtnDelete(){

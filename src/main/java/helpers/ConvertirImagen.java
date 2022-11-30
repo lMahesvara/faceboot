@@ -7,9 +7,12 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 
 public class ConvertirImagen {
@@ -40,5 +43,25 @@ public class ConvertirImagen {
             System.out.println("No se pudo convertir la imagen a bytes");
         }
         return stream.toByteArray();
+    }
+    
+    /**
+     * Este metodo nos ayuda a convertir un arreglo de bytes a un ImageIcon 😀
+     * @param data
+     * @return return 😀
+     */
+    public static ImageIcon bytesAImageIcon(byte[] data){
+        
+        BufferedImage img = null;
+        
+        try {
+            img = ImageIO.read(new ByteArrayInputStream(data));
+            
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        ImageIcon icono = new ImageIcon(img);
+        return icono;
     }
 }
