@@ -13,18 +13,23 @@ import observers.ObserverIniciarSesionFb;
 import peticiones.PeticionUsuario;
 
 public class FrmInicioSesion extends javax.swing.JFrame implements ObserverIniciarSesion, ObserverIniciarSesionFb {
-    
+    private static FrmInicioSesion instance;
     IFachadaConexion facConexion;
 
     /**
      * Creates new form FrmInicioSesion
      */
-    public FrmInicioSesion() {
+    private FrmInicioSesion() {
         initComponents();
         facConexion = new FachadaConexion();
         EventoIniciarSesion.getInstance().addObserver(this);
         EventoIniciarSesionFb.getInstance().addObserver(this);
-        pruebaInicio();
+       // pruebaInicio();
+    }
+    
+    public static FrmInicioSesion getInstance(){
+        if(instance == null)instance = new FrmInicioSesion();
+        return instance;
     }
     
     private void pruebaInicio(){
@@ -48,8 +53,7 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
             return;
         }
         Context.getInstance().setUsuario(usuario);
-        FrmMuro frmMuro = new FrmMuro();
-        frmMuro.setVisible(true);
+        FrmMuro.getInstance().setVisible(true);
         this.dispose();
     }
     
@@ -61,10 +65,8 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
             return;
         }
         Context.getInstance().setUsuario(usuario);
-        FrmMuro frmMuro = new FrmMuro();
-        frmMuro.setVisible(true);
+        FrmMuro.getInstance().setVisible(true);
         this.dispose();
-
     }
 
     /**
@@ -313,7 +315,7 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmInicioSesion().setVisible(true);
+                FrmInicioSesion.getInstance().setVisible(true);
             }
         });
     }

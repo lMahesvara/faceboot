@@ -6,6 +6,7 @@ package guis;
 
 import entidades.Publicacion;
 import events.EventoActualizarUsuario;
+import events.EventoCerrarSesion;
 import events.EventoConsultarPublicaciones;
 import events.EventoEliminarPublicacion;
 import events.EventoConsultarPublicacionesHashtag;
@@ -17,6 +18,7 @@ import logica.Context;
 import logica.FachadaConexion;
 import logica.MuroState;
 import observers.ObserverActualizarUsuario;
+import observers.ObserverCerrarSesion;
 import observers.ObserverConsultarPublicaciones;
 import observers.ObserverEliminarPublicacion;
 import observers.ObserverConsultarPublicacionesHashtag;
@@ -26,10 +28,9 @@ import peticiones.PeticionPublicaciones;
 import peticiones.PeticionUsuario;
 
 
-public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPublicacion, ObserverConsultarPublicaciones, ObserverActualizarUsuario, ObserverConsultarPublicacionesHashtag, ObserverEliminarPublicacion{
-
+public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPublicacion, ObserverConsultarPublicaciones, ObserverActualizarUsuario, ObserverConsultarPublicacionesHashtag, ObserverEliminarPublicacion, ObserverCerrarSesion{
     private IFachadaConexion fachadaConexion;
-
+    private static FrmMuro instance;
     /**
      * Creates new form FrmMuro
      */
@@ -41,8 +42,14 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
         EventoActualizarUsuario.getInstance().addObserver(this);
         EventoEliminarPublicacion.getInstance().addObserver(this);
         EventoConsultarPublicacionesHashtag.getInstance().addObserver(this);
+        EventoCerrarSesion.getInstance().addObserver(this);
         revalidate();
         consultarPublicaciones();
+    }
+    
+    public static FrmMuro getInstance(){
+        if(instance == null)instance = new FrmMuro();
+        return instance;
     }
 
     private void mostrarPublicacion(PeticionPublicacion peticion) {
@@ -104,40 +111,6 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmMuro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmMuro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmMuro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmMuro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmMuro().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private guis.PMuro panMuro;
@@ -178,5 +151,11 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
     public void updatePublicacionesTag(PeticionPublicaciones peticion) {
         MuroState.getInstance().setStateIN_HASHTAG();
         pintarMuro(peticion.getPublicaciones());
+    }
+
+    @Override
+    public void updateLogout(PeticionUsuario peticion) {
+        FrmInicioSesion.getInstance().setVisible(true);
+        this.dispose();
     }
 }

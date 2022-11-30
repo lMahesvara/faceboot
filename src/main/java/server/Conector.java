@@ -13,6 +13,7 @@ import peticiones.AbstractPeticion;
 
 public class Conector {
     private Socket cliente;
+    private Thread recibirPeticiones;
     private int puerto = 9000;
     private String ip = "127.0.0.1";
     private PrintStream salida;
@@ -53,7 +54,7 @@ public class Conector {
     }
     
     public void recibirPeticiones(){
-        new Thread(new Runnable(){
+        recibirPeticiones = new Thread(new Runnable(){
             @Override
             public void run() {
                 String json;
@@ -71,7 +72,12 @@ public class Conector {
                     }
                 }
             }
-        }).start();
+        });
+        recibirPeticiones.start();
+    }
+    
+    public void detenerHilo(){
+        recibirPeticiones.interrupt();
     }
 
     private void closeAll() {
@@ -83,18 +89,4 @@ public class Conector {
             Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-//    public String mappear() {
-//        try {
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            Usuario usuario = new Usuario("kura", "1234", "asd@asd.com", "1231231231", Calendar.getInstance(), Sexo.HOMBRE, null);
-//            BlackBoardObject bbo = new BlackBoardObject(Peticiones.REGISTRAR_USUARIO, usuario);
-//            
-//            String peticion = objectMapper.writeValueAsString(bbo);
-//            return peticion;
-//        } catch (JsonProcessingException ex) {
-//            Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return null;
-//    }
 }

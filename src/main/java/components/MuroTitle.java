@@ -37,6 +37,11 @@ public class MuroTitle extends javax.swing.JPanel {
         btnBuscar.setIcon(new ImageIcon(imageBuscar.getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT)));
         btnBuscar.setBorder(null);
         btnBuscar.setContentAreaFilled(false);
+        
+        ImageIcon imageLogout = new ImageIcon("src/main/java/images/logout.png");
+        btnLogout.setIcon(new ImageIcon(imageLogout.getImage().getScaledInstance(24, 24, Image.SCALE_DEFAULT)));
+        btnLogout.setBorder(null);
+        btnLogout.setContentAreaFilled(false);
     }
 
     /**
@@ -54,6 +59,7 @@ public class MuroTitle extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtSearch = new swingComponents.JIMSendTextPane();
         btnNotificaciones = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
 
         setBackground(null);
 
@@ -103,6 +109,16 @@ public class MuroTitle extends javax.swing.JPanel {
             }
         });
 
+        btnLogout.setBackground(new java.awt.Color(0, 0, 0));
+        btnLogout.setFont(new java.awt.Font("Dialog", 2, 10)); // NOI18N
+        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,11 +130,13 @@ public class MuroTitle extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89)
+                .addGap(77, 77, 77)
                 .addComponent(btnUser, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNotificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72))
+                .addGap(38, 38, 38)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +151,8 @@ public class MuroTitle extends javax.swing.JPanel {
                         .addComponent(lblLogo))
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnNotificaciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(13, 13, 13))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -156,9 +175,14 @@ public class MuroTitle extends javax.swing.JPanel {
         fachadaConexion.consultarPublicaciones();
     }//GEN-LAST:event_lblLogoMouseClicked
 
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        fachadaConexion.cerrarSesion(Context.getInstance().getUsuario());
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnNotificaciones;
     private javax.swing.JButton btnUser;
     private javax.swing.JScrollPane jScrollPane1;

@@ -31,7 +31,7 @@ public class PublicacionBody extends javax.swing.JLayeredPane implements Observe
         txtTexto.setBackground(new Color(0, 0, 0, 0));
         txtTexto.setOpaque(false);
         if(publicacion.getImagen()!=null){
-           this.setImagen();
+           this.setImagen(publicacion.getImagen());
         }
         setText(publicacion.getTexto());
         refresh();
@@ -41,10 +41,10 @@ public class PublicacionBody extends javax.swing.JLayeredPane implements Observe
         txtTexto.setText(text);
     }
     
-    private void setImagen(){
+    private void setImagen(byte[] img){
         lblImagen.setIcon(null);
-        ImageIcon image = ConvertirImagen.bytesAImageIcon(publicacion.getImagen());//Metodo de transformar a imagenicon el arreglo
-        lblImagen.setIcon(new ImageIcon(image.getImage().getScaledInstance(255, 255, Image.SCALE_DEFAULT)));
+        ImageIcon image = ConvertirImagen.bytesAImageIcon(img);//Metodo de transformar a imagenicon el arreglo
+        lblImagen.setIcon(new ImageIcon(image.getImage().getScaledInstance(380, 250, Image.SCALE_DEFAULT)));
     }
 
     public void hideText() {
@@ -55,7 +55,7 @@ public class PublicacionBody extends javax.swing.JLayeredPane implements Observe
         if(!publicacion.equals(this.publicacion))return;
         txtTexto.setText(publicacion.getTexto());
         //Aqui va para cambiar la imagen
-        
+        setImagen(publicacion.getImagen());    
         refresh();
     }
     
