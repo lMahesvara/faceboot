@@ -55,7 +55,9 @@ public class PublicacionBody extends javax.swing.JLayeredPane implements Observe
         if(!publicacion.equals(this.publicacion))return;
         txtTexto.setText(publicacion.getTexto());
         //Aqui va para cambiar la imagen
-        setImagen(publicacion.getImagen());    
+        if(publicacion.getImagen()!=null){
+           this.setImagen(publicacion.getImagen());
+        } 
         refresh();
     }
     
