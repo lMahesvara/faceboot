@@ -1,38 +1,17 @@
+observers\ObserverCerrarSesion.class
 swingComponents\ModernScrollBarUI.class
-<<<<<<< HEAD
-observers\ObserverEditarPublicacion.class
-components\MuroPublicar$1.class
-=======
 observers\ObserverRegistrarNotificacion.class
->>>>>>> db6c062461ce4f995d4913e070d5073812c5887b
 components\PublicacionTitle$1.class
 components\MuroPublicar.class
 logica\FachadaConexion.class
 events\EventoEditarPublicacion.class
-<<<<<<< HEAD
-guis\FrmInicioSesion$5.class
-=======
->>>>>>> db6c062461ce4f995d4913e070d5073812c5887b
 guis\FrmRegistrarUsuario$1.class
+components\MuroTitle$5.class
 components\PublicacionComentarios.class
-<<<<<<< HEAD
-guis\FrmEditarPublicacion$2.class
-swingComponents\JIMSendTextPane$WarpEditorKit.class
-observers\ObserverRegistrarComentario.class
-components\MuroPublicacion.class
-=======
->>>>>>> db6c062461ce4f995d4913e070d5073812c5887b
 guis\FrmCrearPublicacion$2.class
 guis\FrmCrearNotificacion$3.class
 helpers\LoginFacebook.class
 guis\FrmEditarUsuario.class
-<<<<<<< HEAD
-logica\Context.class
-guis\FrmRegistrarUsuario.class
-events\EventoEliminarPublicacion.class
-components\PublicacionBody.class
-=======
->>>>>>> db6c062461ce4f995d4913e070d5073812c5887b
 guis\FrmRegistrarUsuario$4.class
 guis\FrmCrearPublicacion.class
 swingComponents\ImageAvatar.class
@@ -40,11 +19,6 @@ components\ComentarioItem.class
 components\PublicacionComentar$1.class
 guis\FrmInicioSesion$6.class
 components\Linea.class
-<<<<<<< HEAD
-helpers\ConvertirImagen.class
-events\EventoIniciarSesionFb.class
-=======
->>>>>>> db6c062461ce4f995d4913e070d5073812c5887b
 guis\FrmEditarPublicacion$1.class
 observers\ObserverEliminarPublicacion.class
 components\PublicacionOpciones$3.class
@@ -53,7 +27,6 @@ guis\FrmEditarUsuario$1.class
 swingComponents\PanelSlide$1.class
 components\PublicacionTitle.class
 guis\FrmNotificaciones$2.class
-guis\FrmMuro$1.class
 events\EventoConsultarPublicaciones.class
 components\MuroTitle$3.class
 components\NotificacionesBody.class
@@ -71,6 +44,7 @@ swingComponents\JIMSendTextPane$WarpLabelView.class
 components\MuroTitle$2.class
 guis\FrmCrearNotificacion$1.class
 observers\ObserverIniciarSesion.class
+components\ComentarioItem$1.class
 guis\FrmRegistrarUsuario$2.class
 events\EventoConsultarNotificaciones.class
 logica\MuroState.class
@@ -108,6 +82,7 @@ events\EventoEliminarPublicacion.class
 components\PublicacionBody.class
 components\PublicacionOpciones.class
 components\MuroTitle$4.class
+observers\ObserverEliminarComentario.class
 helpers\ConvertirImagen.class
 events\EventoIniciarSesionFb.class
 observers\ObserverConsultarNotificaciones.class
@@ -122,6 +97,7 @@ guis\FrmInicioSesion.class
 components\PublicacionOpciones$4.class
 components\PublicacionTitle$2.class
 components\PublicacionComentar.class
+events\EventoEliminarComentario.class
 server\Conector$1.class
 events\EventoConsultarPublicacionesHashtag.class
 components\MuroBody.class
@@ -129,13 +105,9 @@ components\PublicacionComentar$2.class
 events\EventoActualizarUsuario.class
 guis\PMuro.class
 guis\FrmEditarPublicacion.class
-<<<<<<< HEAD
-observers\ObserverIniciarSesion.class
-guis\FrmRegistrarUsuario$2.class
-=======
 guis\FrmCrearNotificacion.class
->>>>>>> db6c062461ce4f995d4913e070d5073812c5887b
 guis\FrmEditarUsuario$5.class
+events\EventoCerrarSesion.class
 guis\FrmInicioSesion$1.class
 swingComponents\PictureBox.class
 server\Conector.class

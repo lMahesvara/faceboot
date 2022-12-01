@@ -5,6 +5,7 @@ import events.EventoIniciarSesion;
 import events.EventoIniciarSesionFb;
 import helpers.LoginFacebook;
 import interfaces.IFachadaConexion;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import logica.Context;
 import logica.FachadaConexion;
@@ -13,6 +14,7 @@ import observers.ObserverIniciarSesionFb;
 import peticiones.PeticionUsuario;
 
 public class FrmInicioSesion extends javax.swing.JFrame implements ObserverIniciarSesion, ObserverIniciarSesionFb {
+
     private static FrmInicioSesion instance;
     IFachadaConexion facConexion;
 
@@ -24,15 +26,18 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         facConexion = new FachadaConexion();
         EventoIniciarSesion.getInstance().addObserver(this);
         EventoIniciarSesionFb.getInstance().addObserver(this);
-       // pruebaInicio();
+        passwordPlaceholder();
+        // pruebaInicio();
     }
-    
-    public static FrmInicioSesion getInstance(){
-        if(instance == null)instance = new FrmInicioSesion();
+
+    public static FrmInicioSesion getInstance() {
+        if (instance == null) {
+            instance = new FrmInicioSesion();
+        }
         return instance;
     }
-    
-    private void pruebaInicio(){
+
+    private void pruebaInicio() {
         txtUsuario.setText("asd");
         txtPassword.setText("asd");
         iniciarSesion();
@@ -40,12 +45,13 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
 
     private void iniciarSesion() {
         String usuario = txtUsuario.getText().trim();
-        String pass = txtPassword.getText().trim();
+        String pass = String.valueOf(txtPassword.getPassword());
+        System.out.println(pass);
         Usuario user = new Usuario(usuario, pass);
         facConexion.iniciarSesion(user);
     }
 
-    private void verificarUsuarioFb(PeticionUsuario peticion){
+    private void verificarUsuarioFb(PeticionUsuario peticion) {
         System.out.println("Entro al verificar");
         Usuario usuario = peticion.getUsuario();
         if (usuario == null) {
@@ -56,7 +62,7 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         new FrmMuro().setVisible(true);
         this.dispose();
     }
-    
+
     private void verificarUsuario(PeticionUsuario peticion) {
         System.out.println("Entro al verificar");
         Usuario usuario = peticion.getUsuario();
@@ -67,6 +73,16 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         Context.getInstance().setUsuario(usuario);
         new FrmMuro().setVisible(true);
         this.dispose();
+    }
+
+    private void passwordPlaceholder() {
+        String password = String.valueOf(txtPassword.getPassword());
+
+        if (password.toLowerCase().equals("password") || password.toLowerCase().equals("")) {
+            txtPassword.setText("Contraseña");
+            txtPassword.setEchoChar((char) 0);
+            txtPassword.setForeground(new Color(153, 153, 153));
+        }
     }
 
     /**
@@ -81,17 +97,19 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        txtUsuario = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
         btnIniciarSesion = new javax.swing.JButton();
         btnCrearCuenta = new javax.swing.JButton();
         btnIniciarFacebook = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtUsuario = new swingComponents.JIMSendTextPane();
+        txtPassword = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Iniciar sesion");
 
         jPanel1.setBackground(new java.awt.Color(240, 240, 240));
 
@@ -100,24 +118,6 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         jLabel1.setText("Faceboot");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        txtUsuario.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        txtUsuario.setText("Usuario");
-        txtUsuario.setMargin(new java.awt.Insets(2, 15, 2, 6));
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
-            }
-        });
-
-        txtPassword.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        txtPassword.setText("Contraseña");
-        txtPassword.setMargin(new java.awt.Insets(2, 15, 2, 6));
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
-            }
-        });
 
         btnIniciarSesion.setBackground(new java.awt.Color(0, 102, 204));
         btnIniciarSesion.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -149,26 +149,45 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
             }
         });
 
+        txtUsuario.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        txtUsuario.setAlignmentY(1.5F);
+        txtUsuario.setCaretColor(new java.awt.Color(153, 153, 153));
+        txtUsuario.setHintText("Usuario");
+        txtUsuario.setMargin(new java.awt.Insets(2, 10, 2, 6));
+        jScrollPane1.setViewportView(txtUsuario);
+
+        txtPassword.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        txtPassword.setMargin(new java.awt.Insets(2, 10, 2, 6));
+        txtPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPasswordFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
-                    .addComponent(txtUsuario)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
-                    .addComponent(btnIniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCrearCuenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnIniciarFacebook, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                        .addComponent(btnIniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCrearCuenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnIniciarFacebook, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -261,14 +280,6 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
-
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordActionPerformed
-
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         iniciarSesion();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
@@ -284,6 +295,20 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         System.out.println(usuario.getToken());
         facConexion.iniciarSesionFB(usuario);
     }//GEN-LAST:event_btnIniciarFacebookActionPerformed
+
+    private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
+        txtPassword.setEchoChar('*');
+        String password = String.valueOf(txtPassword.getPassword());
+
+        if (password.toLowerCase().equals("contraseña")) {
+            txtPassword.setText("");
+            txtPassword.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txtPasswordFocusGained
+
+    private void txtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
+        passwordPlaceholder();
+    }//GEN-LAST:event_txtPasswordFocusLost
 
     /**
      * @param args the command line arguments
@@ -330,9 +355,10 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField txtPassword;
-    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JPasswordField txtPassword;
+    private swingComponents.JIMSendTextPane txtUsuario;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -343,6 +369,6 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
 
     @Override
     public void updateIniciarSesionFb(PeticionUsuario peticion) {
-        verificarUsuarioFb(peticion);        
+        verificarUsuarioFb(peticion);
     }
 }

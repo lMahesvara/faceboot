@@ -80,6 +80,7 @@ public class ComentarioItem extends javax.swing.JLayeredPane implements Observer
         if(!this.comentario.equals(comentario))return;
         parent.remove(this);
         parent.refresh();
+        parent.refreshMuro();
     }
 
     @SuppressWarnings("unchecked")

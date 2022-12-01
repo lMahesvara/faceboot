@@ -9,6 +9,7 @@ import static entidades.Sexo.HOMBRE;
 import static entidades.Sexo.MUJER;
 import entidades.Usuario;
 import interfaces.IFachadaConexion;
+import java.awt.Color;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import logica.Context;
@@ -46,21 +47,25 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        txtUsuario = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
+        btnCancelar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtUsuario = new swingComponents.JIMSendTextPane();
+        txtPassword = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtDia = new javax.swing.JTextField();
-        txtMes = new javax.swing.JTextField();
-        txtAnio = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         radMujer = new javax.swing.JRadioButton();
         jPanel5 = new javax.swing.JPanel();
         radHombre = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
-        btnCancelar = new javax.swing.JButton();
-        btnActualizar = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtDia = new swingComponents.JIMSendTextPane();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        txtMes = new swingComponents.JIMSendTextPane();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        txtAnio = new swingComponents.JIMSendTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -74,21 +79,40 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Leelawadee UI", 1, 36)); // NOI18N
         jLabel1.setText("Editar perfil");
 
-        txtUsuario.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        txtUsuario.setText("Usuario");
-        txtUsuario.setMargin(new java.awt.Insets(2, 15, 2, 6));
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setBackground(new java.awt.Color(132, 131, 131));
+        btnCancelar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
-        txtPassword.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        txtPassword.setText("Contraseña");
-        txtPassword.setMargin(new java.awt.Insets(2, 15, 2, 6));
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setBackground(new java.awt.Color(0, 0, 0));
+        btnActualizar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizar.setText("Guardar Cambios");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
+        txtUsuario.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        txtUsuario.setAlignmentY(1.5F);
+        txtUsuario.setHintText("Usuario");
+        txtUsuario.setMargin(new java.awt.Insets(2, 10, 2, 6));
+        jScrollPane1.setViewportView(txtUsuario);
+
+        txtPassword.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        txtPassword.setMargin(new java.awt.Insets(2, 10, 2, 6));
+        txtPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPasswordFocusLost(evt);
             }
         });
 
@@ -99,22 +123,12 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(117, 119, 122));
         jLabel2.setText("Fecha de nacimiento:");
 
-        txtDia.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtDia.setText("15");
-
-        txtMes.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtMes.setText("10");
-
-        txtAnio.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtAnio.setText("2002");
-
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(221, 223, 226), 1, true));
 
         radMujer.setBackground(new java.awt.Color(255, 255, 255));
-        mongomeri.add(radMujer);
         radMujer.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         radMujer.setText("Mujer");
         radMujer.setBorder(null);
@@ -136,7 +150,6 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
         jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(221, 223, 226), 1, true));
 
         radHombre.setBackground(new java.awt.Color(255, 255, 255));
-        mongomeri.add(radHombre);
         radHombre.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         radHombre.setText("Hombre");
         radHombre.setBorder(null);
@@ -184,59 +197,54 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        txtDia.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        txtDia.setAlignmentY(1.5F);
+        txtDia.setHintText("15");
+        txtDia.setMargin(new java.awt.Insets(2, 10, 2, 6));
+        jScrollPane4.setViewportView(txtDia);
+
+        txtMes.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        txtMes.setAlignmentY(1.5F);
+        txtMes.setHintText("10");
+        txtMes.setMargin(new java.awt.Insets(2, 10, 2, 6));
+        jScrollPane5.setViewportView(txtMes);
+
+        txtAnio.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        txtAnio.setAlignmentY(1.5F);
+        txtAnio.setHintText("2002");
+        txtAnio.setMargin(new java.awt.Insets(2, 10, 2, 6));
+        jScrollPane6.setViewportView(txtAnio);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtAnio)))
-                .addGap(6, 6, 6))
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane6))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4)
+                    .addComponent(jScrollPane5)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-
-        btnCancelar.setBackground(new java.awt.Color(132, 131, 131));
-        btnCancelar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-
-        btnActualizar.setBackground(new java.awt.Color(0, 0, 0));
-        btnActualizar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnActualizar.setText("Guardar Cambios");
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -249,8 +257,8 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1)
                             .addComponent(jSeparator1)
-                            .addComponent(txtUsuario)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
@@ -267,12 +275,12 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -283,7 +291,9 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,11 +305,12 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void init() {
+        passwordPlaceholder();
         if (user.getToken() != null) {
             txtPassword.setEditable(false);
             txtPassword.setText(null);
         } else {
-            txtPassword.setText(user.getPassword());
+            //txtPassword.setText(user.getPassword());
         }
         txtUsuario.setText(user.getUsuario());
         if (user.getFechaNacimiento() != null) {
@@ -319,7 +330,7 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
 
     public void actualizar() {
         String username = txtUsuario.getText().trim();
-        String password = txtPassword.getText().trim();
+        String password = String.valueOf(txtPassword.getPassword());
         int dia = Integer.parseInt(txtDia.getText().trim());
         int mes = Integer.parseInt(txtMes.getText().trim());
         int anio = Integer.parseInt(txtAnio.getText().trim());
@@ -334,14 +345,16 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
 
         fachadaConexion.actualizarUsuario(update);
     }
+    
+    private void passwordPlaceholder() {
+        String password = String.valueOf(txtPassword.getPassword());
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
-
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordActionPerformed
+        if (password.toLowerCase().equals("nueva contraseña") || password.toLowerCase().equals("")) {
+            txtPassword.setText("Nueva contraseña");
+            txtPassword.setEchoChar((char) 0);
+            txtPassword.setForeground(new Color(153, 153, 153));
+        }
+    }
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         //agregar();
@@ -357,39 +370,19 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmEditarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmEditarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmEditarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmEditarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
+        txtPassword.setEchoChar('*');
+        String password = String.valueOf(txtPassword.getPassword());
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-            }
-        });
-    }
+        if (password.toLowerCase().equals("nueva contraseña")) {
+            txtPassword.setText("");
+            txtPassword.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txtPasswordFocusGained
+
+    private void txtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
+        passwordPlaceholder();
+    }//GEN-LAST:event_txtPasswordFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
@@ -402,14 +395,18 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.ButtonGroup mongomeri;
     private javax.swing.JRadioButton radHombre;
     private javax.swing.JRadioButton radMujer;
-    private javax.swing.JTextField txtAnio;
-    private javax.swing.JTextField txtDia;
-    private javax.swing.JTextField txtMes;
-    private javax.swing.JTextField txtPassword;
-    private javax.swing.JTextField txtUsuario;
+    private swingComponents.JIMSendTextPane txtAnio;
+    private swingComponents.JIMSendTextPane txtDia;
+    private swingComponents.JIMSendTextPane txtMes;
+    private javax.swing.JPasswordField txtPassword;
+    private swingComponents.JIMSendTextPane txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

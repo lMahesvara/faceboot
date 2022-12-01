@@ -42,7 +42,7 @@ public class MuroBody extends javax.swing.JPanel {
         refresh();
     }
 
-    private void refresh() {
+    public void refresh() {
         panBody.repaint();
         panBody.revalidate();
     }

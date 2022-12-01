@@ -12,14 +12,16 @@ public class PublicacionComentarios extends javax.swing.JPanel implements Observ
 
     private List<Comentario> comentarios;
     private Publicacion publicacion;
+    private MuroBody parent;
 
     /**
      * Creates new form PublicacionComentarios
      */
-    public PublicacionComentarios( Publicacion publicacion) {
+    public PublicacionComentarios( Publicacion publicacion, MuroBody parent) {
         initComponents();
         this.comentarios = publicacion.getComentarios();
         this.publicacion = publicacion;
+        this.parent = parent;
         EventoRegistrarComentario.getInstance().addObserver(this);
 
         init();
@@ -28,10 +30,6 @@ public class PublicacionComentarios extends javax.swing.JPanel implements Observ
     private void init() {
         setLayout(new MigLayout("fillx","5[]5"));
         cargarItems();
-    }
-
-    private void crearComentarios() {
-
     }
 
     private void cargarItems() {
@@ -43,15 +41,6 @@ public class PublicacionComentarios extends javax.swing.JPanel implements Observ
             add(comentarioItem, "wrap, width 100%");
 
         });
-
-//        ComentarioItem comentario = new ComentarioItem();
-//        comentario.setUsuario("lMahesvara");
-//        comentario.setComentario("saqueen pedaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-//        add(comentario, "wrap, width 100%");
-//        ComentarioItem comentario2 = new ComentarioItem();
-//        comentario2.setUsuario("Nogy");
-//        comentario2.setComentario("Saquen amigas");
-//        add(comentario2, "wrap, width 100%");
         refresh();
     }
 
@@ -63,6 +52,10 @@ public class PublicacionComentarios extends javax.swing.JPanel implements Observ
             add(comentarioItem, "wrap, width 100%");
             refresh();
         }
+    }
+    
+    public void refreshMuro(){
+        parent.refresh();
     }
     
     public void refresh(){

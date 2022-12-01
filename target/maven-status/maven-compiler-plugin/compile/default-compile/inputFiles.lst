@@ -1,55 +1,3 @@
-<<<<<<< HEAD
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\events\EventoEliminarPublicacion.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\helpers\LoginFacebook.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\server\Conector.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\guis\PMuro.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\observers\ObserverIniciarSesionFb.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\observers\ObserverActualizarUsuario.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\logica\Context.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\swingComponents\ImageAvatar.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\swingComponents\LimitJTextField.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\components\PublicacionTitle.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\guis\FrmInicioSesion.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\guis\FrmCrearPublicacion.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\helpers\ConvertirImagen.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\guis\FrmMuro.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\guis\FrmRegistrarUsuario.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\components\PublicacionComentarios.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\swingComponents\ModernScrollBarUI.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\observers\ObserverConsultarPublicaciones.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\swingComponents\ComponentResizer.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\components\MuroTitle.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\swingComponents\JIMSendTextPane.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\components\ComentarioItem.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\events\EventoActualizarUsuario.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\components\MuroPublicacion.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\components\MuroPublicar.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\interfaces\IFachadaConexion.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\logica\FachadaConexion.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\components\Linea.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\guis\FrmEditarPublicacion.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\components\PublicacionBody.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\events\EventoIniciarSesion.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\swingComponents\PictureBox.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\observers\ObserverRegistrarPublicacion.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\swingComponents\ScrollBar.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\events\EventHandler.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\swingComponents\Line.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\components\PublicacionOpciones.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\components\PublicacionComentar.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\observers\ObserverEditarPublicacion.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\observers\ObserverEliminarPublicacion.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\guis\FrmEditarUsuario.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\events\EventoIniciarSesionFb.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\events\EventoRegistrarPublicacion.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\observers\ObserverIniciarSesion.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\swingComponents\PanelSlide.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\events\EventoRegistrarComentario.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\components\MuroBody.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\observers\ObserverRegistrarComentario.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\events\EventoConsultarPublicaciones.java
-D:\Documentos HDD\Quinto Semestre\Arquitectura de Software\Proyecto Final\Front\faceboot\src\main\java\events\EventoEditarPublicacion.java
-=======
 C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\swingComponents\Line.java
 C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\components\MuroPublicar.java
 C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\helpers\LoginFacebook.java
@@ -96,10 +44,14 @@ C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\f
 C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\guis\FrmNotificaciones.java
 C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\guis\FrmInicioSesion.java
 C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\observers\ObserverConsultarNotificaciones.java
+C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\observers\ObserverEliminarComentario.java
 C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\guis\FrmEditarPublicacion.java
+C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\observers\ObserverCerrarSesion.java
 C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\guis\FrmCrearNotificacion.java
 C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\guis\FrmMuro.java
+C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\events\EventoCerrarSesion.java
 C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\events\EventoRegistrarComentario.java
+C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\events\EventoEliminarComentario.java
 C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\observers\ObserverIniciarSesionFb.java
 C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\logica\Context.java
 C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\swingComponents\LimitJTextField.java
@@ -111,4 +63,3 @@ C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\f
 C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\observers\ObserverRegistrarNotificacion.java
 C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\components\PublicacionTitle.java
 C:\Users\erick\Desktop\ITSON\Materias\Quinto semestre\Arquitectura de Software\faceboot\src\main\java\server\Conector.java
->>>>>>> db6c062461ce4f995d4913e070d5073812c5887b

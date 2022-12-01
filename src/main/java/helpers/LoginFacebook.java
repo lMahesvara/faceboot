@@ -10,11 +10,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginFacebook {
 
-    String domain = "https://localhost/";
-    String appId = "5760510044013251";
-    Usuario usuario;
+    private String domain = "https://localhost/";
+    private String appId = "5760510044013251";
+    private Usuario usuario;
 
-    String authUrl = "https://graph.facebook.com/oauth/authorize?type=user_agent&client_id=" + appId + "&redirect_uri=" + domain + "&scope=user_about_me,"
+    private String authUrl = "https://graph.facebook.com/oauth/authorize?type=user_agent&client_id=" + appId + "&redirect_uri=" + domain + "&scope=user_about_me,"
             + "user_actions.books,user_actions.fitness,user_actions.music,user_actions.news,user_actions.video,user_activities,user_birthday,user_education_history,"
             + "user_events,user_photos,user_games_activity,user_groups,user_hometown,user_interests,user_likes,user_location,user_photos,user_relationship_details,"
             + "user_relationships,user_status,user_tagged_places,user_videos,user_website,user_work_history,ads_management,ads_read,email,"
