@@ -163,30 +163,44 @@ public class FrmCrearNotificacion extends javax.swing.JFrame {
 
     private void btnPublicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicarActionPerformed
         if(validarVacios()){
-            Notificacion notificacion = new Notificacion(usuario,new Usuario(txtDestinatario.getText()),txtTexto.getText());
-        
-            if(chkCorreo.isSelected() && chkSms.isSelected()){
-                System.out.println("Notificación por correo y sms");
-                fachadaConexion.notificarTodos(notificacion);
-            }else if(chkSms.isSelected()){
-                System.out.println("Notificación por sms");
-                fachadaConexion.notificarSMS(notificacion);
-            }else if(chkCorreo.isSelected()){
-                System.out.println("Notificación por correo");
-                fachadaConexion.notificarCorreo(notificacion);
+            if(validarMismoUsuario()){
+                enviarNotificacion();
             }
-
-            System.out.println("Se envio");
-            dispose();
         }else{
             JOptionPane.showMessageDialog(this, "Rellenar los campos vacios", "Crear notificación", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnPublicarActionPerformed
 
+    public void enviarNotificacion(){
+        Notificacion notificacion = new Notificacion(usuario,new Usuario(txtDestinatario.getText()),txtTexto.getText());
+        
+        if(chkCorreo.isSelected() && chkSms.isSelected()){
+            System.out.println("Notificación por correo y sms");
+            fachadaConexion.notificarTodos(notificacion);
+        }else if(chkSms.isSelected()){
+            System.out.println("Notificación por sms");
+            fachadaConexion.notificarSMS(notificacion);
+        }else if(chkCorreo.isSelected()){
+            System.out.println("Notificación por correo");
+            fachadaConexion.notificarCorreo(notificacion);
+        }
+
+        System.out.println("Se envio");
+        dispose();
+    }
+    
     public boolean validarVacios(){
         if(!chkCorreo.isSelected()&&!chkSms.isSelected())return false;
         if(txtDestinatario.getText().isBlank())return false;
         if(txtTexto.getText().isBlank())return false;
+        return true;
+    }
+    
+    public boolean validarMismoUsuario(){
+        if(txtDestinatario.getText().equals(usuario.getUsuario())){
+            JOptionPane.showMessageDialog(this, "No puedes mandarte una notificacion a ti mismo", "Crear notificación", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
         return true;
     }
     

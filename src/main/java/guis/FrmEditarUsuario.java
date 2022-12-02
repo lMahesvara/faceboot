@@ -16,6 +16,8 @@ import static java.util.Calendar.YEAR;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import logica.Context;
 import logica.FachadaConexion;
@@ -345,7 +347,8 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(FrmRegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (String.valueOf(txtPassword.getPassword()) == null) {
+
+            if (String.valueOf(txtPassword.getPassword()).equals("Nueva contraseña") || String.valueOf(txtPassword.getPassword()).isBlank()) {
                 passwordEncriptada = user.getPassword();
             }
             int dia = Integer.parseInt(txtDia.getText().trim());
@@ -394,25 +397,57 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
         }
         return true;
     }
-
+    
     public boolean validarFormato() {
         if (!radHombre.isSelected() && !radMujer.isSelected()) {
             return false;
         }
+        if (isNumeric(txtAnio.getText()) || isNumeric(txtMes.getText()) || isNumeric(txtDia.getText())) {
+            JOptionPane.showMessageDialog(this, "Los valores de fecha deben ser numeros", "Editar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
         if (Integer.parseInt(txtAnio.getText()) > Calendar.getInstance().get(YEAR)) {
+            JOptionPane.showMessageDialog(this, "El anio debe ser menor al anio actual", "Editar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if (Integer.parseInt(txtAnio.getText()) < 1900) {
+            JOptionPane.showMessageDialog(this, "Anio mayor a 1900", "Editar usuario", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         if (Integer.parseInt(txtMes.getText()) > 12 || Integer.parseInt(txtMes.getText()) < 1) {
+            JOptionPane.showMessageDialog(this, "Elegir un mes entre 1-12", "Editar usuario", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         if (Integer.parseInt(txtDia.getText()) > 31 || Integer.parseInt(txtDia.getText()) < 1) {
+            JOptionPane.showMessageDialog(this, "Elegir un dia entre 1-31", "Editar usuario", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         if (Integer.parseInt(txtMes.getText()) == 2 && Integer.parseInt(txtDia.getText()) > 29) {
+            JOptionPane.showMessageDialog(this, "Febrero tiene 29 dias (si es bisiesto)", "Editar usuario", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
-
+        if (!validarUsuario()) {
+            JOptionPane.showMessageDialog(this, "El usuario no debe llevar espacios", "Editar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
         return true;
+    }
+
+    public static boolean isNumeric(String cadena) {
+        boolean resultado;
+        try {
+            Integer.parseInt(cadena);
+            resultado = false;
+        } catch (NumberFormatException excepcion) {
+            resultado = true;
+        }
+        return resultado;
+    }
+
+    public boolean validarUsuario() {
+        Pattern pattern = Pattern.compile("^(\\w)+(\\S)$");
+        Matcher matcher = pattern.matcher(txtUsuario.getText());
+        return matcher.find();
     }
 
     private void passwordPlaceholder() {
@@ -431,7 +466,13 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        actualizar();
+        if (validarVacios()) {
+            if (validarFormato()) {
+                actualizar();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Rellenar espacios vacios", "Editar usuario", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
