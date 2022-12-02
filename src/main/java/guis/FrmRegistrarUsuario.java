@@ -2,13 +2,22 @@ package guis;
 
 import entidades.Sexo;
 import entidades.Usuario;
+import helpers.EncriptadorAES;
 import interfaces.IFachadaConexion;
 import java.awt.Color;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import static java.util.Calendar.YEAR;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.swing.JOptionPane;
 import logica.FachadaConexion;
 
@@ -30,8 +39,15 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
     }
 
     private void agregar() {
+        EncriptadorAES encriptador = new EncriptadorAES();
         String username = txtUsuario.getText().trim();
         String password = String.valueOf(txtPassword.getPassword());
+        String passwordEncriptada = null;
+        try {
+            passwordEncriptada = encriptador.encriptar(password);
+        } catch (Exception ex) {
+            Logger.getLogger(FrmRegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } 
         String correo = txtCorreo.getText().trim();
         String numero = txtNumero.getText().trim();
         int dia = Integer.parseInt(txtDia.getText().trim());
@@ -40,7 +56,7 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
         Calendar fecha = new GregorianCalendar(anio, mes - 1, dia);
         Sexo sexo = radHombre.isSelected() ? Sexo.HOMBRE : Sexo.MUJER;
 
-        Usuario usuario = new Usuario(username, password, correo, numero, fecha, sexo, null);
+        Usuario usuario = new Usuario(username, passwordEncriptada, correo, numero, fecha, sexo, null);
         facConexion.regitrarUsuario(usuario);
     }
     

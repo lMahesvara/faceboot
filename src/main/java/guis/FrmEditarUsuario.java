@@ -8,11 +8,14 @@ import entidades.Sexo;
 import static entidades.Sexo.HOMBRE;
 import static entidades.Sexo.MUJER;
 import entidades.Usuario;
+import helpers.EncriptadorAES;
 import interfaces.IFachadaConexion;
 import java.awt.Color;
 import java.util.Calendar;
 import static java.util.Calendar.YEAR;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import logica.Context;
 import logica.FachadaConexion;
@@ -312,7 +315,7 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
             txtPassword.setEditable(false);
             txtPassword.setText(null);
         }
-        
+
         txtUsuario.setText(user.getUsuario());
         if (user.getFechaNacimiento() != null) {
             txtDia.setText(Integer.toString(user.getFechaNacimiento().get(Calendar.DATE)));
@@ -330,13 +333,20 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
     }
 
     public void actualizar() {
-        if(validarVacios()){
+        if (validarVacios()) {
             String username = txtUsuario.getText().trim();
             String password;
 
+            EncriptadorAES encriptador = new EncriptadorAES();
             password = String.valueOf(txtPassword.getPassword());
-            if(String.valueOf(txtPassword.getPassword()) == null){
-                password = user.getPassword();
+            String passwordEncriptada = null;
+            try {
+                passwordEncriptada = encriptador.encriptar(password);
+            } catch (Exception ex) {
+                Logger.getLogger(FrmRegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (String.valueOf(txtPassword.getPassword()) == null) {
+                passwordEncriptada = user.getPassword();
             }
             int dia = Integer.parseInt(txtDia.getText().trim());
             int mes = Integer.parseInt(txtMes.getText().trim());
@@ -348,43 +358,63 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
 
             Usuario update = user;//new Usuario(username, password, user.getCorreo(), user.getNumeroCelular(), fecha, sexo, null);
             update.setUsuario(username);
-            update.setPassword(password);
+            update.setPassword(passwordEncriptada);
             update.setFechaNacimiento(fecha);
             update.setSexo(sexo);
-            
-            if(validarFormato()){
+
+            if (validarFormato()) {
                 fachadaConexion.actualizarUsuario(update);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Rellenar de forma correcta", "Editar perfil", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Rellena los campos necesarios", "Editar perfil", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        
+
         this.dispose();
     }
-    
-    public boolean validarVacios(){
-        if(txtUsuario.getText().isBlank())return false;
-        if(txtDia.getText().isBlank())return false;
-        if(txtMes.getText().isBlank())return false;
-        if(txtAnio.getText().isBlank())return false;
-        if(!radHombre.isSelected() && !radMujer.isSelected())return false;
+
+    public boolean validarVacios() {
+        if (txtUsuario.getText().isBlank()) {
+            return false;
+        }
+        if (txtDia.getText().isBlank()) {
+            return false;
+        }
+        if (txtMes.getText().isBlank()) {
+            return false;
+        }
+        if (txtAnio.getText().isBlank()) {
+            return false;
+        }
+        if (!radHombre.isSelected() && !radMujer.isSelected()) {
+            return false;
+        }
         return true;
     }
-    
-    public boolean validarFormato(){
-        if(!radHombre.isSelected() && !radMujer.isSelected())return false;
-        if(Integer.parseInt(txtAnio.getText())> Calendar.getInstance().get(YEAR))return false;
-        if(Integer.parseInt(txtMes.getText()) > 12 || Integer.parseInt(txtMes.getText()) < 1)return false;
-        if(Integer.parseInt(txtDia.getText()) > 31 || Integer.parseInt(txtDia.getText()) < 1)return false;
-        if(Integer.parseInt(txtMes.getText()) == 2 && Integer.parseInt(txtDia.getText()) > 29)return false;
-        
+
+    public boolean validarFormato() {
+        if (!radHombre.isSelected() && !radMujer.isSelected()) {
+            return false;
+        }
+        if (Integer.parseInt(txtAnio.getText()) > Calendar.getInstance().get(YEAR)) {
+            return false;
+        }
+        if (Integer.parseInt(txtMes.getText()) > 12 || Integer.parseInt(txtMes.getText()) < 1) {
+            return false;
+        }
+        if (Integer.parseInt(txtDia.getText()) > 31 || Integer.parseInt(txtDia.getText()) < 1) {
+            return false;
+        }
+        if (Integer.parseInt(txtMes.getText()) == 2 && Integer.parseInt(txtDia.getText()) > 29) {
+            return false;
+        }
+
         return true;
     }
-    
+
     private void passwordPlaceholder() {
         String password = String.valueOf(txtPassword.getPassword());
 

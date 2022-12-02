@@ -16,6 +16,7 @@ import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import logica.Context;
@@ -44,6 +45,8 @@ public class PublicacionComentar extends javax.swing.JPanel {
         txt.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ke) {
+                if(txt.getText().length()>=250)
+                    ke.consume();
                 refresh();
             }
         });
@@ -67,7 +70,9 @@ public class PublicacionComentar extends javax.swing.JPanel {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 String text = txt.getText().trim();
-                if (!text.equals("")) {
+                if(text.length()>=250){
+                    JOptionPane.showMessageDialog(txt, "El máximo de caracteres es 250","Agregar comentario",JOptionPane.WARNING_MESSAGE);
+                }else if (!text.equals("")) {
                     Comentario comentario = new Comentario(Calendar.getInstance(), text, usuario, publicacion);
                     fachadaConexion.registrarComentario(comentario);
                     txt.setText("");

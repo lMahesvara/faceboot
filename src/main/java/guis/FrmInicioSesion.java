@@ -3,9 +3,12 @@ package guis;
 import entidades.Usuario;
 import events.EventoIniciarSesion;
 import events.EventoIniciarSesionFb;
+import helpers.EncriptadorAES;
 import helpers.LoginFacebook;
 import interfaces.IFachadaConexion;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import logica.Context;
 import logica.FachadaConexion;
@@ -44,10 +47,17 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
     }
 
     private void iniciarSesion() {
+        EncriptadorAES encriptador = new EncriptadorAES();
         String usuario = txtUsuario.getText().trim();
         String pass = String.valueOf(txtPassword.getPassword());
-        System.out.println(pass);
-        Usuario user = new Usuario(usuario, pass);
+        String passwordEncriptada = null;
+        try {
+            passwordEncriptada = encriptador.encriptar(pass);
+        } catch (Exception ex) {
+            Logger.getLogger(FrmRegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        System.out.println(passwordEncriptada);
+        Usuario user = new Usuario(usuario, passwordEncriptada);
         facConexion.iniciarSesion(user);
     }
 
