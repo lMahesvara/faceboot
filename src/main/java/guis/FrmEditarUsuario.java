@@ -8,11 +8,14 @@ import entidades.Sexo;
 import static entidades.Sexo.HOMBRE;
 import static entidades.Sexo.MUJER;
 import entidades.Usuario;
+import static guis.FrmRegistrarUsuario.isNumeric;
 import interfaces.IFachadaConexion;
 import java.awt.Color;
 import java.util.Calendar;
 import static java.util.Calendar.YEAR;
 import java.util.GregorianCalendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import logica.Context;
 import logica.FachadaConexion;
@@ -330,12 +333,13 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
     }
 
     public void actualizar() {
-        if(validarVacios()){
+       
             String username = txtUsuario.getText().trim();
             String password;
 
             password = String.valueOf(txtPassword.getPassword());
-            if(String.valueOf(txtPassword.getPassword()) == null){
+            
+            if(String.valueOf(txtPassword.getPassword()).equals("Nueva contraseña") || String.valueOf(txtPassword.getPassword()).isBlank()){
                 password = user.getPassword();
             }
             int dia = Integer.parseInt(txtDia.getText().trim());
@@ -352,18 +356,8 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
             update.setFechaNacimiento(fecha);
             update.setSexo(sexo);
             
-            if(validarFormato()){
-                fachadaConexion.actualizarUsuario(update);
-            }else{
-                JOptionPane.showMessageDialog(this, "Rellenar de forma correcta", "Editar perfil", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
-        }else{
-            JOptionPane.showMessageDialog(this, "Rellena los campos necesarios", "Editar perfil", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        
-        this.dispose();
+            fachadaConexion.actualizarUsuario(update);
+            this.dispose();
     }
     
     public boolean validarVacios(){
@@ -377,12 +371,52 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
     
     public boolean validarFormato(){
         if(!radHombre.isSelected() && !radMujer.isSelected())return false;
-        if(Integer.parseInt(txtAnio.getText())> Calendar.getInstance().get(YEAR))return false;
-        if(Integer.parseInt(txtMes.getText()) > 12 || Integer.parseInt(txtMes.getText()) < 1)return false;
-        if(Integer.parseInt(txtDia.getText()) > 31 || Integer.parseInt(txtDia.getText()) < 1)return false;
-        if(Integer.parseInt(txtMes.getText()) == 2 && Integer.parseInt(txtDia.getText()) > 29)return false;
-        
+        if(isNumeric(txtAnio.getText()) || isNumeric(txtMes.getText()) || isNumeric(txtDia.getText())){
+            JOptionPane.showMessageDialog(this, "Los valores de fecha deben ser numeros", "Editar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if(Integer.parseInt(txtAnio.getText())> Calendar.getInstance().get(YEAR)){
+            JOptionPane.showMessageDialog(this, "El anio debe ser menor al anio actual", "Editar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if(Integer.parseInt(txtAnio.getText())< 1900){
+            JOptionPane.showMessageDialog(this, "Anio mayor a 1900", "Editar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if(Integer.parseInt(txtMes.getText()) > 12 || Integer.parseInt(txtMes.getText()) < 1){
+            JOptionPane.showMessageDialog(this, "Elegir un mes entre 1-12", "Editar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if(Integer.parseInt(txtDia.getText()) > 31 || Integer.parseInt(txtDia.getText()) < 1){
+            JOptionPane.showMessageDialog(this, "Elegir un dia entre 1-31", "Editar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if(Integer.parseInt(txtMes.getText()) == 2 && Integer.parseInt(txtDia.getText()) > 29){
+            JOptionPane.showMessageDialog(this, "Febrero tiene 29 dias (si es bisiesto)", "Editar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if(!validarUsuario()){
+            JOptionPane.showMessageDialog(this, "El usuario no debe llevar espacios", "Editar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
         return true;
+    }
+    
+    public static boolean isNumeric(String cadena) {
+        boolean resultado;
+        try {
+            Integer.parseInt(cadena);
+            resultado = false;
+        } catch (NumberFormatException excepcion) {
+            resultado = true;
+        }
+        return resultado;
+    }
+    
+    public boolean validarUsuario(){
+        Pattern pattern = Pattern.compile("^(\\w)+(\\S)$");
+        Matcher matcher = pattern.matcher(txtUsuario.getText());
+        return matcher.find();
     }
     
     private void passwordPlaceholder() {
@@ -401,7 +435,13 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        actualizar();
+        if(validarVacios()){
+            if(validarFormato()){
+                actualizar();
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Rellenar espacios vacios", "Editar usuario", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

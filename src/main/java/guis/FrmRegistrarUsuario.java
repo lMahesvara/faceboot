@@ -70,20 +70,58 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
     
     public boolean validarFormato(){
         if(!radHombre.isSelected() && !radMujer.isSelected())return false;
-        if(Integer.parseInt(txtAnio.getText())> Calendar.getInstance().get(YEAR))return false;
-        if(Integer.parseInt(txtAnio.getText())< 1900)return false;
-        if(Integer.parseInt(txtMes.getText()) > 12 || Integer.parseInt(txtMes.getText()) < 1)return false;
-        if(Integer.parseInt(txtDia.getText()) > 31 || Integer.parseInt(txtDia.getText()) < 1)return false;
-        if(Integer.parseInt(txtMes.getText()) == 2 && Integer.parseInt(txtDia.getText()) > 29)return false;
-        if(!validarEmail()){
-            JOptionPane.showMessageDialog(this, "Escribir un proy", "Registrar usuario", JOptionPane.INFORMATION_MESSAGE);
+        if(isNumeric(txtAnio.getText()) || isNumeric(txtMes.getText()) || isNumeric(txtDia.getText())){
+            JOptionPane.showMessageDialog(this, "Los valores de fecha deben ser numeros", "Registrar usuario", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
-        if(!validarNumero())return false;
-        if(!validarUsuario())return false;
-        
+        if(Integer.parseInt(txtAnio.getText())> Calendar.getInstance().get(YEAR)){
+            JOptionPane.showMessageDialog(this, "El anio debe ser menor al anio actual", "Registrar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if(Integer.parseInt(txtAnio.getText())< 1900){
+            JOptionPane.showMessageDialog(this, "Anio mayor a 1900", "Registrar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if(Integer.parseInt(txtMes.getText()) > 12 || Integer.parseInt(txtMes.getText()) < 1){
+            JOptionPane.showMessageDialog(this, "Elegir un mes entre 1-12", "Registrar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if(Integer.parseInt(txtDia.getText()) > 31 || Integer.parseInt(txtDia.getText()) < 1){
+            JOptionPane.showMessageDialog(this, "Elegir un dia entre 1-31", "Registrar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if(Integer.parseInt(txtMes.getText()) == 2 && Integer.parseInt(txtDia.getText()) > 29){
+            JOptionPane.showMessageDialog(this, "Febrero tiene 29 dias (si es bisiesto)", "Registrar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if(!validarEmail()){
+            JOptionPane.showMessageDialog(this, "Escribir un correo correcto", "Registrar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if(!validarNumero()){
+            JOptionPane.showMessageDialog(this, "El numero de telefono debe de ser de 10 digitos", "Registrar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if(!validarUsuario()){
+            JOptionPane.showMessageDialog(this, "El usuario no debe llevar espacios", "Registrar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+            
         return true;
     }
+    
+    public static boolean isNumeric(String cadena) {
+        boolean resultado;
+
+        try {
+            Integer.parseInt(cadena);
+            resultado = false;
+        } catch (NumberFormatException excepcion) {
+            resultado = true;
+        }
+        return resultado;
+    }
+
     
     public boolean validarEmail(){
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -384,11 +422,9 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
             if(validarFormato()){
                 agregar();
                 this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(this, "Rellenar los campos vacios", "Registrar usuario", JOptionPane.INFORMATION_MESSAGE);
             }
         }else{
-            JOptionPane.showMessageDialog(this, "Rellenar de forma correcta", "Registrar usuario", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Rellenar los campos vacios", "Registrar usuario", JOptionPane.INFORMATION_MESSAGE);
         }
         
     }//GEN-LAST:event_btnCrearActionPerformed
