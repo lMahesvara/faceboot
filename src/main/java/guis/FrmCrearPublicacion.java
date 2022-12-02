@@ -15,6 +15,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import logica.Context;
 import logica.FachadaConexion;
 
@@ -194,24 +195,32 @@ public class FrmCrearPublicacion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarImagenActionPerformed
 
     private void btnPublicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicarActionPerformed
-        Publicacion publicacion = null;
-        if (icon != null) {
-            Image image = ConvertirImagen.iconoAImagen(this.lblIcon.getIcon());
-            byte[] bytes = ConvertirImagen.imagenABytes(image);
-            publicacion = new Publicacion(usuario, Calendar.getInstance(), txtTexto.getText().trim(), bytes);
-            publicacion.setHashtag(separarHashtags(txtTexto.getText()));
-            publicacion.setEtiquetas(separarEtiquetas(txtTexto.getText()));
-            
-        }else {
-            publicacion = new Publicacion(usuario, Calendar.getInstance(), txtTexto.getText().trim());
-            publicacion.setHashtag(separarHashtags(txtTexto.getText()));
-            publicacion.setEtiquetas(separarEtiquetas(txtTexto.getText()));
+        if(validarVacios()){
+            Publicacion publicacion = null;
+            if (icon != null) {
+                Image image = ConvertirImagen.iconoAImagen(this.lblIcon.getIcon());
+                byte[] bytes = ConvertirImagen.imagenABytes(image);
+                publicacion = new Publicacion(usuario, Calendar.getInstance(), txtTexto.getText().trim(), bytes);
+                publicacion.setHashtag(separarHashtags(txtTexto.getText()));
+                publicacion.setEtiquetas(separarEtiquetas(txtTexto.getText()));
+
+            }else {
+                publicacion = new Publicacion(usuario, Calendar.getInstance(), txtTexto.getText().trim());
+                publicacion.setHashtag(separarHashtags(txtTexto.getText()));
+                publicacion.setEtiquetas(separarEtiquetas(txtTexto.getText()));
+            }
+            fachadaConexion.registrarPublicacion(publicacion);
+            System.out.println("Se envio");
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "Rellenar los campo", "Crear publicacion", JOptionPane.INFORMATION_MESSAGE);
         }
-        fachadaConexion.registrarPublicacion(publicacion);
-        System.out.println("Se envio");
-        dispose();
     }//GEN-LAST:event_btnPublicarActionPerformed
 
+    public boolean validarVacios(){
+        if(txtTexto.getText().isBlank() && lblIcon.getIcon()==null)return false;
+        return true;
+    }
     
     public List<Hashtag> separarHashtags(String text){
         List<Hashtag> ht = new ArrayList();

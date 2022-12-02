@@ -29,7 +29,6 @@ public class Conector {
         } catch (IOException ex) {
             Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public static Conector getInstance() {

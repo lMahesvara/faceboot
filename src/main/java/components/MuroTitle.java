@@ -166,9 +166,13 @@ public class MuroTitle extends javax.swing.JPanel {
     }//GEN-LAST:event_btnNotificacionesActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        Hashtag hashtag = new Hashtag(txtSearch.getText());
-        fachadaConexion.consultarPublicacionesHashtag(hashtag);
-        System.out.println("Se envio 'Consultar por hashtag'");
+        if(!txtSearch.getText().isBlank()){
+            Hashtag hashtag = new Hashtag(txtSearch.getText());
+            fachadaConexion.consultarPublicacionesHashtag(hashtag);
+            System.out.println("Se envio 'Consultar por hashtag'"); 
+        }else{
+            fachadaConexion.consultarPublicaciones();
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void lblLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoMouseClicked

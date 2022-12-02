@@ -1,14 +1,13 @@
 
 package guis;
 
-import components.NotificacionItem;
 import entidades.Notificacion;
 import entidades.Usuario;
 import events.EventoConsultarNotificaciones;
 import events.EventoRegistrarNotificacion;
 import interfaces.IFachadaConexion;
-import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import logica.Context;
 import logica.FachadaConexion;
 import observers.ObserverConsultarNotificaciones;
@@ -21,7 +20,6 @@ import peticiones.PeticionNotificaciones;
  * @author Vastem
  */
 public class FrmNotificaciones extends javax.swing.JFrame implements ObserverRegistrarNotificacion, ObserverConsultarNotificaciones {
-    private List<Notificacion> notificaciones = new ArrayList();
     private IFachadaConexion fachadaConexion;
     private Usuario usuario;
     
@@ -159,6 +157,11 @@ public class FrmNotificaciones extends javax.swing.JFrame implements ObserverReg
 
     @Override
     public void update(PeticionNotificacion peticion) {
-        agregarNotificacion(peticion.getNotificacion());
+        if(peticion.getNotificacion().getDestinatario() == null){
+            JOptionPane.showMessageDialog(this, "No existe el usuario notificado", "Notificaciones", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            agregarNotificacion(peticion.getNotificacion()); 
+        }
+        
     }
 }

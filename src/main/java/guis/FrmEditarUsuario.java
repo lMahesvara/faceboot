@@ -11,7 +11,9 @@ import entidades.Usuario;
 import interfaces.IFachadaConexion;
 import java.awt.Color;
 import java.util.Calendar;
+import static java.util.Calendar.YEAR;
 import java.util.GregorianCalendar;
+import javax.swing.JOptionPane;
 import logica.Context;
 import logica.FachadaConexion;
 
@@ -309,9 +311,8 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
         if (user.getToken() != null) {
             txtPassword.setEditable(false);
             txtPassword.setText(null);
-        } else {
-            //txtPassword.setText(user.getPassword());
         }
+        
         txtUsuario.setText(user.getUsuario());
         if (user.getFechaNacimiento() != null) {
             txtDia.setText(Integer.toString(user.getFechaNacimiento().get(Calendar.DATE)));
@@ -329,21 +330,59 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
     }
 
     public void actualizar() {
-        String username = txtUsuario.getText().trim();
-        String password = String.valueOf(txtPassword.getPassword());
-        int dia = Integer.parseInt(txtDia.getText().trim());
-        int mes = Integer.parseInt(txtMes.getText().trim());
-        int anio = Integer.parseInt(txtAnio.getText().trim());
-        Calendar fecha = new GregorianCalendar(anio, mes - 1, dia);
-        Sexo sexo = radHombre.isSelected() ? Sexo.HOMBRE : Sexo.MUJER;
+        if(validarVacios()){
+            String username = txtUsuario.getText().trim();
+            String password;
 
-        Usuario update = user;//new Usuario(username, password, user.getCorreo(), user.getNumeroCelular(), fecha, sexo, null);
-        update.setUsuario(username);
-        update.setPassword(password);
-        update.setFechaNacimiento(fecha);
-        update.setSexo(sexo);
+            password = String.valueOf(txtPassword.getPassword());
+            if(String.valueOf(txtPassword.getPassword()) == null){
+                password = user.getPassword();
+            }
+            int dia = Integer.parseInt(txtDia.getText().trim());
+            int mes = Integer.parseInt(txtMes.getText().trim());
+            int anio = Integer.parseInt(txtAnio.getText().trim());
+            GregorianCalendar.getInstance();
+            Calendar fecha = new GregorianCalendar(anio, mes - 1, dia);
+            fecha.get(YEAR);
+            Sexo sexo = radHombre.isSelected() ? Sexo.HOMBRE : Sexo.MUJER;
 
-        fachadaConexion.actualizarUsuario(update);
+            Usuario update = user;//new Usuario(username, password, user.getCorreo(), user.getNumeroCelular(), fecha, sexo, null);
+            update.setUsuario(username);
+            update.setPassword(password);
+            update.setFechaNacimiento(fecha);
+            update.setSexo(sexo);
+            
+            if(validarFormato()){
+                fachadaConexion.actualizarUsuario(update);
+            }else{
+                JOptionPane.showMessageDialog(this, "Rellenar de forma correcta", "Editar perfil", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Rellena los campos necesarios", "Editar perfil", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        this.dispose();
+    }
+    
+    public boolean validarVacios(){
+        if(txtUsuario.getText().isBlank())return false;
+        if(txtDia.getText().isBlank())return false;
+        if(txtMes.getText().isBlank())return false;
+        if(txtAnio.getText().isBlank())return false;
+        if(!radHombre.isSelected() && !radMujer.isSelected())return false;
+        return true;
+    }
+    
+    public boolean validarFormato(){
+        if(!radHombre.isSelected() && !radMujer.isSelected())return false;
+        if(Integer.parseInt(txtAnio.getText())> Calendar.getInstance().get(YEAR))return false;
+        if(Integer.parseInt(txtMes.getText()) > 12 || Integer.parseInt(txtMes.getText()) < 1)return false;
+        if(Integer.parseInt(txtDia.getText()) > 31 || Integer.parseInt(txtDia.getText()) < 1)return false;
+        if(Integer.parseInt(txtMes.getText()) == 2 && Integer.parseInt(txtDia.getText()) > 29)return false;
+        
+        return true;
     }
     
     private void passwordPlaceholder() {
@@ -363,7 +402,6 @@ public class FrmEditarUsuario extends javax.swing.JFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         actualizar();
-        this.dispose();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

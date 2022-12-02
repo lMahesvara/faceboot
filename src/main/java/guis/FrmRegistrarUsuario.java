@@ -5,7 +5,11 @@ import entidades.Usuario;
 import interfaces.IFachadaConexion;
 import java.awt.Color;
 import java.util.Calendar;
+import static java.util.Calendar.YEAR;
 import java.util.GregorianCalendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import logica.FachadaConexion;
 
 /**
@@ -49,7 +53,57 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
             txtPassword.setForeground(new Color(153, 153, 153));
         }
     }
-
+    
+    
+    
+    public boolean validarVacios(){
+        if(txtUsuario.getText().isBlank())return false;
+        if(String.valueOf(txtPassword.getPassword()).isBlank())return false;
+        if(txtCorreo.getText().isBlank())return false;
+        if(txtNumero.getText().isBlank())return false;
+        if(txtDia.getText().isBlank())return false;
+        if(txtMes.getText().isBlank())return false;
+        if(txtAnio.getText().isBlank())return false;
+        if(!radHombre.isSelected() && !radMujer.isSelected())return false;
+        return true;
+    }
+    
+    public boolean validarFormato(){
+        if(!radHombre.isSelected() && !radMujer.isSelected())return false;
+        if(Integer.parseInt(txtAnio.getText())> Calendar.getInstance().get(YEAR))return false;
+        if(Integer.parseInt(txtAnio.getText())< 1900)return false;
+        if(Integer.parseInt(txtMes.getText()) > 12 || Integer.parseInt(txtMes.getText()) < 1)return false;
+        if(Integer.parseInt(txtDia.getText()) > 31 || Integer.parseInt(txtDia.getText()) < 1)return false;
+        if(Integer.parseInt(txtMes.getText()) == 2 && Integer.parseInt(txtDia.getText()) > 29)return false;
+        if(!validarEmail()){
+            JOptionPane.showMessageDialog(this, "Escribir un proy", "Registrar usuario", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if(!validarNumero())return false;
+        if(!validarUsuario())return false;
+        
+        return true;
+    }
+    
+    public boolean validarEmail(){
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher matcher = pattern.matcher(txtCorreo.getText());
+        return matcher.find();
+    }
+    
+    public boolean validarNumero(){
+        Pattern pattern = Pattern.compile("^\\d{10}$");
+        Matcher matcher = pattern.matcher(txtNumero.getText());
+        return matcher.find();//
+    }
+    
+    public boolean validarUsuario(){
+        Pattern pattern = Pattern.compile("^(\\w)+(\\S)$");
+        Matcher matcher = pattern.matcher(txtUsuario.getText());
+        return matcher.find();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -272,9 +326,6 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(btnCrear))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1)
@@ -283,7 +334,10 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
                             .addComponent(txtPassword)
                             .addComponent(jScrollPane1)
                             .addComponent(jScrollPane2)
-                            .addComponent(jScrollPane3))))
+                            .addComponent(jScrollPane3)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addComponent(btnCrear)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -326,8 +380,17 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        agregar();
-        this.dispose();
+        if(validarVacios()){
+            if(validarFormato()){
+                agregar();
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(this, "Rellenar los campos vacios", "Registrar usuario", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Rellenar de forma correcta", "Registrar usuario", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained

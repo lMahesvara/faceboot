@@ -9,12 +9,12 @@ import interfaces.IFachadaConexion;
 import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import logica.FachadaConexion;
 
 public class FrmEditarPublicacion extends javax.swing.JFrame {
@@ -199,7 +199,8 @@ public class FrmEditarPublicacion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarImagenActionPerformed
 
     private void btnPublicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicarActionPerformed
-        if (icon != null) {
+        if(validarVacios()){
+            if (icon != null) {
             Image image = ConvertirImagen.iconoAImagen(this.lblIcon.getIcon());
             byte[] bytes = ConvertirImagen.imagenABytes(image);
             publicacion.setTexto(txtTexto.getText().trim());
@@ -213,8 +214,16 @@ public class FrmEditarPublicacion extends javax.swing.JFrame {
         }
         fachadaConexion.editarPublicacion(publicacion);
         dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "Rellenar los campo", "Editar publicacion", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnPublicarActionPerformed
 
+    public boolean validarVacios(){
+        if(txtTexto.getText().isBlank() && lblIcon.getIcon()==null)return false;
+        return true;
+    }
+    
     public List<Hashtag> separarHashtags(String text) {
         List<Hashtag> ht = new ArrayList();
 

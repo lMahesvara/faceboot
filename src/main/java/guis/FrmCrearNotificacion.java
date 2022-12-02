@@ -7,6 +7,7 @@ package guis;
 import entidades.Notificacion;
 import entidades.Usuario;
 import interfaces.IFachadaConexion;
+import javax.swing.JOptionPane;
 import logica.Context;
 import logica.FachadaConexion;
 
@@ -161,23 +162,34 @@ public class FrmCrearNotificacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPublicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicarActionPerformed
-        Notificacion notificacion = new Notificacion(usuario,new Usuario(txtDestinatario.getText()),txtTexto.getText());
+        if(validarVacios()){
+            Notificacion notificacion = new Notificacion(usuario,new Usuario(txtDestinatario.getText()),txtTexto.getText());
         
-        if(chkCorreo.isSelected() && chkSms.isSelected()){
-            System.out.println("Notificación por correo y sms");
-            fachadaConexion.notificarTodos(notificacion);
-        }else if(chkSms.isSelected()){
-            System.out.println("Notificación por sms");
-            fachadaConexion.notificarSMS(notificacion);
-        }else if(chkCorreo.isSelected()){
-            System.out.println("Notificación por correo");
-            fachadaConexion.notificarCorreo(notificacion);
-        }
+            if(chkCorreo.isSelected() && chkSms.isSelected()){
+                System.out.println("Notificación por correo y sms");
+                fachadaConexion.notificarTodos(notificacion);
+            }else if(chkSms.isSelected()){
+                System.out.println("Notificación por sms");
+                fachadaConexion.notificarSMS(notificacion);
+            }else if(chkCorreo.isSelected()){
+                System.out.println("Notificación por correo");
+                fachadaConexion.notificarCorreo(notificacion);
+            }
 
-        System.out.println("Se envio");
-        dispose();
+            System.out.println("Se envio");
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "Rellenar los campos vacios", "Crear notificación", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnPublicarActionPerformed
 
+    public boolean validarVacios(){
+        if(!chkCorreo.isSelected()&&!chkSms.isSelected())return false;
+        if(txtDestinatario.getText().isBlank())return false;
+        if(txtTexto.getText().isBlank())return false;
+        return true;
+    }
+    
     private void txtDestinatarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDestinatarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDestinatarioActionPerformed

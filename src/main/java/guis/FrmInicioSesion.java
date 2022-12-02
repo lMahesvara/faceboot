@@ -84,6 +84,13 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
             txtPassword.setForeground(new Color(153, 153, 153));
         }
     }
+    
+    public boolean validarVacios(){
+        if(txtUsuario.getText().isBlank())return false;
+        if(String.valueOf(txtPassword.getPassword()).isBlank())return false;
+        if(String.valueOf(txtPassword.getPassword()).equals("Contraseña"))return false;
+        return true;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -281,7 +288,12 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        iniciarSesion();
+        
+        if(validarVacios()){
+            iniciarSesion();
+        }else{
+            JOptionPane.showMessageDialog(this, "Rellenar los campos vacios", "Iniciar sesion", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed
@@ -364,7 +376,6 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
     @Override
     public void update(PeticionUsuario peticion) {
         verificarUsuario(peticion);
-
     }
 
     @Override
