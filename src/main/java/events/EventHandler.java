@@ -19,6 +19,9 @@ public class EventHandler {
     private EventoCerrarSesion evCerrarSesion;
     private static EventHandler instance;
 
+    /**
+     * Constructor, obtiene las intancias de los eventos
+     */
     private EventHandler() {
         //TODO: Create factory
         evIniciarSesion = EventoIniciarSesion.getInstance();
@@ -36,11 +39,18 @@ public class EventHandler {
         evCerrarSesion = EventoCerrarSesion.getInstance();
     }
     
+    /**
+     * Obtiene la instancia de la clase
+     * @return instancia de la clasez
+     */
     public static EventHandler getInstance(){
         if(instance == null) instance = new EventHandler();
         return instance;
     }
     
+    /**
+     * Delimita que evento se hará
+     */
     public void manejarEvento(AbstractPeticion peticion){
         if(peticion==null) return;
         if(peticion.getPeticionRespuesta().equals(INICIAR_SESION)){

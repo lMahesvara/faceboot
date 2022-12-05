@@ -46,15 +46,24 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
         consultarPublicaciones();
     }
 
+    /**
+     * Muestra la publicacion recibida en el muro
+     */
     private void mostrarPublicacion(PeticionPublicacion peticion) {
         //JOptionPane.showMessageDialog(this, peticion.getPublicacion().getTexto().trim(), "Publicacion Nueva", JOptionPane.INFORMATION_MESSAGE);
         panMuro.agregarPublicacion(peticion.getPublicacion());
     }
     
+    /**
+     * Consulta todas las publicaciones
+     */
     private void consultarPublicaciones(){
         fachadaConexion.consultarPublicaciones();
     }
     
+    /**
+     * Pinta el muro con las publicaciones
+     */
     private void pintarMuro(List<Publicacion> publicaciones){
         panMuro.init(publicaciones);
     }
@@ -110,6 +119,9 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
     private guis.PMuro panMuro;
     // End of variables declaration//GEN-END:variables
 
+   /**
+    * Agrega la nueva publicacion al muro
+    */
     @Override
     public void update(PeticionPublicacion peticion) {
         if(MuroState.getInstance().getState().equals(MuroState.IN_HASHTAG)){
@@ -118,14 +130,18 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
         mostrarPublicacion(peticion);
     }
 
+    /**
+    * Actualiza el muro
+    */
     @Override
     public void update(PeticionPublicaciones peticion) {
         MuroState.getInstance().setStateALL();
         pintarMuro(peticion.getPublicaciones());
     }
     
-    
-
+    /***
+     * Actualiza el usuario
+     */
     @Override
     public void update(PeticionUsuario peticion) {
         if(peticion.getUsuario() == null){
@@ -136,17 +152,25 @@ public class FrmMuro extends javax.swing.JFrame implements ObserverRegistrarPubl
         consultarPublicaciones();
     }
 
+    /**
+     * Consulta las publicaciones
+     */
     @Override
     public void updateEliminarPublicacion(PeticionPublicacion peticion) {
         this.consultarPublicaciones();
     }
     
+    /**
+     */
     @Override
     public void updatePublicacionesTag(PeticionPublicaciones peticion) {
         MuroState.getInstance().setStateIN_HASHTAG();
         pintarMuro(peticion.getPublicaciones());
     }
 
+    /**
+     * Cierra sesion
+     */
     @Override
     public void updateLogout(PeticionUsuario peticion) {
         FrmInicioSesion.getInstance().setVisible(true);

@@ -33,6 +33,10 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         // pruebaInicio();
     }
 
+    /**
+     * Obtiene la instancia de la clase
+     * @return instancia de la clase
+     */
     public static FrmInicioSesion getInstance() {
         if (instance == null) {
             instance = new FrmInicioSesion();
@@ -40,12 +44,9 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         return instance;
     }
 
-    private void pruebaInicio() {
-        txtUsuario.setText("asd");
-        txtPassword.setText("asd");
-        iniciarSesion();
-    }
-
+    /**
+     * Envia el usuario que iniciara sesion a validarse
+     */
     private void iniciarSesion() {
         EncriptadorAES encriptador = new EncriptadorAES();
         String usuario = txtUsuario.getText().trim();
@@ -61,6 +62,9 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         facConexion.iniciarSesion(user);
     }
 
+    /**
+     * Verifica los usuarios de fb
+     */
     private void verificarUsuarioFb(PeticionUsuario peticion) {
         System.out.println("Entro al verificar");
         Usuario usuario = peticion.getUsuario();
@@ -73,6 +77,9 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         this.dispose();
     }
 
+    /**
+     * Verifica los usuarios
+     */
     private void verificarUsuario(PeticionUsuario peticion) {
         System.out.println("Entro al verificar");
         Usuario usuario = peticion.getUsuario();
@@ -85,6 +92,9 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         this.dispose();
     }
 
+    /**
+     * Placeholder de la contase;a     
+     */
     private void passwordPlaceholder() {
         String password = String.valueOf(txtPassword.getPassword());
 
@@ -95,6 +105,9 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
         }
     }
     
+    /**
+     * Valida espacios vacios
+     */
     public boolean validarVacios(){
         if(txtUsuario.getText().isBlank())return false;
         if(String.valueOf(txtPassword.getPassword()).isBlank())return false;
@@ -383,11 +396,17 @@ public class FrmInicioSesion extends javax.swing.JFrame implements ObserverInici
     private swingComponents.JIMSendTextPane txtUsuario;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Verifica si el usuario pudo iniciar sesion
+     */
     @Override
     public void update(PeticionUsuario peticion) {
         verificarUsuario(peticion);
     }
 
+    /**
+     * Verifica si el usuario pudo iniciar sesion
+     */
     @Override
     public void updateIniciarSesionFb(PeticionUsuario peticion) {
         verificarUsuarioFb(peticion);

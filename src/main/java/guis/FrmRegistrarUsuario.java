@@ -5,9 +5,6 @@ import entidades.Usuario;
 import helpers.EncriptadorAES;
 import interfaces.IFachadaConexion;
 import java.awt.Color;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import static java.util.Calendar.YEAR;
 import java.util.GregorianCalendar;
@@ -15,9 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.swing.JOptionPane;
 import logica.FachadaConexion;
 
@@ -38,6 +32,9 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
         passwordPlaceholder();
     }
 
+    /**
+     * Agrega un nuevo usuario al sistema
+     */
     private void agregar() {
         EncriptadorAES encriptador = new EncriptadorAES();
         String username = txtUsuario.getText().trim();
@@ -60,6 +57,9 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
         facConexion.regitrarUsuario(usuario);
     }
     
+    /**
+     * Placeholder de la contrase;a
+     */
     private void passwordPlaceholder() {
         String password = String.valueOf(txtPassword.getPassword());
 
@@ -70,8 +70,9 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
         }
     }
     
-    
-    
+    /**
+     * Valida los espacios vacios
+     */
     public boolean validarVacios(){
         if(txtUsuario.getText().isBlank())return false;
         if(String.valueOf(txtPassword.getPassword()).isBlank())return false;
@@ -84,6 +85,9 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
         return true;
     }
     
+    /**
+     * Valida el formato del texto introducido
+     */
     public boolean validarFormato(){
         if(!radHombre.isSelected() && !radMujer.isSelected())return false;
         if(isNumeric(txtAnio.getText()) || isNumeric(txtMes.getText()) || isNumeric(txtDia.getText())){
@@ -126,6 +130,9 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
         return true;
     }
     
+    /**
+     * Pregunta si la cadena recibida es numerica
+     */
     public static boolean isNumeric(String cadena) {
         boolean resultado;
 
@@ -138,7 +145,9 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
         return resultado;
     }
 
-    
+    /**
+     *  Valida el formato del correo
+     */
     public boolean validarEmail(){
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
@@ -146,12 +155,18 @@ public class FrmRegistrarUsuario extends javax.swing.JFrame {
         return matcher.find();
     }
     
+    /**
+     *  Valida el formato del numero telefonico
+     */
     public boolean validarNumero(){
         Pattern pattern = Pattern.compile("^\\d{10}$");
         Matcher matcher = pattern.matcher(txtNumero.getText());
         return matcher.find();//
     }
     
+    /**
+     *  Valida el formato del Usuario
+     */
     public boolean validarUsuario(){
         Pattern pattern = Pattern.compile("^(\\w)+(\\S)$");
         Matcher matcher = pattern.matcher(txtUsuario.getText());
